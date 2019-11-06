@@ -1,22 +1,19 @@
 FROM ubuntu:14.04
   
-RUN apt update && apt upgrade
+RUN apt-get update && apt-get upgrade -y
 
 # Install libqt5widgets5 first, since its a large dependecy
-RUN apt install -y --force-yes libqt5widgets5
+RUN apt-get install -y --force-yes libqt5widgets5
 
 # Install all dependencies
-RUN apt install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash libqt5network5 man
+RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash libqt5network5 man
 
 # Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
 RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
-RUN apt update 
-RUN apt install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
-
-
+RUN apt-get update
+RUN apt-get install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
 
 # Create user since ptxdist refuses to run as root
-RUN apt-get install sudo
 RUN useradd -m non-root
 RUN echo "non-root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -24,15 +21,10 @@ RUN echo "non-root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN su - non-root -c "mkdir /home/non-root/MaskinProgrammering03"
 COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
-
-RUN ls /home/non-root/MaskinProgrammering03/
-RUN su - non-root -c "mkdir /home/non-root/MaskinProgrammering03/eACommander"
-RUN unzip /home/non-root/MaskinProgrammering03/eACommander.zip -d /home/non-root/MaskinProgrammering03/eACommander
-RUN ls /home/non-root/MaskinProgrammering03/
-RUN mv /home/non-root/MaskinProgrammering03/eACommander /opt/
-RUN ls /opt
-RUN ls /opt/eACommander
-
+# Install simplicity commander
+RUN wget https://www.silabs.com/documents/public/software/SimplicityCommander-Linux.zip
+RUN unzip SimplicityCommander-Linux.zip
+RUN tar xvf SimplicityCommander-Linux/Commander_linux_x86_64_1v7p7b561.tar.bz -C /home/non-root
 
 # Install right ptxdist version
 RUN wget --no-check-certificate http://ptxdist.de/software/ptxdist/download/ptxdist-2013.07.1.tar.bz2 && tar xjf ptxdist-2013.07.1.tar.bz2 && ls
@@ -49,20 +41,17 @@ RUN cd ptxdist-2013.07.1 && sudo make install
 # file, then build again. The line that is fixed is just a usleep in a while true
 # loop, probably just to not consume so much resources sooooo should be OK to remove...?
 RUN echo $'#!/usr/bin/env bash \n\
-  export PATH=/opt/eACommander:$PATH \n\
-  echo $PATH \n\
   cd /home/non-root \n\
   [[ -d "MaskinProgrammering03" ]] || git clone https://github.com/chrisvibe/MaskinProgrammering03.git \n\
   ls \n\
-  whoami' >> /home/non-root/docker_pull_and_setup.sh
-
-  # cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\
-  # ptxdist select configs/ptxconfig \n\
-  # ptxdist platform configs/platform-energymicro-efm32gg-dk3750/platformconfig \n\
-  # ptxdist toolchain /opt/OSELAS.Toolchain-2012.12.0/arm-cortexm3-uclinuxeabi/gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized/bin \n\
-  # ptxdist images \n\
-  # sed -i '/usleep/d' /home/non-root/MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko/platform-energymicro-efm32gg-dk3750/build-target/busybox-1.21.0/modutils/modprobe-small.c \n\
-  # ptxdist images \n\
+  whoami \n\
+  cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\
+  ptxdist select configs/ptxconfig \n\
+  ptxdist platform configs/platform-energymicro-efm32gg-dk3750/platformconfig \n\
+  ptxdist toolchain /opt/OSELAS.Toolchain-2012.12.0/arm-cortexm3-uclinuxeabi/gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized/bin \n\
+  ptxdist images \n\
+  sed -i '/usleep/d' /home/non-root/MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko/platform-energymicro-efm32gg-dk3750/build-target/busybox-1.21.0/modutils/modprobe-small.c \n\
+  ptxdist images' >> /home/non-root/docker_pull_and_setup.sh
   # ptxdist test flash-all' >> /home/non-root/docker_pull_and_setup.sh
 
 

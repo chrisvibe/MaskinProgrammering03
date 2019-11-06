@@ -60,7 +60,8 @@ RUN echo $'#!/usr/bin/env bash \n\
   export PATH=/home/non-root/JLink/JLink:$PATH \n\
   export PATH=/opt/eACommander:$PATH \n\
   cd /home/non-root \n\
-  [[ -d "MaskinProgrammering03" ]] || git clone https://github.com/chrisvibe/MaskinProgrammering03.git \n\
+  git checkout master \n\
+  git pull origin master \n\
   ls \n\
   whoami \n\
   cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\

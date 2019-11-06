@@ -4,6 +4,12 @@ FROM ubuntu:14.04
 RUN apt-get update 
 RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash
 
+# Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
+RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get update 
+RUN apt-get install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
+
+
 
 # Create user since ptxdist refuses to run as root
 RUN apt-get install sudo
@@ -23,10 +29,6 @@ RUN mv /home/non-root/MaskinProgrammering03/eACommander /opt/
 RUN ls /opt
 RUN ls /opt/eACommander
 
-# Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
-RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
-RUN apt-get update 
-RUN apt-get install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
 
 # Install right ptxdist version
 RUN wget --no-check-certificate http://ptxdist.de/software/ptxdist/download/ptxdist-2013.07.1.tar.bz2 && tar xjf ptxdist-2013.07.1.tar.bz2 && ls
@@ -43,6 +45,8 @@ RUN cd ptxdist-2013.07.1 && sudo make install
 # file, then build again. The line that is fixed is just a usleep in a while true
 # loop, probably just to not consume so much resources sooooo should be OK to remove...?
 RUN echo $'#!/usr/bin/env bash \n\
+  export PATH=/opt/eACommander:$PATH \n\
+  echo $PATH \n\
   cd /home/non-root \n\
   [[ -d "MaskinProgrammering03" ]] || git clone https://github.com/chrisvibe/MaskinProgrammering03.git \n\
   ls \n\
@@ -53,7 +57,8 @@ RUN echo $'#!/usr/bin/env bash \n\
   ptxdist toolchain /opt/OSELAS.Toolchain-2012.12.0/arm-cortexm3-uclinuxeabi/gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized/bin \n\
   ptxdist images \n\
   sed -i '/usleep/d' /home/non-root/MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko/platform-energymicro-efm32gg-dk3750/build-target/busybox-1.21.0/modutils/modprobe-small.c \n\
-  ptxdist images' >> /home/non-root/docker_pull_and_setup.sh
+  ptxdist images \n\
+  ptxdist test flash-all' >> /home/non-root/docker_pull_and_setup.sh
 
 
 # Output the script for debugging purposes

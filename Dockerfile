@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y --force-yes libqt5widgets5
 
 # Install all dependencies
-RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash libqt5network5 man zlib1g
+RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash libqt5gui5 man zlib1g
 
 # Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
 RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
@@ -23,9 +23,9 @@ COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
 # Install JLink software package
 RUN ls /home/non-root/MaskinProgrammering03
-RUN tar xvf /home/non-root/MaskinProgrammering03/JLink_segger.tar.gz -C /home/non-root/MaskinProgrammering03/
+RUN tar xvf /home/non-root/MaskinProgrammering03/JLink-segger.tar.gz -C /home/non-root/MaskinProgrammering03/
 RUN ls /home/non-root/MaskinProgrammering03
-RUN yes | dpkg -i /home/non-root/MaskinProgrammering03/JLink_Linux_V654a_x86_64.deb
+RUN yes | dpkg -i /home/non-root/MaskinProgrammering03/JLink_Linux_V654a_i386.deb
 RUN ls /home/non-root/MaskinProgrammering03
 
 # Install eACommander

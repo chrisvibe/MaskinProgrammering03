@@ -1,5 +1,10 @@
 FROM ubuntu:14.04
 
+# Install all dependencies
+RUN apt-get update 
+RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash
+
+
 # Create user since ptxdist refuses to run as root
 RUN apt-get install sudo
 RUN useradd -m non-root
@@ -9,15 +14,12 @@ RUN echo "non-root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN su - non-root -c "mkdir /home/non-root/MaskinProgrammering03"
 COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
-# Install all dependencies
-RUN apt-get update 
-RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash
 
 RUN ls /home/non-root/MaskinProgrammering03/
-RUN unzip /home/non-root/MaskinProgrammering03/eAcommander.zip
-RUN mv /home/non-root/MaskinProgrammering03/eAcommander /opt/
+RUN unzip /home/non-root/MaskinProgrammering03/eACommander.zip
+RUN mv /home/non-root/MaskinProgrammering03/eACommander /opt/
 RUN ls /opt
-RUN ls /opt/eAcommander
+RUN ls /opt/eACommander
 
 # Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
 RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list

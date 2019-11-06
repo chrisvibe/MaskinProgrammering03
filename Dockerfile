@@ -9,18 +9,20 @@ RUN echo "non-root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN su - non-root -c "mkdir /home/non-root/MaskinProgrammering03"
 COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
-# Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
-RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
-RUN apt-get update 
-RUN apt-get install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
-
 # Install all dependencies
+RUN apt-get update 
 RUN apt-get install -y --force-yes build-essential expect gawk flex bison texinfo gettext libncurses-dev automake autoconf libtool pkg-config wget python python-dev python-setuptools  python-distutils-extra busybox bc git unzip bash
 
+RUN ls /home/non-root/MaskinProgrammering03/
 RUN unzip /home/non-root/MaskinProgrammering03/eAcommander.zip
 RUN mv /home/non-root/MaskinProgrammering03/eAcommander /opt/
 RUN ls /opt
 RUN ls /opt/eAcommander
+
+# Get the right OSELAS toolchain from deb repo so we dont have to built it ourselves
+RUN echo "deb http://debian.pengutronix.de/debian/ sid main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get update 
+RUN apt-get install -y --force-yes oselas.toolchain-2012.12.0-arm-cortexm3-uclinuxeabi-gcc-4.7.2-uclibc-0.9.33.2-binutils-2.22-kernel-3.6-sanitized
 
 # Install right ptxdist version
 RUN wget --no-check-certificate http://ptxdist.de/software/ptxdist/download/ptxdist-2013.07.1.tar.bz2 && tar xjf ptxdist-2013.07.1.tar.bz2 && ls
@@ -29,7 +31,6 @@ RUN ls
 RUN cd ptxdist-2013.07.1 && ./configure 
 RUN cd ptxdist-2013.07.1 && make
 RUN cd ptxdist-2013.07.1 && sudo make install
-
 
 # Create script to be run, if OpenMaskin3 folder does not exist, clone it
 # WARNING:

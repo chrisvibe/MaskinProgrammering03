@@ -16,7 +16,9 @@ COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
 
 RUN ls /home/non-root/MaskinProgrammering03/
-RUN unzip /home/non-root/MaskinProgrammering03/eACommander.zip
+RUN su - non-root -c "mkdir /home/non-root/MaskinProgrammering03/eACommander"
+RUN unzip /home/non-root/MaskinProgrammering03/eACommander.zip -d /home/non-root/MaskinProgrammering03/eACommander
+RUN ls /home/non-root/MaskinProgrammering03/
 RUN mv /home/non-root/MaskinProgrammering03/eACommander /opt/
 RUN ls /opt
 RUN ls /opt/eACommander

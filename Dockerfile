@@ -10,8 +10,6 @@ COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 # loop, probably just to not consume so much resources sooooo should be OK to remove...?
 RUN echo $' \n\
   cd /home/non-root \n\
-  git checkout master \n\
-  git pull origin master \n\
   ls \n\
   whoami \n\
   cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\

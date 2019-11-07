@@ -4,8 +4,8 @@ COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
 
 RUN echo $' \n\
   cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\
-  bash helper_scripts/ptxdist_setup.sh \n\
-  bash helper_scripts/ptxdist_build_all.sh' >> /home/non-root/docker_pull_and_setup.sh
+  bash TDT4258_helper_scripts/ptxdist_setup.sh \n\
+  bash TDT4258_helper_scripts/ptxdist_build_all.sh' >> /home/non-root/docker_pull_and_setup.sh
 
 # Output the script for debugging purposes
 RUN cat /home/non-root/docker_pull_and_setup.sh

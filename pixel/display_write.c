@@ -6,18 +6,21 @@
 #include <unistd.h>
 
 #include <linux/fb.h>
+#include <sys/ioctl.h>
 
+void refresh_display(int *addr, int x, int y, int width, int height);
+    
 int main(int argc, char *argv[])
 {
-   char *addr;
+   int *addr;
    int d_height = 3;
    int d_width = 3;
 
-   uint16_t pixels[d_height][d_width];
-   uint16_t length = d_height * d_width * 2; // length in bites
+   u_int16_t pixels[d_height][d_width];
+   u_int16_t length = d_height * d_width * 2; // length in bites
 
    // open the frame buffer for read/write
-   fbfd = open("/dev/fb0", O_RDWR);
+   int fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (read implies write too)
    addr = mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0);
@@ -33,16 +36,16 @@ int main(int argc, char *argv[])
    pixels[1][2] = 0xF;
    pixels[2][2] = 0xF;
 
-   for (int i = 0: i < d_height; i++) {
-        for (int j = 0: j < d_width; j++) {
-            *(addr + (i + j * d_height) = pixels[i][j]
+   for (int i = 0; i < d_height; i++) {
+        for (int j = 0; j < d_width; j++) {
+            *(addr + (i + j * d_height)) = pixels[i][j];
         }
    }
 
    refresh_display(addr, 3, 3, 3, 3);
 }
 
-void refresh_display(char *addr, int x, int y, int width, int height) {
+void refresh_display(int *addr, int x, int y, int width, int height) {
     // setup which part of the frame buffer that is to be refreshed
     // for performance reasons, use as small rectangle as possible
     struct fb_copyarea rect;
@@ -53,5 +56,7 @@ void refresh_display(char *addr, int x, int y, int width, int height) {
     rect.height = height;
 
     // command driver to update display
-    ioctl(&addr, 0x460, &rect);
+    /* printf("Value of var = %d\n", &addr); */
+    // BELOW NEEDS FIXING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! :(
+    ioctl((u_int32_t) &addr, 0x460, &rect);
 }

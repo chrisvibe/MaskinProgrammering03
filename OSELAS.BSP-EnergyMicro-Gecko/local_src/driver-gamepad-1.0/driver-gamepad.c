@@ -9,6 +9,7 @@
 #include <linux/ioport.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>
+#include <linux/device.h>
 #include <asm/io.h>
 
 #include "efm32gg.h"
@@ -42,9 +43,9 @@ static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, lo
 
 static struct file_operations my_fops = {
   .owner = THIS_MODULE,
-  .read = my_read ,
-  .write = my_write ,
-  .open = my_open ,
+  .read = my_read,
+  .write = my_write,
+  .open = my_open,
   .release = my_release
 };
 
@@ -68,9 +69,7 @@ struct cdev my_cdev = {
 
 static int __init template_init(void)
 {
-	printk("Hello World, here is your module speaking\n");
-
-
+  printk("Hello World, here is your module speaking\n");
 
   // Request memory
   char *name = "GPIO";
@@ -85,7 +84,7 @@ static int __init template_init(void)
   // Get device version number
   int result = alloc_chrdev_region(devno, 0, 1, "device_name");
   int dev_major = MAJOR(devno);
-  int dev_minor - MINOR(devno);
+  int dev_minor = MINOR(devno);
   if (result < 0) {
     printk(KERN_WARNING "Gamepad driver: Can't get major %d\n", dev_major);
   }
@@ -97,10 +96,10 @@ static int __init template_init(void)
   } 
 
   // Make driver visible to user space
-  cl = class_create(THIS_MODULE, ”my_class_name”);
-  device_create(cl, NULL, devno , NULL, ”my_class_name”);
+  cl = class_create(THIS_MODULE, my_class_name);
+  device_create(cl, NULL, devno , NULL, my_class_name);
 
-	return 0;
+  return 0;
 }
 
 

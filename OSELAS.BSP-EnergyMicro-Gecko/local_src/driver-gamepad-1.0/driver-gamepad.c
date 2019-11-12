@@ -11,7 +11,7 @@
 #include <linux/cdev.h>
 #include <asm/io.h>
 
-#include "stdint.h"
+#include "efm32gg.h"
 
 dev_t *devno;
 struct class *cl;
@@ -19,22 +19,25 @@ struct class *cl;
 
 static int my_open (struct inode *inode, struct  file *filp) {
   printk("opening\n");
-
+  return 0;
 }
 
 
 static int my_release (struct inode *inode, struct  file *filp) {
   printk("releasing\n");
+  return 0;
 }
 
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   printk("reading");
+  return 0;
 }
 
 
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   printk("writing");
+  return 0;
 }
 
 static struct file_operations my_fops = {
@@ -71,16 +74,16 @@ static int __init template_init(void)
 
   // Request memory
   char *name = "GPIO";
-  if (request_mem_region(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_FIC) - GPIO_PA_BASE, name) == NULL)  {
+  if (request_mem_region(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC) - GPIO_PA_BASE, name) == NULL)  {
     printk("An error occured! Could not reserve memory region");
     return 1;
   }
 
   // This is our io address space, but dont read it directlu, use accessor functions
-  void *mappReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_FIC));
+  void *mappReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC));
   
   // Get device version number
-  int result = alloc_chrdev_region(devno, 0, 1, "device_name")
+  int result = alloc_chrdev_region(devno, 0, 1, "device_name");
   int dev_major = MAJOR(devno);
   int dev_minor - MINOR(devno);
   if (result < 0) {
@@ -90,7 +93,7 @@ static int __init template_init(void)
   cdev_init(&my_cdev, &my_fops);
   int cdev_result = cdev_add(&my_cdev, devno, 1);
   if (cdev_result < 0) {
-    printk(KERN_WARNING "Gamepad driver: Failed to add character device")
+    printk(KERN_WARNING "Gamepad driver: Failed to add character device");
   } 
 
   // Make driver visible to user space
@@ -113,7 +116,7 @@ static int __init template_init(void)
 static void __exit template_cleanup(void)
 {
 	 printk("Short life for a small module...\n");
-   unregister_chrdev_region(*dev, 1);
+   unregister_chrdev_region(devno, 1);
 }
 
 module_init(template_init);

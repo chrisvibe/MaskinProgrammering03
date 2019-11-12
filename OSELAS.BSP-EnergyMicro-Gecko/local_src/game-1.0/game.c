@@ -1,11 +1,14 @@
+#include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
-
 #include <linux/fb.h>
 #include <sys/ioctl.h>
+#include <stdio.h>
+// #include <sys/stat.h>
+// #include <unistd.h>
 
 void refresh_display(int fbfd, int x, int y, int width, int height);
-    
+
 int main(int argc, char *argv[])
 {
    printf("Hello World, I'm game!\n");
@@ -34,8 +37,10 @@ int main(int argc, char *argv[])
    pixels[1][2] = 0xF;
    pixels[2][2] = 0xF;
 
-   for (int i = 0; i < d_height; i++) {
-        for (int j = 0; j < d_width; j++) {
+   int i;
+   int j;
+   for (i = 0; i < d_height; i++) {
+        for (j = 0; j < d_width; j++) {
             *(addr + (i + j * d_height)) = pixels[i][j];
         }
    }
@@ -58,3 +63,4 @@ void refresh_display(int fbfd, int x, int y, int width, int height) {
     // command driver to update display
     ioctl(fbfd, 0x460, &rect);
 }
+

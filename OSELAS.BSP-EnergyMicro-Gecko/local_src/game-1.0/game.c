@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
    printf("Hello World, I'm game!\n");
 
    int *addr;
-   int d_height = 3;
-   int d_width = 3;
+   int d_height = 320;
+   int d_width = 240;
 
    u_int16_t pixels[d_height][d_width];
    u_int16_t length = d_height * d_width * 2; // length in bites
@@ -37,16 +37,15 @@ int main(int argc, char *argv[])
    pixels[1][2] = 0xF;
    pixels[2][2] = 0xF;
 
+   /* char z[] = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"; */
    int i;
    int j;
    for (i = 0; i < d_height; i++) {
         for (j = 0; j < d_width; j++) {
             *(addr + (i + j * d_height)) = pixels[i][j];
+            /* *(addr + (i + j * d_height)) = z[j]; */
         }
    }
-
-   char z = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
-   *(addr + 0) = z;
 
    refresh_display(fbfd, 0, 0, 320, 240);
 

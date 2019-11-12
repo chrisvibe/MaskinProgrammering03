@@ -69,35 +69,43 @@ struct cdev my_cdev = {
 
 static int __init template_init(void)
 {
+  // Need to allocate variables here because C90 restrictions
+  int alloc_chrdevice_result;
+  int dev_major;
+  int dev_minor;
+  int mapReturn;
+  int cdev_result;
+  char *name;
+
   printk("Hello World, here is your module speaking\n");
 
   // Request memory
-  char *name = "GPIO";
+  *name = "GPIO";
   if (request_mem_region(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC) - GPIO_PA_BASE, name) == NULL)  {
     printk("An error occured! Could not reserve memory region");
     return 1;
   }
 
   // This is our io address space, but dont read it directlu, use accessor functions
-  void *mappReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC));
+  mapReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC));
   
   // Get device version number
-  int result = alloc_chrdev_region(devno, 0, 1, "device_name");
-  int dev_major = MAJOR(devno);
-  int dev_minor = MINOR(devno);
-  if (result < 0) {
+  alloc_chrdevice_result = alloc_chrdev_region(devno, 0, 1, "device_name");
+  dev_major = MAJOR(*devno);
+  dev_minor = MINOR(*devno);
+  if (alloc_chrdevice_result < 0) {
     printk(KERN_WARNING "Gamepad driver: Can't get major %d\n", dev_major);
   }
 
   cdev_init(&my_cdev, &my_fops);
-  int cdev_result = cdev_add(&my_cdev, devno, 1);
+  cdev_result = cdev_add(&my_cdev, *devno, 1);
   if (cdev_result < 0) {
     printk(KERN_WARNING "Gamepad driver: Failed to add character device");
   } 
 
   // Make driver visible to user space
-  cl = class_create(THIS_MODULE, my_class_name);
-  device_create(cl, NULL, devno , NULL, my_class_name);
+  cl = class_create(THIS_MODULE, "The cool device");
+  device_create(cl, NULL, *devno , NULL, "The cool device");
 
   return 0;
 }
@@ -115,7 +123,7 @@ static int __init template_init(void)
 static void __exit template_cleanup(void)
 {
 	 printk("Short life for a small module...\n");
-   unregister_chrdev_region(devno, 1);
+   unregister_chrdev_region(*devno, 1);
 }
 
 module_init(template_init);

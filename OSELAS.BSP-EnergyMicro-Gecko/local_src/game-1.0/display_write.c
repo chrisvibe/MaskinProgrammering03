@@ -1,3 +1,4 @@
+#include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
 
@@ -8,8 +9,6 @@ void refresh_display(int fbfd, int x, int y, int width, int height);
     
 int main(int argc, char *argv[])
 {
-   printf("Hello World, I'm game!\n");
-
    int *addr;
    int d_height = 3;
    int d_width = 3;

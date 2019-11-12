@@ -30,21 +30,18 @@ int main(int argc, char *argv[])
    pixels[0][0] = 0xF;
    pixels[1][0] = 0xF;
    pixels[2][0] = 0xF;
-   /* pixels[0][1] = 0xF; */
-   /* pixels[1][1] = 0xF; */
-   /* pixels[2][1] = 0xF; */
-   /* pixels[0][2] = 0xF; */
-   /* pixels[1][2] = 0xF; */
-   /* pixels[2][2] = 0xF; */
+   pixels[0][1] = 0xF;
+   pixels[1][1] = 0xF;
+   pixels[2][1] = 0xF;
+   pixels[0][2] = 0xF;
+   pixels[1][2] = 0xF;
+   pixels[2][2] = 0xF;
 
-   /* char z[] = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"; */
-   int i;
-   int j;
+   int i = 0;
+   int j = 0;
    for (i = 0; i < d_height; i++) {
         for (j = 0; j < d_width; j++) {
-        /* for (j = 0; j < 33; j++) { */
-            *(addr + (i + j * d_height)) = pixels[i][j];
-            /* *(addr + (i + j * d_height)) = z[j]; */
+            *(addr + 16*(i + j * d_width)) = pixels[i][j];
         }
    }
 

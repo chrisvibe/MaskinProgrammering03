@@ -12,6 +12,13 @@ int P1Score = 0;
 int P2Score = 0;
 int maxScore = 5;
 
+//Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
+bool isGameFinished(P1Score, P2Score){
+	if (P1Score >= maxScore || P2Score >= maxScore){
+		return 1;
+	};
+	return 0;
+};
 
 /* Lager en struct for en ball som per nå er 1 pixel stor. Struct skal alltid inneholde nyeste oppdatering av ballen. */
 struct ball {
@@ -31,30 +38,20 @@ struct pad {
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
 void initialBall(struct ball *ballen){
-	
-
-}
-
-
-
-//Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
-bool isGameFinished(P1Score, P2Score){
-	if (P1Score >= maxScore || P2Score >= maxScore){
-		return 1;
-	};
-	return 0;
-};
-
-/* Check whether a collision has occured */
-bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
-	if (ballen->x == pad1->x && ballen->y == pad1->y || ballen->y == pad2->x && ballen->y == pad2->y || ballen->x == 0 || ballen->x == 320 || ballen->y == 0 || ballen->y == 240){
-		return 1; 
-	};
+	ballen->x = 160;
+	ballen->y = 120;
+	ballen->speed = 1; /* Setter her speed til 1, men dette kan endres */
+	ballen->dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
+	ballen->dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
 };
 
 /* Checks for where collision occured */
 int whereCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
-	/* padcrash */
+	/* Implementation for padcrash 
+	1. Will have an array of pixels that we are operating with
+	2. If the ball has the same x value as the pad, and if the y-value of ball is equal to some y-value of pad
+	3. Then check for how far the y-value is from the center of the y-value of the pad
+	4. Give the ball a new angle based on how many pixels away from y and disregard the incoming angle. */
 	if (ballen->x == pad1->x && ballen->y == pad1->y || ballen->y == pad2->x && ballen->y == pad2->y){
 		return 0; 
 	}; 
@@ -72,20 +69,56 @@ int whereCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
 	return -1; 
 };
 
-/* Helper method for handling a wall crash */
-struct ball handleCrash(struct ball *ballen){
-
-}
-
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
 void ballMovement(struct ball *ballen){
+	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
+	if (whereCollision == 0){
+		ballen->dx *= -1;
+	};
 	if (whereCollision == 1){
 		ballen->dx *= -1;
 	};
 	if (whereCollision == 2){
 		ballen->dy *= -1;
 	};
+	
+	ballen->x += ballen->dx*ballen->speed;
+	ballen->y += ballen->dy*ballen->speed;
+};
+
+
+/* Function for converting input from driver to commands to pads */
+int movePads(){
+	/* Here is what the implementation might look like: 
+	Using mmap to map the file input to the memory output. 
+	Will potentially have to files that we are reading from. This game.c file will then only work as 
+	a connector between driver and graphic. 
+	*/
+
+};
+
+/* Function for reading from driver */ 
+void checkDriver(){
+	/* This function will check whether the driver is functioning and shut down game if not */
+};
+
+void checkLCD(){ 
+	/* This funciton will check whether the LCD screen is functioning and shut down game if not */
 }
+
+
+/* THINK THIS MIGHT BE REDUNDANT
+ Check whether a collision has occured 
+bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
+	if (ballen->x == pad1->x && ballen->y == pad1->y || ballen->y == pad2->x && ballen->y == pad2->y || ballen->x == 0 || ballen->x == 320 || ballen->y == 0 || ballen->y == 240){
+		return 1; 
+	};
+};
+*/
+
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -93,3 +126,6 @@ int main(int argc, char *argv[])
 
 	exit(EXIT_SUCCESS);
 }
+
+
+

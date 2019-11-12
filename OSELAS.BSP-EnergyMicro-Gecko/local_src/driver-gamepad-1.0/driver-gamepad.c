@@ -2,11 +2,13 @@
  * This is a demo Linux kernel module.
  */
 
+
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/ioport.h>
 #include <linux/fs.h>
+#include <cdev.h>
 #include <asm/io.h>
 
 #include "stdint.h"
@@ -35,7 +37,7 @@ static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, lo
   printk("writing");
 }
 
-static struct fileoperations my_fops = {
+static struct file_operations my_fops = {
   .owner = THIS_MODULE,
   .read = my_read ,
   .write = my_write ,
@@ -43,7 +45,13 @@ static struct fileoperations my_fops = {
   .release = my_release
 };
 
-struct cdev my_cdev;
+/**
+ * struct cdev should have an owner field that should be 
+ * set to THIS_MODULE
+ */
+struct cdev my_cdev = {
+  .owner = THIS_MODULE
+};
 
 
 /*
@@ -59,8 +67,7 @@ static int __init template_init(void)
 {
 	printk("Hello World, here is your module speaking\n");
 
-  cdev_init(&my_cdev, &my_fops);
-  cdev_add(&my_cdev);
+
 
   // Request memory
   char *name = "GPIO";
@@ -73,8 +80,18 @@ static int __init template_init(void)
   void *mappReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_FIC));
   
   // Get device version number
-  char *name = "device_name"
-  alloc_chrdev_region(devno, 1, 1, name)
+  int result = alloc_chrdev_region(devno, 0, 1, "device_name")
+  int dev_major = MAJOR(devno);
+  int dev_minor - MINOR(devno);
+  if (result < 0) {
+    printk(KERN_WARNING "Gamepad driver: Can't get major %d\n", dev_major);
+  }
+
+  cdev_init(&my_cdev, &my_fops);
+  int cdev_result = cdev_add(&my_cdev, devno, 1);
+  if (cdev_result < 0) {
+    printk(KERN_WARNING "Gamepad driver: Failed to add character device")
+  } 
 
   // Make driver visible to user space
   cl = class_create(THIS_MODULE, ”my_class_name”);

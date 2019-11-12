@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
         }
    }
 
+   char z = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+   *(addr + 0) = z;
+
    refresh_display(fbfd, 0, 0, 320, 240);
 
    printf("Sanity check");

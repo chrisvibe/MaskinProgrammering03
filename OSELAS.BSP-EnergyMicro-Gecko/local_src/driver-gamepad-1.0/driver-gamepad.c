@@ -8,7 +8,7 @@
 #include <linux/init.h>
 #include <linux/ioport.h>
 #include <linux/fs.h>
-#include <cdev.h>
+#include <linux/cdev.h>
 #include <asm/io.h>
 
 #include "stdint.h"

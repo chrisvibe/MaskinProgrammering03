@@ -30,24 +30,35 @@ int main(int argc, char *argv[])
    pixels[0][0] = 0xF;
    pixels[1][0] = 0xF;
    pixels[2][0] = 0xF;
-   pixels[0][1] = 0xF;
-   pixels[1][1] = 0xF;
-   pixels[2][1] = 0xF;
-   pixels[0][2] = 0xF;
-   pixels[1][2] = 0xF;
-   pixels[2][2] = 0xF;
+   /* pixels[0][1] = 0xF; */
+   /* pixels[1][1] = 0xF; */
+   /* pixels[2][1] = 0xF; */
+   /* pixels[0][2] = 0xF; */
+   /* pixels[1][2] = 0xF; */
+   /* pixels[2][2] = 0xF; */
 
    /* char z[] = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"; */
    int i;
    int j;
    for (i = 0; i < d_height; i++) {
         for (j = 0; j < d_width; j++) {
+        /* for (j = 0; j < 33; j++) { */
             *(addr + (i + j * d_height)) = pixels[i][j];
             /* *(addr + (i + j * d_height)) = z[j]; */
         }
    }
 
    refresh_display(fbfd, 0, 0, 320, 240);
+
+   printf("Sanity check");
+
+    printf("\n");
+    for(i = 0; i < 3; i++) {
+        for(j = 0; j < 3; j++) {
+            printf("%d ", pixels[i][j]);
+        }
+        printf("\n");
+    }
 
    printf("Sanity check");
 

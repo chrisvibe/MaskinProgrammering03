@@ -1,14 +1,15 @@
 #include <sys/mman.h>
-#include <sys/stat.h>
+
+/* #include <sys/stat.h> */
 #include <fcntl.h>
-#include <stdio.h>
+/* #include <stdio.h> */
 #include <stdlib.h>
-#include <unistd.h>
+/* #include <unistd.h> */
 
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 
-void refresh_display(int *addr, int x, int y, int width, int height);
+void refresh_display(int fbfd, int x, int y, int width, int height);
     
 int main(int argc, char *argv[])
 {
@@ -42,10 +43,10 @@ int main(int argc, char *argv[])
         }
    }
 
-   refresh_display(addr, 3, 3, 3, 3);
+   refresh_display(fbfd, 3, 3, 3, 3);
 }
 
-void refresh_display(int *addr, int x, int y, int width, int height) {
+void refresh_display(int fbfd, int x, int y, int width, int height) {
     // setup which part of the frame buffer that is to be refreshed
     // for performance reasons, use as small rectangle as possible
     struct fb_copyarea rect;
@@ -56,7 +57,5 @@ void refresh_display(int *addr, int x, int y, int width, int height) {
     rect.height = height;
 
     // command driver to update display
-    /* printf("Value of var = %d\n", &addr); */
-    // BELOW NEEDS FIXING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! :(
-    ioctl((u_int32_t) &addr, 0x460, &rect);
+    ioctl(fbfd, 0x460, &rect);
 }

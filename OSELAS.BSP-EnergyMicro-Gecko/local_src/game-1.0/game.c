@@ -45,7 +45,9 @@ int main(int argc, char *argv[])
         }
    }
 
-   refresh_display(fbfd, 3, 3, 3, 3);
+   refresh_display(fbfd, 0, 0, 320, 240);
+
+   printf("Sanity check");
 
    exit(EXIT_SUCCESS);
 }

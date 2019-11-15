@@ -7,7 +7,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
-int main(int argc, char *argv[])
+void set_pixel();
+
+void set_pixel()
 {
    int d_height = 240;
    int d_width = 320;
@@ -30,6 +32,4 @@ int main(int argc, char *argv[])
    }
 
    refresh_display(fbfd, 0, 0, d_width, d_height);
-
-   exit(EXIT_SUCCESS);
 }

@@ -8,7 +8,8 @@
 
 void refresh_display(int fbfd, int x, int y, int width, int height);
 
-void refresh_display(int fbfd, int x, int y, int width, int height) {
+void refresh_display(int fbfd, int x, int y, int width, int height)
+{
     // setup which part of the frame buffer that is to be refreshed
     // for performance reasons, use as small rectangle as possible
     struct fb_copyarea rect;

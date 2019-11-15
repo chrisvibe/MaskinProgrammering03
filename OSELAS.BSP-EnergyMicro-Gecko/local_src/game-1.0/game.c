@@ -13,10 +13,10 @@ int main(int argc, char *argv[])
 {
    printf("Hello World, I'm game!\n");
 
-   int d_height = 3;
-   int d_width = 3;
+   int d_height = 240;
+   int d_width = 320;
    /* u_int16_t * addr; */
-   u_int16_t ** addr;
+   u_int16_t * addr;
 
    u_int16_t pixels[d_height][d_width];
    u_int16_t length = d_height * d_width * 2; // length in bites
@@ -42,15 +42,13 @@ int main(int argc, char *argv[])
    int x = 0;
    int y = 0;  
    /* addr[x + y * d_width] = 0xF; */
-   addr[y][x] = 0xF;
+   /* # define set_pixel(x, y) addr[x + y * width]; */
 
-   /* int i; */
-   /* int j; */
-   /* for (i = 0; i < d_height; i++) { */
-   /*      for (j = 0; j < d_width; j++) { */
-   /*          *(addr + (i + j * d_height)) = pixels[i][j]; */
-   /*      } */
-   /* } */
+   for (x = 0; x < d_height; x++) {
+        for (y = 0; y < d_width; y++) {
+            addr[x + y * d_width] = 0xF;
+        }
+   }
 
    refresh_display(fbfd, 0, 0, d_width, d_height);
 

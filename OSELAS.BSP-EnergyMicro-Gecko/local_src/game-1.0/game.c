@@ -4,6 +4,7 @@
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
+#include <stdint.h>
 // #include <sys/stat.h>
 // #include <unistd.h>
 
@@ -15,17 +16,17 @@ int main(int argc, char *argv[])
 
    int d_height = 240;
    int d_width = 320;
-   /* u_int16_t * addr; */
-   u_int16_t * addr;
+   /* uint16_t * addr; */
+   uint16_t * addr;
 
-   u_int16_t pixels[d_height][d_width];
-   u_int16_t length = d_height * d_width * 2; // length in bites
+   uint16_t pixels[d_height][d_width];
+   uint16_t length = d_height * d_width * 2; // length in bites
 
    // open the frame buffer for read/write
    int fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (read implies write too)
-   addr = mmap(NULL, length, PROT_WRITE | PROT_READ, MAP_SHARED, fbfd, 0);
+   addr = mmap(NULL, 240*320*2, PROT_WRITE | PROT_READ, MAP_SHARED, fbfd, 0);
 
    // temp update pixels
    /* pixels[0][0] = 0xF; */
@@ -37,18 +38,16 @@ int main(int argc, char *argv[])
    /* pixels[0][2] = 0xF; */
    /* pixels[1][2] = 0xF; */
    /* pixels[2][2] = 0xF; */
-   
+
    // bruk addr direkte (en peker ~ en array i C)
    int x = 0;
-   int y = 0;  
-   /* addr[x + y * d_width] = 0xF; */
-   /* # define set_pixel(x, y) addr[x + y * width]; */
+   int y = 0;
 
    for (x = 0; x < d_height; x++) {
         for (y = 0; y < d_width; y++) {
-            printf("%d, %d", x, y);
             addr[x + y * d_width] = 0xF;
         }
+        printf("%d\n", x);
    }
 
    refresh_display(fbfd, 0, 0, d_width, d_height);
@@ -67,6 +66,6 @@ void refresh_display(int fbfd, int x, int y, int width, int height) {
     rect.height = height;
 
     // command driver to update display
-    ioctl(fbfd, 0x460, &rect);
+    ioctl(fbfd, 0x4680, &rect);
 }
 

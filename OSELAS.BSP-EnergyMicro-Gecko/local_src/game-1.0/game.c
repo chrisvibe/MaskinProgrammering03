@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
    int fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (read implies write too)
-   addr = mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0);
+   addr = mmap(NULL, length, PROT_WRITE | PROT_READ, MAP_SHARED, fbfd, 0);
 
    // temp update pixels
    /* pixels[0][0] = 0xF; */
@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
 
    for (x = 0; x < d_height; x++) {
         for (y = 0; y < d_width; y++) {
+            printf("%d, %d", x, y);
             addr[x + y * d_width] = 0xF;
         }
    }

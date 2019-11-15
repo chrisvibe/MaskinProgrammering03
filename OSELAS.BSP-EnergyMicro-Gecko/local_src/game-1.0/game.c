@@ -1,3 +1,4 @@
+# include "../../../pixel/display.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -11,6 +12,8 @@ void refresh_display(int fbfd, int x, int y, int width, int height);
 int main(int argc, char *argv[])
 {
    printf("Hello World, I'm game!\n");
+
+   set_pixel();
 
    exit(EXIT_SUCCESS);
 }

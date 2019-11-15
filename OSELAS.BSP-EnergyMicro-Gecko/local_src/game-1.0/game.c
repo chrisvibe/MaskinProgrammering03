@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 void set_pixel();
-void refresh_display(int fbfd, int x, int y, int width, int height);
+void refresh_display(int fbfd, int x, int y, int height, int width);
 
 int main(int argc, char *argv[])
 {
@@ -42,9 +42,10 @@ void set_pixel()
         }
    }
 
+   refresh_display(fbfd, 0, 0, d_width, d_height);
 }
 
-void refresh_display(int fbfd, int x, int y, int width, int height)
+void refresh_display(int fbfd, int x, int y, int height, int width)
 {
     // setup which part of the frame buffer that is to be refreshed
     // for performance reasons, use as small rectangle as possible
@@ -52,8 +53,8 @@ void refresh_display(int fbfd, int x, int y, int width, int height)
 
     rect.dx = x;
     rect.dy = y;
-    rect.width = width;
     rect.height = height;
+    rect.width = width;
 
     // command driver to update display
     ioctl(fbfd, 0x4680, &rect);

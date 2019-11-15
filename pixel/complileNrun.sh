@@ -1,2 +1,4 @@
-gcc -o display_write.out display_write.c display.h refresh_display.c && \
-./display_write.out
+#!/bin/bash
+gcc -o test.out test.c display.h display_write.c refresh_display.c
+# gcc -o test.out test.c display.h display_write.c refresh_display.c && \
+# ./display_write.out

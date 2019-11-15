@@ -31,5 +31,5 @@ void set_pixel()
         }
    }
 
-   refresh_display(fbfd, 0, 0, d_width, d_height);
+   refresh_display(fbfd, 0, 0, d_height, d_width);
 }

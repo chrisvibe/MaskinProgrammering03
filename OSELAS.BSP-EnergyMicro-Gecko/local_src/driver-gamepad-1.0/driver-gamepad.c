@@ -11,7 +11,8 @@
 #include <linux/cdev.h>
 #include <asm/io.h>
 
-#include "stdint.h"
+// Should maybe be with quotes instead
+#include <stdint.h>
 
 dev_t *devno;
 struct class *cl;
@@ -19,19 +20,15 @@ struct class *cl;
 
 static int my_open (struct inode *inode, struct  file *filp) {
   printk("opening\n");
-
 }
-
 
 static int my_release (struct inode *inode, struct  file *filp) {
   printk("releasing\n");
 }
 
-
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   printk("reading");
 }
-
 
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   printk("writing");
@@ -39,11 +36,12 @@ static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, lo
 
 static struct file_operations my_fops = {
   .owner = THIS_MODULE,
-  .read = my_read ,
-  .write = my_write ,
-  .open = my_open ,
+  .read = my_read,
+  .write = my_write,
+  .open = my_open,
   .release = my_release
-};
+}
+
 
 /**
  * struct cdev should have an owner field that should be 

@@ -16,7 +16,6 @@
 // #include <stdint.h>
 
 #include "efm32gg.h"
-
 dev_t *devno;
 struct class *cl;
 

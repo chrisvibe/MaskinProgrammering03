@@ -88,7 +88,7 @@ static int __init template_init(void)
   }
 
   // This is our io address space, but dont read it directlu, use accessor functions
-  mapReturn = ioremap_nocache(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC));
+  mapReturn = ioremap_nocache((resource_size_t) GPIO_PA_BASE, (unsigned long) (GPIO_PC_BASE + GPIO_IFC));
   
   // Get device version number
   alloc_chrdevice_result = alloc_chrdev_region(devno, 0, 1, "device_name");

@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
    set_pixel();
 
-   exit(EXIT_SUCCESS);
+   /* exit(EXIT_SUCCESS); */
 }
 
 
@@ -32,7 +32,8 @@ void set_pixel()
    int fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (write implies read too)
-   addr = mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0);
+   /* addr = mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0); */
+   addr = mmap(NULL, length, PROT_WRITE | PROT_READ, MAP_SHARED, fbfd, 0);
 
    int x = 0;
    int y = 0;
@@ -42,7 +43,7 @@ void set_pixel()
         }
    }
 
-   refresh_display(fbfd, 0, 0, d_width, d_height);
+   refresh_display(fbfd, 0, 0, d_height, d_width);
 }
 
 void refresh_display(int fbfd, int x, int y, int height, int width)

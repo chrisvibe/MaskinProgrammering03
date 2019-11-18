@@ -13,7 +13,7 @@
 #include <asm/io.h>
 
 // Should maybe be with quotes instead
-#include <stdint.h>
+// #include <stdint.h>
 
 #include "efm32gg.h"
 
@@ -47,7 +47,7 @@ static struct file_operations my_fops = {
   .write = my_write,
   .open = my_open,
   .release = my_release
-}
+};
 
 
 /**

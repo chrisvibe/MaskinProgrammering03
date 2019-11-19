@@ -17,8 +17,11 @@ int main(int argc, char *argv[])
    set_pixel();
 
    printf("Done.\n");
+    
 
    exit(EXIT_SUCCESS);
+    
+    return 0;
 }
 
 

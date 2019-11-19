@@ -18,10 +18,7 @@ int main(int argc, char *argv[])
 
    printf("Done.\n");
     
-
    exit(EXIT_SUCCESS);
-    
-    return 0;
 }
 
 
@@ -48,6 +45,9 @@ void set_pixel()
    }
 
    refresh_display(fbfd, 0, 0, d_height, d_width);
+
+   munmap(addr, length);
+   close(fbfd);
 }
 
 void refresh_display(int fbfd, int x, int y, int height, int width)

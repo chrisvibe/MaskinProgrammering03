@@ -28,7 +28,8 @@ static int my_release (struct inode *inode, struct  file *filp) {
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   printk("reading\n");
-  int res = ioread32(GPIO_PC_DIN);
+  unsigned int res;
+  res = ioread32(gpioMapReturn + 72 + 28);
   printk("Got result %d\n", res);
   return 0;
 }
@@ -142,8 +143,13 @@ static int __init gamepad_init(void)
 	/* *GPIO_PC_MODEL = 0x33333333; */
   printk("writing to gpio to enable buttons as input\n");
   // Need to offset gpio_base_c AND gpio_c_din
-  iowrite32((unsigned int) 0x33333333, (gpioMapReturn + 72 + 28));
+  iowrite32((unsigned int) 0x33333333, (gpioMapReturn + 72 + 4));
   printk("writing to gpio to enable buttons as input\n");
+
+  printk("Setting internal pull up resistors\n");
+  // •Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
+  iowrite32((unsigned int) 0xff, (gpioMapReturn + 72 + 12));
+  printk("Done setting internal pull up resistors for buttons\n");
 
   return 0;
 }

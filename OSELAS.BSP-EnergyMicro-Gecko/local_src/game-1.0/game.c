@@ -19,6 +19,8 @@ struct Settings setup_display();
 void tear_down_display(struct Settings settings);
 void refresh_display(struct Settings settings, int x, int y, int height, int width);
 void set_pixel(struct Settings settings, int x, int y, int colour);
+void game_dummy();
+void draw_ball();
 
 int P1Score = 0; 
 int P2Score = 0;
@@ -252,9 +254,8 @@ void game_dummy()
 {
    struct Settings settings = setup_display();
 
-   set_pixel(settings, 0, 0, 0xFFF);
-   set_pixel(settings, 1, 1, 0xFFF);
-   set_pixel(settings, 2, 2, 0xFFF);
+
+   draw_ball(settings);
 
    refresh_display(settings, 0, 0, HEIGHT, WIDTH);
 
@@ -263,12 +264,19 @@ void game_dummy()
 
 void set_pixel(struct Settings settings, int x, int y, int colour)
 {
-   for (x = 0; x < HEIGHT; x++) {
-        for (y = 0; y < WIDTH; y++) {
-            settings.addr[x * WIDTH + y] = colour;
-        }
-   }
+    settings.addr[x * WIDTH + y] = colour;
 }
+
+/* void reset_screen(struct Settings settings, int x, int y, int colour) */
+/* { */
+/*    for (x = 0; x < HEIGHT; x++) { */
+/*         for (y = 0; y < WIDTH; y++) { */
+/*             settings.addr[x * WIDTH + y] = colour; */
+/*         } */
+/*    } */
+/* } */
+
+
 
 void refresh_display(struct Settings settings, int x, int y, int height, int width)
 {
@@ -283,4 +291,11 @@ void refresh_display(struct Settings settings, int x, int y, int height, int wid
 
     // command driver to update display
     ioctl(settings.fbfd, 0x4680, &rect);
+}
+
+void draw_ball(struct Settings settings)
+{
+   set_pixel(settings, 0, 0, 0xFFF);
+   set_pixel(settings, 1, 1, 0xFFF);
+   set_pixel(settings, 2, 2, 0xFFF);
 }

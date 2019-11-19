@@ -1,8 +1,3 @@
-/*
- * This is a demo Linux kernel module.
- */
-
-
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
@@ -12,10 +7,9 @@
 #include <linux/device.h>
 #include <asm/io.h>
 
-// Should maybe be with quotes instead
-// #include <stdint.h>
 
 #include "efm32gg.h"
+
 dev_t *devno;
 struct class *cl;
 
@@ -124,6 +118,8 @@ static void __exit template_cleanup(void)
 {
 	 printk("Short life for a small module...\n");
    unregister_chrdev_region(*devno, 1);
+   device_destroy(cl, *devno);
+   class_destroy(cl);
 }
 
 module_init(template_init);

@@ -75,7 +75,7 @@ static int __init template_init(void)
 
   // Request memory
   *name = "GPIO";
-  if (request_mem_region(GPIO_PA_BASE, (GPIO_PC_BASE + GPIO_IFC) - GPIO_PA_BASE, name) == NULL)  {
+  if (request_mem_region(GPIO_PA_BASE, GPIO_IFC + 1, name) == NULL)  {
     printk("An error occured! Could not reserve memory region");
     return 1;
   }

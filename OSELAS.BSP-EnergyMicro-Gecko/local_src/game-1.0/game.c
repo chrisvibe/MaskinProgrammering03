@@ -24,7 +24,7 @@ void set_pixel()
 {
    int d_height = 240;
    int d_width = 320;
-   int * addr;
+   uint16_t * addr;
 
    int length = d_height * d_width * 2; // length in bites
 
@@ -32,13 +32,13 @@ void set_pixel()
    int fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (write implies read too)
-   addr = mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0);
+   addr = (uint16_t *) mmap(NULL, length, PROT_WRITE, MAP_SHARED, fbfd, 0);
 
    int x = 0;
    int y = 0;
    for (x = 0; x < d_height; x++) {
         for (y = 0; y < d_width; y++) {
-            addr[x * d_width + y] = 0xF;
+            addr[x * d_width + y] = 0xFFF;
         }
    }
 

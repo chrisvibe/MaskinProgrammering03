@@ -1,0 +1,1 @@
+/home/katt/.bash_aliases flash=sudo docker run --privileged byfinishedkernel

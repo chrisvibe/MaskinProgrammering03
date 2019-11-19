@@ -33,6 +33,7 @@ struct ball {
 struct pad { 
 	uint16_t x; /* x-lokasjon til padden kan være statisk */ 
 	uint16_t y; 
+	uint16_t center_pad;
 	int16_t dy;
 } pad1, pad2; 
 
@@ -70,10 +71,37 @@ int whereCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
 };
 
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
-void ballMovement(struct ball *ballen){
+void ballMovement(struct ball *ballen, struct pad *padden){
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (whereCollision == 0){
-		ballen->dx *= -1;
+		if (ballen->dy > (padden->center_pad + 5)){
+			ballen->dy *= 1.8;
+			ballen->dx *= -1;	
+		}
+		else if (ballen->dy > (padden->center_pad + 3)){
+			ballen->dy *= 1.6;
+			ballen->dx *= -1;	
+		}
+		else if (ballen->dy > (padden->center_pad + 1)){
+			ballen->dy *= 1.4;	
+			ballen->dx *= -1;
+		}
+		else if (ballen->dy == padden->center_pad){
+			ballen->dx *= -1;	
+		}
+		else if (ballen->dy < (padden->center_pad - 5)){
+			ballen->dy *= -1.8;
+			ballen->dx *= -1;	
+		}
+		else if (ballen->dy < (padden->center_pad - 3)){
+			ballen->dy *= -1.6;
+			ballen->dx *= -1;	
+		}
+		else if (ballen->dy < (padden->center_pad - 1)){
+			ballen->dy *= -1.4;
+			ballen->dx *= -1;	
+		}
+			
 	};
 	if (whereCollision == 1){
 		ballen->dx *= -1;
@@ -85,7 +113,6 @@ void ballMovement(struct ball *ballen){
 	ballen->x += ballen->dx*ballen->speed;
 	ballen->y += ballen->dy*ballen->speed;
 };
-
 
 /* Function for converting input from driver to commands to pads */
 int movePads(){

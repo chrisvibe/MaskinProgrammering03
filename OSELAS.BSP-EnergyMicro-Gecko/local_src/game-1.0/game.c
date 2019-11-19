@@ -15,8 +15,6 @@ int main(int argc, char *argv[])
    printf("Hello World, I'm game!\n");
 
    set_pixel();
-
-   printf("Done.\n");
     
    exit(EXIT_SUCCESS);
 }

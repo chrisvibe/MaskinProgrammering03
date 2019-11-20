@@ -1,5 +1,5 @@
-#include "display_tools.h"
 #include "display_tools.c"
+#include "display_tools.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -21,10 +21,21 @@ struct Object {
 	int16_t speed; /* Could be constant as we have no plans of changing speed as of yet */
 	int16_t dx; /* Can not be unsigned as we might get som negative values */
 	int16_t dy;
-} ballen, pad1, pad2;
+};
+
+struct Settings settings initializeGame(){
+   struct Settings settings = setup_display();
+
+   draw_pad(settings, 130, 160);
+   draw_pad(settings, 70, 145);
+   initializeBall(settings, ballen);
+   refresh_display(settings, 0, 0, HEIGHT, WIDTH);
+
+   return settings;
+}
 
 //Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
-bool isGameFinished(P1Score, P2Score){
+bool isGameFinished(int P1Score, int P2Score){
 	if (P1Score >= maxScore || P2Score >= maxScore){
 		return 1;
 	};
@@ -32,12 +43,14 @@ bool isGameFinished(P1Score, P2Score){
 }
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-void initializeBall(struct Object ballen){
+void initializeBall(struct Settings settings){
+	struct Object ballen;
 	ballen.x = 160;
 	ballen.y = 120;
 	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
 	ballen.dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
 	ballen.dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
+    draw_ball(settings, ballen.x, ballen.y);
 }
 
 /* Checks for where collision occured */
@@ -183,6 +196,7 @@ void checkLCD(){
 
 void ResetScreen(){
 	/* This function will clean the entire screen and start the game up again given that no player has reached the maxiumum score */
+	clear_screen(settings);
 }
 
 
@@ -198,8 +212,13 @@ bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
 int main(int argc, char *argv[])
 {
 	printf("Hello World, I'm game!\n");
+	struct Settings settings = initializeGame();
+	// while (isGameFinished(P1Score, P2Score)){
+		
+	// }
+	// ResetScreen();
 
-    game_dummy();
+    // game_dummy();
 	printf("Rahim wuz here.");
 
 	exit(EXIT_SUCCESS);

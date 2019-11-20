@@ -23,15 +23,25 @@ struct Object {
 	int16_t dy;
 };
 
-struct Settings settings initializeGame(){
-   struct Settings settings = setup_display();
+struct Game {
+	struct Settings settings;
+	struct Object ballen;
+	struct Object pad1;
+	struct Object pad2;
+};
 
-   draw_pad(settings, 130, 160);
-   draw_pad(settings, 70, 145);
-   initializeBall(settings, ballen);
-   refresh_display(settings, 0, 0, HEIGHT, WIDTH);
+struct Game initializeGame(){
+   struct Game game;
+   game.settings = setup_display();
+    
+   draw_pad(game.settings, 130, 160);
+   draw_pad(game.settings, 70, 145);
+   game = initializeBall(game);
+   game = initializePads(game, 100, 200);
+   game = initializePads(game, 200, 150);
+   refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
 
-   return settings;
+   return game;
 }
 
 //Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
@@ -43,14 +53,26 @@ bool isGameFinished(int P1Score, int P2Score){
 }
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-void initializeBall(struct Settings settings){
+struct Game initializeBall(struct Game game){
 	struct Object ballen;
 	ballen.x = 160;
 	ballen.y = 120;
 	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
 	ballen.dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
 	ballen.dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
-    draw_ball(settings, ballen.x, ballen.y);
+    game.ballen = ballen;
+    return game;
+}
+
+struct Game initializePads(struct Settings settings, int x, int y){
+	struct Object pad;
+	pad.x = x;
+	pad.y = y;
+	pad.speed = 0;
+	pad.dx = 0;
+	pad.dy = 0; 
+    game.pad = pad;
+    return game;
 }
 
 /* Checks for where collision occured */

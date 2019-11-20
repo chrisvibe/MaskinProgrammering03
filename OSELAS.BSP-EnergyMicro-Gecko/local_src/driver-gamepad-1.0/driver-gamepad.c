@@ -7,18 +7,31 @@
 #include <linux/device.h>
 #include <asm/io.h>
 
-
 #include "efm32gg.h"
 
-#define GPIO_ADDR_START   GPIO_PA_BASE
-#define GPIO_ADDR_END     (uint32_t)(GPIO_IFC) + 1
-#define GPIO_ADDR_SIZE    (uint32_t)(GPIO_IFC) + 1 - GPIO_PA_BASE
+/* 
+ * Need these constants because we need to offset so we can use the memomry remap.
+ * The reason for casting only some of the constants to uint32 is because
+ * only some of them are pointers, the rest are ints.
+ */
+#define GPIO_ADDR_START         GPIO_PA_BASE
+#define GPIO_ADDR_SIZE          (uint32_t)(GPIO_IFC) + 4 - GPIO_PA_BASE
+#define GPIO_PC_OFFSET          GPIO_PC_BASE - GPIO_PA_BASE
+#define GPIO_MODEL_OFFSET       (uint32_t)(GPIO_PA_MODEL) - GPIO_PA_BASE
+#define GPIO_DOUT_OFFSET        (uint32_t)(GPIO_PA_DOUT) - GPIO_PA_BASE
+#define CMU_ADDR_START          CMU_BASE2
+#define CMU_ADDR_SIZE           (uint32_t)(CMU_HFPERCLKEN0) + 4 - CMU_BASE2 
+#define CMU_HFPERCLKEN0_OFFSET  (uint32_t)(CMU_HFPERCLKEN0) - CMU_BASE2
 
+// Global variables for init and cleanup functions
 static dev_t *devno;
 static struct class *cl;
 
+// Global variables to access hardware in read function
 static int gpioMapReturn;
 static int cmuMapReturn;
+
+
 
 static int my_open (struct inode *inode, struct  file *filp) {
   printk("opening\n");
@@ -72,6 +85,7 @@ struct cdev my_cdev = {
 static int __init gamepad_init(void)
 {
   printk("Hello from gamepad driver init function. Initializing...\n");
+  printk("This is the new one");
 
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
@@ -88,25 +102,25 @@ static int __init gamepad_init(void)
   printk("Allocating memory region for GPIO\n");
   // Request memory. Dont know if 1024 byte is correct, just a guess.
   gpioAlloc = "GPIO";
-  if (request_mem_region(GPIO_ADDR_START, GPIO_ADDR_SIZE, gpioAlloc) == NULL)  {
+  if (request_mem_region(GPIO_ADDR_START, GPIO_ADDR_SIZE, "GPIO") == NULL)  {
     printk("An error occured! Could not reserve memory region for GPIO\n");
     return 1;
   }
   printk("Allocating memory region for CMU\n");
   cmuAlloc = "CMU";
-  if (request_mem_region(CMU_BASE2, 1024, cmuAlloc) == NULL)  {
+  if (request_mem_region(CMU_ADDR_START, CMU_ADDR_SIZE, "CMU") == NULL)  {
     printk("An error occured! Could not reserve memory region for CMU\n");
     return 1;
   }
 
   // This is our io address space, but dont read it directlu, use accessor functions
   printk("Initializing io memory remap for GPIO\n");
-  gpioMapReturn = ioremap_nocache((resource_size_t) GPIO_PA_BASE, 1024);
+  gpioMapReturn = ioremap_nocache((resource_size_t) GPIO_ADDR_START, GPIO_ADDR_SIZE);
   printk("Initializing io memory remap for CMU\n");
-  cmuMapReturn = ioremap_nocache((resource_size_t) CMU_BASE2, 1024);
+  cmuMapReturn = ioremap_nocache((resource_size_t) CMU_ADDR_START, CMU_ADDR_SIZE);
   
-  printk("Getting device number\n");
   // Get device version number
+  printk("Getting device number\n");
   alloc_chrdevice_result = alloc_chrdev_region(devno, 0, 1, "device_name");
   if (alloc_chrdevice_result < 0) {
     printk(KERN_WARNING "Gamepad driver: Can't get major %d\n", dev_major);
@@ -129,20 +143,23 @@ static int __init gamepad_init(void)
   device_create(cl, NULL, *devno , NULL, "Gamepad");
 
   // CMU setup
-  // NOTE!!! Here, CMU_HFPERCLKEN0 is a pointer while CMU2_HFPERCLKEN0_GPIO is an int
   printk("Setting up CMU\n");
-  CMU_HFPER = ioread32(cmuMapReturn + 68); 
+  CMU_HFPER = ioread32(cmuMapReturn + CMU_HFPERCLKEN0_OFFSET); 
   result = CMU_HFPER | CMU2_HFPERCLKEN0_GPIO;
   printk("Writing result: %d to cmu\n", result);
-  iowrite32(result, (cmuMapReturn + 68));
+  iowrite32(result, (cmuMapReturn + CMU_HFPERCLKEN0_OFFSET));
 
 	// Button setup 
-  printk("writing to gpio to enable buttons as input\n");
-  iowrite32((unsigned int) 0x33333333, (gpioMapReturn + 72 + 4));
+  printk("writing to gpio to enable buttons as input with offset %d \n", GPIO_MODEL_OFFSET);
+  iowrite32(
+      (unsigned int) 0x33333333, 
+      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
 
   // Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
-  printk("Setting internal pull up resistors\n");
-  iowrite32((unsigned int) 0xff, (gpioMapReturn + 72 + 12));
+  printk("Setting internal pull up resistors with pc offset %d , dout %d \n", GPIO_PC_OFFSET, GPIO_DOUT_OFFSET);
+  iowrite32(
+      (unsigned int) 0xff, 
+      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
 
   printk("Init function complete, driver should now be visible under /dev\n");
   return 0;

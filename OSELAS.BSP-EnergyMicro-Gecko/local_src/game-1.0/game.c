@@ -36,9 +36,9 @@ struct Game initializeGame(){
     
    draw_pad(game.settings, 130, 160);
    draw_pad(game.settings, 70, 145);
-   game.ballen = initializeBall(game.settings);
-   game.pad1 = initializePads(game.settings 100, 200);
-   game.pad1 = initializePads(game.settings, 200, 150);
+   game->ballen = initializeBall(game.settings);
+   game->pad1 = initializePads(game.settings 100, 200);
+   game->pad1 = initializePads(game.settings, 200, 150);
    refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
 
    return game;

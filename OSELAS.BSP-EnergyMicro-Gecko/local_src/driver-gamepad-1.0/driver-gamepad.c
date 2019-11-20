@@ -27,10 +27,9 @@ static int my_release (struct inode *inode, struct  file *filp) {
 }
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
-  printk("reading\n");
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
-  printk("Got result: %d\n", res);
+  printk(res);
   return 0;
 }
 

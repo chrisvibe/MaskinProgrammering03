@@ -60,11 +60,11 @@ int whereCollision(struct Object ballen, struct Object pad1, struct Object pad2)
 	2. If the ball has the same x value as the pad, and if the y-value of ball is equal to some y-value of pad
 	3. Then check for how far the y-value is from the center of the y-value of the pad
 	4. Give the ball a new angle based on how many pixels away from y and disregard the incoming angle. */
-	if (ballen.x == pad1.x && ballen.y == pad1.y){ 
+	if (ballen.x == pad1.x && (ballen.y > pad1.y - 15 || ballen.y < pad1.y + 15)){ 
 		return 0; 
 	} 
 	
-	else if (ballen.y == pad2.x && ballen.y == pad2.y){
+	else if (ballen.y == pad2.x && (ballen.y > pad2.y - 15 || ballen.y < pad2.y + 15)){
 		return 1; 
 	}
 
@@ -98,63 +98,63 @@ void checkPadPositions(struct Object pad1, struct Object pad2){
 }
 
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
-void ballMovement(struct Object ballen, struct Object pad1, struct Object pad2){
+void handleCollision(struct Object ballen, struct Object pad1, struct Object pad2){
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (whereCollision == 0){
-		if (ballen.dy > (pad1.y + 5)){
+		if (ballen.y >= (pad1.y + 12) && (ballen.dy < (pad1.y + 15))){
 			ballen.dy *= 1.8;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy > (pad1.y + 3)){
+		else if (ballen.y >= (pad1.y + 10) && (ballen.y < (pad1.y + 12))){
 			ballen.dy *= 1.6;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy > (pad1.y + 1)){
+		else if (ballen.y >= (pad1.y + 5) && (ballen.y < (pad1.y + 10))){
 			ballen.dy *= 1.4;	
 			ballen.dx *= -1;
 		}
-		else if (ballen.dy == pad1.y){
+		else if (ballen.y <= pad1.y + 5 || ballen.y > pad1.y - 5){
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy < (pad1.y - 5)){
+		else if (ballen.y >= (pad1.y - 15) && (ballen.y < (pad1.y - 12))){
 			ballen.dy *= -1.8;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy < (pad1.y - 3)){
+		else if (ballen.y >= (pad1.y - 12) && (ballen.y < (pad1.y - 10))){
 			ballen.dy *= -1.6;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy < (pad1.y - 1)){
+		else if (ballen.y >= (pad1.y - 10) && (ballen.y < (pad1.y - 5))){
 			ballen.dy *= -1.4;
 			ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision == 1){
-		if (ballen.dy > (pad2.y + 5)){
-			ballen.dy *= -1.8;
-			ballen.dx *= -1;	
-		}
-		else if (ballen.dy > (pad2.y + 3)){
-			ballen.dy *= -1.6;
-			ballen.dx *= -1;	
-		}
-		else if (ballen.dy > (pad2.y + 1)){
-			ballen.dy *= -1.4;	
-			ballen.dx *= -1;
-		}
-		else if (ballen.dy == pad2.y){
-			ballen.dx *= -1;	
-		}
-		else if (ballen.dy < (pad2.y - 5)){
+		if (ballen.y >= (pad2.y + 12) && (ballen.dy < (pad2.y + 15))){
 			ballen.dy *= 1.8;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy < (pad2.y - 3)){
+		else if (ballen.y >= (pad2.y + 10) && (ballen.y < (pad2.y + 12))){
 			ballen.dy *= 1.6;
 			ballen.dx *= -1;	
 		}
-		else if (ballen.dy < (pad2.y - 1)){
-			ballen.dy *= 1.4;
+		else if (ballen.y >= (pad2.y + 5) && (ballen.y < (pad2.y + 10))){
+			ballen.dy *= 1.4;	
+			ballen.dx *= -1;
+		}
+		else if (ballen.y <= pad2.y + 5 || ballen.y > pad2.y - 5){
+			ballen.dx *= -1;	
+		}
+		else if (ballen.y >= (pad2.y - 15) && (ballen.y < (pad2.y - 12))){
+			ballen.dy *= -1.8;
+			ballen.dx *= -1;	
+		}
+		else if (ballen.y >= (pad2.y - 12) && (ballen.y < (pad2.y - 10))){
+			ballen.dy *= -1.6;
+			ballen.dx *= -1;	
+		}
+		else if (ballen.y >= (pad2.y - 10) && (ballen.y < (pad2.y - 5))){
+			ballen.dy *= -1.4;
 			ballen.dx *= -1;	
 		}
 	}
@@ -171,8 +171,6 @@ void ballMovement(struct Object ballen, struct Object pad1, struct Object pad2){
 		ballen.dy *= -1;
 	}
 	
-	ballen.x += ballen.dx * ballen.speed;
-	ballen.y += ballen.dy * ballen.speed;
 }
 
 /* Function for converting input from driver to commands to pads */

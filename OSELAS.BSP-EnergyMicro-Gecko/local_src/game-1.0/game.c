@@ -53,23 +53,23 @@ bool isGameFinished(int P1Score, int P2Score){
 }
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-struct Object initializeBall(struct Settings Settings){
-	struct Object ballen;
-	ballen.x = 160;
-	ballen.y = 120;
-	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
-	ballen.dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
-	ballen.dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
+struct *Object initializeBall(struct Settings Settings){
+	struct Object *ballen;
+	ballen->x = 160;
+	ballen->y = 120;
+	ballen->speed = 1; /* Setter her speed til 1, men dette kan endres */
+	ballen->dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
+	ballen->dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
     return ballen;
 }
 
-struct Object initializePads(struct Settings settings, int x, int y){
-	struct Object pad;
-	pad.x = x;
-	pad.y = y;
-	pad.speed = 0;
-	pad.dx = 0;
-	pad.dy = 0; 
+struct *Object initializePads(struct Settings settings, int x, int y){
+	struct Object *pad;
+	pad->x = x;
+	pad->y = y;
+	pad->speed = 0;
+	pad->dx = 0;
+	pad->dy = 0; 
     return pad;
 }
 

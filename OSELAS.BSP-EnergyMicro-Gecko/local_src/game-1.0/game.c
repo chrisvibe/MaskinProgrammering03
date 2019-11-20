@@ -18,10 +18,12 @@ struct Settings;
 struct Settings setup_display();
 void tear_down_display(struct Settings settings);
 void refresh_display(struct Settings settings, int x, int y, int height, int width);
-void set_pixel(struct Settings settings, int x, int y, int colour);
 void game_dummy();
-void draw_ball(struct Settings settings, int x, int y);
+void set_pixel(struct Settings settings, int x, int y, int colour);
 void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour);
+void draw_smooth_object(struct Settings settings, int x, int y, int dx, int dy, int colour, int fade);
+void draw_ball(struct Settings settings, int x, int y);
+void draw_pad(struct Settings settings, int x, int y);
 
 int P1Score = 0; 
 int P2Score = 0;
@@ -255,7 +257,11 @@ void game_dummy()
 {
    struct Settings settings = setup_display();
 
-   draw_ball(settings, 100, 200);
+   draw_rectangle(settings, 0, 0, WIDTH, HEIGHT, 0); // clear screen
+   draw_ball(settings, 100, 150);
+   draw_pad(settings, 130, 160);
+   draw_pad(settings, 70, 145);
+   draw_rectangle(settings, 30, 50, 60, 80, 0xFFF);
    refresh_display(settings, 0, 0, HEIGHT, WIDTH);
 
    tear_down_display(settings);
@@ -263,15 +269,9 @@ void game_dummy()
 
 void set_pixel(struct Settings settings, int x, int y, int colour)
 {
-    settings.addr[x * WIDTH + y] = colour;
+    /* settings.addr[x + y * WIDTH] = colour; */
+    settings.addr[x + (HEIGHT - y) * WIDTH] = colour; // alternative coordinate system
 }
-
-/* void reset_screen(struct Settings settings, int x, int y, int colour) */
-/* { */
-/*    } */
-/* } */
-
-
 
 void refresh_display(struct Settings settings, int x, int y, int height, int width)
 {
@@ -288,24 +288,38 @@ void refresh_display(struct Settings settings, int x, int y, int height, int wid
     ioctl(settings.fbfd, 0x4680, &rect);
 }
 
+void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour)
+{
+    int xi, yi;
+
+    for (xi = x1; xi <= x2; xi++) {
+        for (yi = y1; yi <= y2; yi++) {
+            set_pixel(settings, xi, yi, colour);
+        }
+    }
+}
+
 void draw_ball(struct Settings settings, int x, int y)
 {
     int diameter = 5;
     int dx = diameter / 2;
-    int dy = dx;
-
-    draw_rectangle(settings, x - dx, y - dy, x + dx, y + dy, 0xFFF);
-    set_pixel(settings, x + dx, y + dy, 0xF);
-    set_pixel(settings, x + dx, y - dy, 0xF);
-    set_pixel(settings, x - dx, y + dy, 0xF);
-    set_pixel(settings, x - dx, y - dy, 0xF);
+    draw_smooth_object(settings, x, y, dx, dx, 0xFFF, 0xF);
 }
 
-void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour)
+void draw_pad(struct Settings settings, int x, int y)
 {
-    for (x1 < x2; x1++;) {
-        for (y1 < y2; y1++;) {
-            set_pixel(settings, x1, y1, colour);
-        }
-    }
+    int height = 30;
+    int width = 2;
+    int dx = width / 2;
+    int dy = height / 2;
+    draw_smooth_object(settings, x, y, dx, dy, 0xFFF, 0xF);
+}
+
+void draw_smooth_object(struct Settings settings, int x, int y, int dx, int dy, int colour, int fade)
+{
+    draw_rectangle(settings, x - dx, y - dy, x + dx, y + dy, colour);
+    set_pixel(settings, x - dx, y - dy, fade);
+    set_pixel(settings, x - dx, y + dy, fade);
+    set_pixel(settings, x + dx, y - dy, fade);
+    set_pixel(settings, x + dx, y + dy, fade);
 }

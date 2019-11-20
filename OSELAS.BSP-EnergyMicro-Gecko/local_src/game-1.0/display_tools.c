@@ -35,9 +35,9 @@ void game_dummy()
 {
    struct Settings settings = setup_display();
 
-   draw_ball(settings, 100, 150);
-   draw_pad(settings, 130, 160);
-   draw_pad(settings, 70, 145);
+   draw_ball(settings, 100, 150,  0xFFF, 0xFFF);
+   draw_pad(settings, 130, 160,  0xFFF,  0xFFF);
+   draw_pad(settings, 70, 145, 0xFFF,  0xFFF);
    draw_rectangle(settings, 30, 50, 60, 80, 0xFFF);
    refresh_display(settings, 0, 0, HEIGHT, WIDTH);
 
@@ -76,20 +76,20 @@ void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, in
     }
 }
 
-void draw_ball(struct Settings settings, int x, int y)
+void draw_ball(struct Settings settings, int x, int y, int colour, int fade)
 {
     int diameter = 5;
     int dx = diameter / 2;
-    draw_smooth_object(settings, x, y, dx, dx, 0xFFF, 0xF);
+    draw_smooth_object(settings, x, y, dx, dx, colour, fade);
 }
 
-void draw_pad(struct Settings settings, int x, int y)
+void draw_pad(struct Settings settings, int x, int y, int colour, int fade)
 {
     int height = 30;
     int width = 2;
     int dx = width / 2;
     int dy = height / 2;
-    draw_smooth_object(settings, x, y, dx, dy, 0xFFF, 0xF);
+    draw_smooth_object(settings, x, y, dx, dy, colour, fade);
 }
 
 void draw_smooth_object(struct Settings settings, int x, int y, int dx, int dy, int colour, int fade)

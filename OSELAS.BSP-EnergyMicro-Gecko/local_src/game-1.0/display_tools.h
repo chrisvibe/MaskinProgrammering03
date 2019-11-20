@@ -19,5 +19,5 @@ void clear_screen(struct Settings settings);
 void set_pixel(struct Settings settings, int x, int y, int colour);
 void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour);
 void draw_smooth_object(struct Settings settings, int x, int y, int dx, int dy, int colour, int fade);
-void draw_ball(struct Settings settings, int x, int y);
-void draw_pad(struct Settings settings, int x, int y);
+void draw_ball(struct Settings settings, int x, int y, int colour, int fade);
+void draw_pad(struct Settings settings, int x, int y, int colour, int fade);

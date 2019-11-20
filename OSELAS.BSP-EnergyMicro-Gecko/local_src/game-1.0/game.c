@@ -36,9 +36,9 @@ struct Game initializeGame(){
     
    draw_pad(game.settings, 130, 160);
    draw_pad(game.settings, 70, 145);
-   game = initializeBall(game);
-   game = initializePads(game, 100, 200);
-   game = initializePads(game, 200, 150);
+   game.ballen = initializeBall(game.settings);
+   game.pad1 = initializePads(game.settings 100, 200);
+   game.pad1 = initializePads(game.settings, 200, 150);
    refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
 
    return game;
@@ -53,26 +53,24 @@ bool isGameFinished(int P1Score, int P2Score){
 }
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-struct Game initializeBall(struct Game game){
+struct Object initializeBall(struct Settings Settings){
 	struct Object ballen;
 	ballen.x = 160;
 	ballen.y = 120;
 	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
 	ballen.dx = (rand()/RAND_MAX); /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
 	ballen.dy = (rand()/RAND_MAX); /* Betyr at ballen kommer til å gå mot høyre hver gang */
-    game.ballen = ballen;
-    return game;
+    return ballen;
 }
 
-struct Game initializePads(struct Settings settings, int x, int y){
+struct Object initializePads(struct Settings settings, int x, int y){
 	struct Object pad;
 	pad.x = x;
 	pad.y = y;
 	pad.speed = 0;
 	pad.dx = 0;
 	pad.dy = 0; 
-    game.pad = pad;
-    return game;
+    return pad;
 }
 
 /* Checks for where collision occured */
@@ -82,21 +80,21 @@ int whereCollision(struct Object ballen, struct Object pad1, struct Object pad2)
 	2. If the ball has the same x value as the pad, and if the y-value of ball is equal to some y-value of pad
 	3. Then check for how far the y-value is from the center of the y-value of the pad
 	4. Give the ball a new angle based on how many pixels away from y and disregard the incoming angle. */
-	if (ballen.x == pad1.x && (ballen.y > pad1.y - 15 || ballen.y < pad1.y + 15)){ 
+	if (game.ballen.x == game.pad1.x && (game.ballen.y > game.pad1.y - 15 || game.ballen.y < game.pad1.y + 15)){ 
 		return 0; 
 	} 
 	
-	else if (ballen.y == pad2.x && (ballen.y > pad2.y - 15 || ballen.y < pad2.y + 15)){
+	else if (game.ballen.y == game.pad2.x && (game.ballen.y > game.pad2.y - 15 || game.ballen.y < game.pad2.y + 15)){
 		return 1; 
 	}
 
 	/* wallcrash in vertical direction */ 
-	else if (ballen.x == 0 || ballen.x == 320) {
+	else if (game.ballen.x == 0 || game.ballen.x == 320) {
 		return 2;
 	}
 
 	/* wallcrash in horizontal direction */ 
-	else if (ballen.y == 0 || ballen.y == 240) {
+	else if (game.ballen.y == 0 || game.ballen.y == 240) {
 		return 3;
 	}
 
@@ -105,17 +103,17 @@ int whereCollision(struct Object ballen, struct Object pad1, struct Object pad2)
 
 
 void checkPadPositions(struct Object pad1, struct Object pad2){
-	if (pad1.y < 0){
-		pad1.y == 0; 
+	if (game.pad1.y < 0){
+		game.pad1.y == 0; 
 	}
-	if (pad1.y > 240){
-		pad1.y == 240; 
+	if (game.pad1.y > 240){
+		game.pad1.y == 240; 
 	}
-	if (pad2.y < 0){
-		pad2.y == 0; 
+	if (game.pad2.y < 0){
+		game.pad2.y == 0; 
 	}
-	if (pad2.y > 240){
-		pad2.y == 240; 
+	if (game.pad2.y > 240){
+		game.pad2.y == 240; 
 	}
 }
 
@@ -123,40 +121,40 @@ void checkPadPositions(struct Object pad1, struct Object pad2){
 void handleCollision(struct Object ballen, struct Object pad1, struct Object pad2){
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (whereCollision == 0){
-		if (ballen.y >= (pad1.y + 12) && (ballen.dy < (pad1.y + 15))){
-			ballen.dy *= 1.8;
-			ballen.dx *= -1;	
+		if (game.ballen.y >= (game.pad1.y + 12) && (game.ballen.dy < (game.pad1.y + 15))){
+			game.ballen.dy *= 1.8;
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad1.y + 10) && (ballen.y < (pad1.y + 12))){
-			ballen.dy *= 1.6;
-			ballen.dx *= -1;	
+		else if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.y < (game.pad1.y + 12))){
+			game.ballen.dy *= 1.6;
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad1.y + 5) && (ballen.y < (pad1.y + 10))){
-			ballen.dy *= 1.4;	
-			ballen.dx *= -1;
+		else if (game.ballen.y >= (game.pad1.y + 5) && (game.ballen.y < (game.pad1.y + 10))){
+			game.ballen.dy *= 1.4;	
+			game.ballen.dx *= -1;
 		}
-		else if (ballen.y <= pad1.y + 5 || ballen.y > pad1.y - 5){
-			ballen.dx *= -1;	
+		else if (game.ballen.y <= game.pad1.y + 5 || game.ballen.y > game.pad1.y - 5){
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad1.y - 15) && (ballen.y < (pad1.y - 12))){
-			ballen.dy *= -1.8;
-			ballen.dx *= -1;	
+		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 12))){
+			game.ballen.dy *= -1.8;
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad1.y - 12) && (ballen.y < (pad1.y - 10))){
-			ballen.dy *= -1.6;
-			ballen.dx *= -1;	
+		else if (game.ballen.y >= (game.pad1.y - 12) && (game.ballen.y < (game.pad1.y - 10))){
+			game.ballen.dy *= -1.6;
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad1.y - 10) && (ballen.y < (pad1.y - 5))){
-			ballen.dy *= -1.4;
-			ballen.dx *= -1;	
+		else if (game.ballen.y >= (game.pad1.y - 10) && (game.ballen.y < (game.pad1.y - 5))){
+			game.ballen.dy *= -1.4;
+			game.ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision == 1){
-		if (ballen.y >= (pad2.y + 12) && (ballen.dy < (pad2.y + 15))){
-			ballen.dy *= 1.8;
-			ballen.dx *= -1;	
+		if (game.ballen.y >= (game.pad2.y + 12) && (game.ballen.dy < (game.pad2.y + 15))){
+			game.ballen.dy *= 1.8;
+			game.ballen.dx *= -1;	
 		}
-		else if (ballen.y >= (pad2.y + 10) && (ballen.y < (pad2.y + 12))){
+		else if (game.ballen.y >= (game.pad2.y + 10) && (game.ballen.y < (game.pad2.y + 12))){
 			ballen.dy *= 1.6;
 			ballen.dx *= -1;	
 		}

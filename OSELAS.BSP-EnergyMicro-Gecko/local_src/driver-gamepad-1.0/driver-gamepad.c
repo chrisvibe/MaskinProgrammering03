@@ -5,6 +5,7 @@
 #include <linux/fs.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
+#include <linux/interrupt.h>
 #include <asm/io.h>
 
 #include "efm32gg.h"
@@ -22,6 +23,12 @@
 #define CMU_ADDR_START          CMU_BASE2
 #define CMU_ADDR_SIZE           (uint32_t)(CMU_HFPERCLKEN0) + 4 - CMU_BASE2 
 #define CMU_HFPERCLKEN0_OFFSET  (uint32_t)(CMU_HFPERCLKEN0) - CMU_BASE2
+#define GPIO_EXTIPSELL_OFFSET   (uint32_t)(GPIO_EXTIPSELL) - GPIO_PA_BASE
+#define GPIO_EXTIRISE_OFFSET    (uint32_t)(GPIO_EXTIRISE) - GPIO_PA_BASE
+#define GPIO_EXTIFALL_OFFSET    (uint32_t)(GPIO_EXTIFALL) - GPIO_PA_BASE
+#define GPIO_IEN_OFFSET         (uint32_t)(GPIO_IEN) - GPIO_PA_BASE
+#define GPIO_IF_OFFSET          (uint32_t)(GPIO_IF) - GPIO_PA_BASE
+#define GPIO_IFC_OFFSET         (uint32_t)(GPIO_IFC) - GPIO_PA_BASE
 
 // Global variables for init and cleanup functions
 static dev_t *devno;
@@ -30,6 +37,10 @@ static struct class *cl;
 // Global variables to access hardware in read function
 static int gpioMapReturn;
 static int cmuMapReturn;
+
+
+// TODO Remove this
+static int temp = 0;
 
 
 
@@ -47,6 +58,7 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
   printk("%d\n", res);
+  printk("Temp: %d\n", temp);
   return 0;
 }
 
@@ -73,6 +85,25 @@ struct cdev my_cdev = {
 };
 
 
+/**
+ * GPIO interrupt handler
+ */
+irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
+  unsigned int GPIO_IF_res;
+
+  printk("Interrupt fired\n");
+  // Debugging variable, safe to delete
+  temp = 1;
+  printk("Reading from gpio_if\n");
+  GPIO_IF_res = ioread32(gpioMapReturn + GPIO_IF_OFFSET);
+  printk("Writing gpio if to gpio ifc\n");
+  iowrite32(
+      GPIO_IF_res,
+      (gpioMapReturn + GPIO_IFC_OFFSET));
+  return IRQ_HANDLED;
+}
+
+
 /*
  * gamepad_init - function to insert this module into kernel space
  *
@@ -97,6 +128,9 @@ static int __init gamepad_init(void)
 
   unsigned int CMU_HFPER;
   unsigned int result;
+
+  unsigned int gpio1;
+  unsigned int gpio2;
 
 
   printk("Allocating memory region for GPIO\n");
@@ -160,6 +194,50 @@ static int __init gamepad_init(void)
   iowrite32(
       (unsigned int) 0xff, 
       (gpioMapReturn + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
+
+
+
+
+  // Should be placed before hardware generates interrupts
+  if (request_irq(17, 
+        GPIO_interrupt,
+        0,
+        "Gamepad",
+        NULL) < 0) {
+    printk("interrupt handler error!\n");
+  }
+
+
+
+  //*GPIO_EXTIPSELL = 0x22222222;
+  printk("Setting gpio extipsell");
+  iowrite32(
+      (unsigned int) 0x22222222,
+      (gpioMapReturn + GPIO_EXTIPSELL_OFFSET));
+
+	 //*GPIO_EXTIRISE = 0xff; */
+  /* printk("Setting gpio extirise"); */
+  /* iowrite32( */
+      /* (unsigned int) 0xff, */
+      /* (gpioMapReturn + GPIO_EXTIRISE_OFFSET)); */
+
+	//*GPIO_EXTIFALL = 0xff;
+  printk("Setting gpio extifall");
+  iowrite32(
+      (unsigned int) 0xff,
+      (gpioMapReturn + GPIO_EXTIFALL_OFFSET));
+
+	// *GPIO_IEN |= 0xff;
+  // CMU setup
+  printk("Setting gpio IEN");
+  gpio1 = ioread32(gpioMapReturn + GPIO_IEN_OFFSET); 
+  gpio2 = gpio1 | 0xff;
+  iowrite32(
+      (unsigned int) gpio2,
+      (gpioMapReturn + GPIO_IEN_OFFSET));
+
+
+
 
   printk("Init function complete, driver should now be visible under /dev\n");
   return 0;

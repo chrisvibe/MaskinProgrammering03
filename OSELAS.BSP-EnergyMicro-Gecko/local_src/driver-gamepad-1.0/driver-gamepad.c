@@ -10,6 +10,10 @@
 
 #include "efm32gg.h"
 
+#define GPIO_ADDR_START   GPIO_PA_BASE
+#define GPIO_ADDR_END     (uint32_t)(GPIO_IFC) + 1
+#define GPIO_ADDR_SIZE    (uint32_t)(GPIO_IFC) + 1 - GPIO_PA_BASE
+
 static dev_t *devno;
 static struct class *cl;
 
@@ -29,7 +33,7 @@ static int my_release (struct inode *inode, struct  file *filp) {
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
-  printk(res);
+  printk("%d\n", res);
   return 0;
 }
 
@@ -67,7 +71,7 @@ struct cdev my_cdev = {
 
 static int __init gamepad_init(void)
 {
-  printk("Hello from gamepad driver init function. Initializing...\n")
+  printk("Hello from gamepad driver init function. Initializing...\n");
 
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
@@ -84,7 +88,7 @@ static int __init gamepad_init(void)
   printk("Allocating memory region for GPIO\n");
   // Request memory. Dont know if 1024 byte is correct, just a guess.
   gpioAlloc = "GPIO";
-  if (request_mem_region(GPIO_PA_BASE, 1024, gpioAlloc) == NULL)  {
+  if (request_mem_region(GPIO_ADDR_START, GPIO_ADDR_SIZE, gpioAlloc) == NULL)  {
     printk("An error occured! Could not reserve memory region for GPIO\n");
     return 1;
   }
@@ -140,7 +144,7 @@ static int __init gamepad_init(void)
   printk("Setting internal pull up resistors\n");
   iowrite32((unsigned int) 0xff, (gpioMapReturn + 72 + 12));
 
-  printk("Init function complete, driver should now be visible under /dev\n")
+  printk("Init function complete, driver should now be visible under /dev\n");
   return 0;
 }
 

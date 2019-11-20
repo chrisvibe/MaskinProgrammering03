@@ -1,19 +1,7 @@
-FROM rubensseva/maskiner03:develop
+FROM rubensseva/maskiner3finishedkernel
 
-COPY --chown=non-root . /home/non-root/MaskinProgrammering03/
+COPY --chown=non-root . /home/non-root/MaskinProgrammering03LocalCopy/
 
-RUN echo $' \n\
-  cd MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko \n\
-  bash TDT4258_helper_scripts/ptxdist_setup.sh \n\
-  bash TDT4258_helper_scripts/ptxdist_build_all.sh \n\
-  bash TDT4258_helper_scripts/ptxdist_flash_all.sh' >> /home/non-root/docker_pull_and_setup.sh
+RUN su - non-root -c "rsync -av /home/non-root/MaskinProgrammering03LocalCopy/OSELAS.BSP-EnergyMicro-Gecko/local_src/ /home/non-root/MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko/local_src/"
 
-# Output the script for debugging purposes
-RUN cat /home/non-root/docker_pull_and_setup.sh
-# Give all persmissions to script
-RUN chmod 777 /home/non-root/docker_pull_and_setup.sh
-
-
-# On docker run command, run the script we created earlier
-CMD su - non-root -c "bash /home/non-root/docker_pull_and_setup.sh"
-
+CMD su - non-root -c "cd /home/non-root/MaskinProgrammering03/OSELAS.BSP-EnergyMicro-Gecko && sh TDT4258_helper_scripts/ptxdist_rebuild_flash_driver.sh"

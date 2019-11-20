@@ -1,4 +1,4 @@
-#include <linux/types.h>
+#include <stdint.h>
 
 // GPIO
 

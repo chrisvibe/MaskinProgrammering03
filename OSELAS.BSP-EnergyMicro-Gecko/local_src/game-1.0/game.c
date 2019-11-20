@@ -19,7 +19,7 @@ int maxScore = 5;
 
 struct Object;
 struct Game;
-struct Object initializeBall();
+struct Object initializeBall(int x, int y);
 struct Game initializeGame();
 bool isGameFinished(int P1Score, int P2Score);
 struct Object initializePads(int x, int y);
@@ -47,9 +47,9 @@ struct Game initializeGame(){
    struct Game game;
    game.settings = setup_display();
     
-   game.pad1 = initializePads(130, 160);
-   game.pad1 = initializePads(70, 145);
-   game.ballen = initializeBall(100, 145);
+   game.pad1 = initializePads(70, 160);
+   game.pad2 = initializePads(130, 160);
+   game.ballen = initializeBall(100, 160);
    refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
 
    return game;
@@ -64,10 +64,10 @@ bool isGameFinished(int P1Score, int P2Score){
 }
 
 /* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-struct Object initializeBall(){
+struct Object initializeBall(int x, int y){
 	struct Object ballen;
-	ballen.x = 160;
-	ballen.y = 120;
+	ballen.x = x;
+	ballen.y = y;
 	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
 	ballen.dx = 1; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
 	ballen.dy = 0; /* Betyr at ballen kommer til å gå mot høyre hver gang */
@@ -207,15 +207,18 @@ void handleCollision(struct Game game){
 }
 
 struct Game timeStep(struct Game game){
+	draw_ball(game.settings, game.ballen.x, game.ballen.y, 0, 0);
+    draw_pad(game.settings, game.pad1.x, game.pad1.y, 0, 0);
+    draw_pad(game.settings, game.pad2.x, game.pad2.y, 0, 0);
 	game.ballen.x += game.ballen.dx;
 	game.ballen.y += game.ballen.dy;
-    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
-    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
 	handleCollision(game);
 	checkPadPositions(game);
 	draw_ball(game.settings, game.ballen.x, game.ballen.y, 0xFFF, 0xF);
     draw_pad(game.settings, game.pad1.x, game.pad1.y, 0xFFF, 0xF);
     draw_pad(game.settings, game.pad2.x, game.pad2.y, 0xFFF, 0xF);
+    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
+    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
 	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
     return game;
 }
@@ -261,9 +264,9 @@ int main(int argc, char *argv[])
 	struct Game game = initializeGame();
 	while (isGameFinished(P1Score, P2Score)){
         game = timeStep(game);
-        sleep(1);        
+        sleep(.1);        
         count++;
-        if (count > 10){
+        if (count > 50){
             P1Score = 5;
         }
 	}

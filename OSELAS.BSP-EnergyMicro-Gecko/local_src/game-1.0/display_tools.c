@@ -12,9 +12,10 @@ struct Settings setup_display()
    // open the frame buffer for read/write
    settings.fbfd = open("/dev/fb0", O_RDWR);
 
-
    // get address where we can store pixels (write implies read too)
    settings.addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings.fbfd, 0);
+
+   clear_screen(settings);
 
    return settings;
 }
@@ -25,11 +26,15 @@ void tear_down_display(struct Settings settings)
    close(settings.fbfd);
 }
 
+void clear_screen(struct Settings settings)
+{
+   draw_rectangle(settings, 0, 0, WIDTH, HEIGHT, 0); // clear screen
+}
+
 void game_dummy()
 {
    struct Settings settings = setup_display();
 
-   draw_rectangle(settings, 0, 0, WIDTH, HEIGHT, 0); // clear screen
    draw_ball(settings, 100, 150);
    draw_pad(settings, 130, 160);
    draw_pad(settings, 70, 145);

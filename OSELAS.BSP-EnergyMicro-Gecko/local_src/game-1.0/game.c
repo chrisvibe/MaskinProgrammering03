@@ -10,7 +10,7 @@
 
 #define P1 1
 #define P2 2
-#define HEIGHT 240 
+#define HEIGHT 240 // display dimensions
 #define WIDTH 320
 #define LENGTH HEIGHT * WIDTH * 2 // length in bites
 
@@ -20,7 +20,8 @@ void tear_down_display(struct Settings settings);
 void refresh_display(struct Settings settings, int x, int y, int height, int width);
 void set_pixel(struct Settings settings, int x, int y, int colour);
 void game_dummy();
-void draw_ball();
+void draw_ball(struct Settings settings, int x, int y);
+void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour);
 
 int P1Score = 0; 
 int P2Score = 0;
@@ -254,9 +255,7 @@ void game_dummy()
 {
    struct Settings settings = setup_display();
 
-
-   draw_ball(settings);
-
+   draw_ball(settings, 100, 200);
    refresh_display(settings, 0, 0, HEIGHT, WIDTH);
 
    tear_down_display(settings);
@@ -269,10 +268,6 @@ void set_pixel(struct Settings settings, int x, int y, int colour)
 
 /* void reset_screen(struct Settings settings, int x, int y, int colour) */
 /* { */
-/*    for (x = 0; x < HEIGHT; x++) { */
-/*         for (y = 0; y < WIDTH; y++) { */
-/*             settings.addr[x * WIDTH + y] = colour; */
-/*         } */
 /*    } */
 /* } */
 
@@ -293,9 +288,24 @@ void refresh_display(struct Settings settings, int x, int y, int height, int wid
     ioctl(settings.fbfd, 0x4680, &rect);
 }
 
-void draw_ball(struct Settings settings)
+void draw_ball(struct Settings settings, int x, int y)
 {
-   set_pixel(settings, 0, 0, 0xFFF);
-   set_pixel(settings, 1, 1, 0xFFF);
-   set_pixel(settings, 2, 2, 0xFFF);
+    int diameter = 5;
+    int dx = diameter / 2;
+    int dy = dx;
+
+    draw_rectangle(settings, x - dx, y - dy, x + dx, y + dy, 0xFFF);
+    set_pixel(settings, x + dx, y + dy, 0xF);
+    set_pixel(settings, x + dx, y - dy, 0xF);
+    set_pixel(settings, x - dx, y + dy, 0xF);
+    set_pixel(settings, x - dx, y - dy, 0xF);
+}
+
+void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour)
+{
+    for (x1 < x2; x1++;) {
+        for (y1 < y2; y1++;) {
+            set_pixel(settings, x1, y1, colour);
+        }
+    }
 }

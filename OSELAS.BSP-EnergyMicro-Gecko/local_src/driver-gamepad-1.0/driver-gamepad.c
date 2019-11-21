@@ -72,8 +72,10 @@ static int my_release (struct inode *inode, struct  file *filp) {
 }
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
-  unsigned int res;
-  res = ioread32(gpioMapReturn + 72 + 28);
+  /* unsigned int res; */
+  /* res = ioread32(gpioMapReturn + 72 + 28); */
+  uint8_t res;
+  res = ioread8(gpioMapReturn + 72 + 28);
   debugStr("Read:");
   debugInt(res);
   debugStr("sizeof Read:");
@@ -85,17 +87,23 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   // If user requests read with offset to 0, then we can copy data to user. If there
   // is not 0, we return immediatly. When read is coompleted, set offset to 1 so 
   // that no more reading is done.
-  if (*offp == 0)
-  {
-      if (copy_to_user(buff, &res, 4) != 0)
-          return -EFAULT;
-      else
-      {
-          *offp = 1;
-          return 1;
-      }
+  /* if (*offp == 0) */
+  /* { */
+  /*     if (copy_to_user(buff, &res, 1) != 0) */
+  /*         return -EFAULT; */
+  /*     else */
+  /*     { */
+  /*         (*offp)++; */
+  /*         return 1; */
+  /*     } */
+  /* } */
+  /* return 0; */
+  printk("DOES THIS SHOW UP\n");
+  if (copy_to_user(buff, &res, 1) != 0) {
+    printk("Error! efault\n");
+    return -EFAULT;
   }
-  return 0;
+  (*offp)++;
 }
 
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
@@ -105,8 +113,7 @@ static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, lo
 
 static int exer_fasync(int fd, struct file *pfile, int mode)
 {
-     struct fasync_struct **fapp = &pasync_queue;
-     return fasync_helper(fd, pfile, mode, fapp);
+     return fasync_helper(fd, pfile, mode, &pasync_queue);
 }
 
 static struct file_operations my_fops = {
@@ -145,8 +152,9 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
 
   // Send SIGIO
   debugStr("Firing SIGIO signal");
-  struct fasync_struct **fapp = &pasync_queue;
-  kill_fasync(fapp, SIGIO, POLL_IN);
+  if (pasync_queue) {
+    kill_fasync(&pasync_queue, SIGIO, POLL_IN);
+  }
 
 
   debugStr("Interrupt handled, returning IRQ_HANDLED");

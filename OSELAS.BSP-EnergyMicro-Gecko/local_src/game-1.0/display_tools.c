@@ -5,6 +5,19 @@ int fbfd;
 uint16_t * addr;
 };
 
+struct Canvas {
+    uint16_t x;  // centroid placement in global display
+    uint16_t y;
+    uint16_t x0; // corner placement in global display
+    uint16_t y0;
+    uint16_t width;
+    uint16_t height;
+	int16_t speed;
+	int16_t dx;
+	int16_t dy;
+    uint16_t * pixels;
+};
+
 struct Settings setup_display()
 {
    struct Settings settings;
@@ -26,89 +39,25 @@ void tear_down_display(struct Settings settings)
    close(settings.fbfd);
 }
 
-void clear_screen(struct Settings settings)
+void reset_screen(struct Settings settings)
 {
-   /* draw_rectangle(settings, 0, 0, WIDTH, HEIGHT, 0); // clear screen */
+    printf("reset screen (not done)");
 }
 
-/* { */
-/*    struct Settings settings = setup_display(); */
+void refresh_display(struct Settings settings, int x, int y, int width, int height)
+{
+    // setup which part of the frame buffer that is to be refreshed */
+    // for performance reasons, use as small rectangle as possible */
+    struct fb_copyarea rect;
 
-/*    draw_ball(settings, 100, 150,  0xFFF, 0xFFF); */
-/*    draw_pad(settings, 130, 160,  0xFFF,  0xFFF); */
-/*    draw_pad(settings, 70, 145, 0xFFF,  0xFFF); */
-/*    draw_rectangle(settings, 30, 50, 60, 80, 0xFFF); */
-/*    refresh_display(settings, 0, 0, HEIGHT, WIDTH); */
+    rect.dx = x; 
+    rect.dy = y; 
+    rect.height = height;
+    rect.width = width;
 
-/*    tear_down_display(settings); */
-/* } */
-
-/* void set_pixel(struct Settings settings, int x, int y, int colour) */
-/* { */
-/*     /1* settings.addr[x + y * WIDTH] = colour; *1/ */
-/*     settings.addr[x + (HEIGHT - y) * WIDTH] = colour; // alternative coordinate system */
-/* } */
-
-/* void refresh_display(struct Settings settings, int x, int y, int height, int width) */
-/* { */
-/*     // setup which part of the frame buffer that is to be refreshed */
-/*     // for performance reasons, use as small rectangle as possible */
-/*     struct fb_copyarea rect; */
-
-/*     rect.dx = x; */
-/*     rect.dy = y; */
-/*     rect.height = height; */
-/*     rect.width = width; */
-
-/*     // command driver to update display */
-/*     ioctl(settings.fbfd, 0x4680, &rect); */
-/* } */
-
-/* void draw_rectangle(struct Settings settings, int x1, int y1, int x2, int y2, int colour) */
-/* { */
-/*     int xi, yi; */
-
-/*     for (xi = x1; xi <= x2; xi++) { */
-/*         for (yi = y1; yi <= y2; yi++) { */
-/*             set_pixel(settings, xi, yi, colour); */
-/*         } */
-/*     } */
-/* } */
-
-/* void draw_ball(struct Settings settings, int x, int y, int colour, int fade) */
-/* { */
-/*     int diameter = 5; */
-/*     int dx = diameter / 2; */
-/*     draw_smooth_object(settings, x, y, dx, dx, colour, fade); */
-/* } */
-
-/* void draw_pad(struct Settings settings, int x, int y, int colour, int fade) */
-/* { */
-/*     int height = 30; */
-/*     int width = 2; */
-/*     int dx = width / 2; */
-/*     int dy = height / 2; */
-/*     draw_smooth_object(settings, x, y, dx, dy, colour, fade); */
-/* } */
-
-/* void draw_smooth_object(struct Settings settings, int x, int y, int dx, int dy, int colour, int fade) */
-/* { */
-/*     draw_rectangle(settings, x - dx, y - dy, x + dx, y + dy, colour); */
-/*     set_pixel(settings, x - dx, y - dy, fade); */
-/*     set_pixel(settings, x - dx, y + dy, fade); */
-/*     set_pixel(settings, x + dx, y - dy, fade); */
-/*     set_pixel(settings, x + dx, y + dy, fade); */
-/* } */
-
-// new paradigm --------------------------------------
-
-struct Canvas {
-    uint16_t width;
-    uint16_t height;
-    uint16_t x;  // centroid placement in global display
-    uint16_t y;
-    uint16_t * pixels;
-};
+    // command driver to update display */
+    ioctl(settings.fbfd, 0x4680, &rect);
+}
 
 void set_pixel(struct Canvas* canvas, int x, int y, int colour)
 {
@@ -134,32 +83,6 @@ void smooth(struct Canvas* canvas, int fade)
     set_pixel(canvas, canvas->width - 1, canvas->height - 1, fade);
 }
 
-void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
-{
-    canvas->x = x;
-    canvas->y = y;
-    canvas->width = 5;
-    canvas->height = 5;
-    uint16_t length = canvas->width * canvas->height;
-    canvas->pixels = malloc(length * sizeof(uint16_t));
-
-    fill(canvas, colour);
-    smooth(canvas, fade);
-}
-
-void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
-{
-    canvas->x = x;
-    canvas->y = y;
-    canvas->width = 2;
-    canvas->height = 30;
-    uint16_t length = canvas->width * canvas->height;
-    canvas->pixels = malloc(length * sizeof(uint16_t));
-
-    fill(canvas, colour);
-    smooth(canvas, fade);
-}
-
 void print_canvas(struct Canvas* canvas)
 {
     printf("\n");
@@ -172,34 +95,72 @@ void print_canvas(struct Canvas* canvas)
     }
 }
 
-void draw_canvas(struct Canvas* canvas)
+void draw_canvas(struct Canvas* canvas, struct Settings settings)
 {
-    uint16_t x, y;
+    int x, y;
     for (y = 0; y < canvas->height; y++) {
         for (x = 0; x < canvas->width; x++) {
-            printf("%d ", canvas->pixels[x + y * canvas->width]);
+            draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);
         }
     }
 }
 
-void draw_pixel(struct Settings settings, uint16_t x, uint16_t y)
+void draw_pixel(struct Settings settings, int x, int y, int colour)
 {
     settings.addr[x + (HEIGHT - y) * WIDTH] = colour;
 }
 
-/* void game_dummy() */
-int main(void) {
+void clear_screen(struct Settings settings)
+{
+}
 
-    struct Canvas ballen, pad;
-    init_ball(&ballen, 5, 5, 0xFFF, 0xF);
-    init_pad(&pad, 20, 20, 0xFFF, 0xF);
+void erase_canvas(struct Canvas * canvas, struct Settings settings)
+{
+    int x, y;
+    for (y = 0; y < canvas->height; y++) {
+        for (x = 0; x < canvas->width; x++) {
+            draw_pixel(settings, x + canvas->x0, y + canvas->y0, 0);
+        }
+    }
+}
+
+void init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
+{
+    canvas->x = x;
+    canvas->y = y;
+    canvas->width = width;
+    canvas->height = height;
+    canvas->x0 = canvas->x - canvas->width / 2;
+    canvas->y0 = canvas->y - canvas->height / 2;
+	canvas->speed = speed; /* Setter her speed til 1, men dette kan endres */
+	canvas->dx = dx; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
+	canvas->dy = dy; /* Betyr at ballen kommer til å gå mot høyre hver gang */
+    uint16_t length = canvas->width * canvas->height;
+    canvas->pixels = malloc(length * sizeof(uint16_t));
+
+    fill(canvas, colour);
+    smooth(canvas, fade);
+}
+
+// int main(void) {
+void game_dummy()
+{
+//     struct Settings settings = setup_display();
+//     struct Canvas ballen, pad;
+
+//     init_ball(&ballen, 100, 100, 0xFFF, 0xF);
+//     init_pad(&pad, 50, 50, 0xFFF, 0xF);
     
-    print_canvas(&ballen);
-    print_canvas(&pad);
+//     print_canvas(&ballen);
+//     print_canvas(&pad);
 
-    free((&ballen)->pixels);
-    free((&pad)->pixels);
-    printf("done.\n");
-    return 0;
+//     draw_canvas(&ballen, settings);
+//     draw_canvas(&pad, settings);
+
+//     refresh_display(settings, 0, 0, WIDTH, HEIGHT);
+
+//     free((&ballen)->pixels);
+//     free((&pad)->pixels);
+//     printf("done.\n");
 }
 

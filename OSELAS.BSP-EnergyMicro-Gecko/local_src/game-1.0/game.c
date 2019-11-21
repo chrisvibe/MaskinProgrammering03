@@ -16,54 +16,46 @@ int P1Score = 0;
 int P2Score = 0;
 int maxScore = 5;
 
-struct Object;
+struct Canvas;
 struct Game;
-struct Object initializeBall(int x, int y);
+struct Canvas initializeBall(int x, int y);
 struct Game initializeGame();
 bool isGameFinished(int P1Score, int P2Score);
-struct Object initializePads(int x, int y);
+void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
+struct Canvas initializePads(int x, int y);
 int whereCollision(struct Game game);
 void checkPadPositions(struct Game game);
 void handleCollision(struct Game game);
 int movePads();
-
-// all objects are "smoothed" rectangles
-struct Object {
-	uint16_t x;  // centroid
-	uint16_t y;
-	int16_t speed; /* Could be constant as we have no plans of changing speed as of yet */
-	int16_t dx; /* Can not be unsigned as we might get som negative values */
-	int16_t dy;
-};
-
-void makeObject(int x, int y, int dx, int dy, int colour, int fade)
-  1 {
-        struct Object newObject;
-
-  2     makeRectangle(settings, x - dx, y - dy, x + dx, y + dy, colour);
-  3     set_pixel(settings, x - dx, y - dy, fade);
-  4     set_pixel(settings, x - dx, y + dy, fade);
-  5     set_pixel(settings, x + dx, y - dy, fade);
-  6     set_pixel(settings, x + dx, y + dy, fade);
-  7 }
-
+int collisionDetectionBall(struct Game game);
+int collisionDetectionPad(struct Game game);
+void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade);
+void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade);
+void draw_ball(struct Game game);
+void draw_pads(struct Game game);
+struct Game timeStep(struct Game game);
+void smart_refresh(struct Game game);
 
 struct Game {
 	struct Settings settings;
-	struct Object ballen;
-	struct Object pad1;
-	struct Object pad2;
+	struct Canvas ballen;
+	struct Canvas pad1;
+	struct Canvas pad2;
 };
 
 struct Game initializeGame(){
    struct Game game;
-   game.settings = setup_display();
-    
-   game.pad1 = initializePads(70, 160);
-   game.pad2 = initializePads(130, 160);
-   game.ballen = initializeBall(100, 160);
-   refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
+   struct Canvas ballen, pad1, pad2;
 
+   game.ballen = ballen;
+   game.pad1 = pad1;
+   game.pad2 = pad2;
+
+   init_ball(&game.ballen, 75, 50, 0xFFF, 0xF);
+   init_pad(&game.pad1, 50, 50, 0xFFF, 0xF);
+   init_pad(&game.pad2, 100, 50, 0xFFF, 0xF);
+ 
+   game.settings = setup_display();
    return game;
 }
 
@@ -75,41 +67,64 @@ bool isGameFinished(int P1Score, int P2Score){
 	return 1;
 }
 
-/* A function that is to give initial dx and dy to the ball. The x, y and speed can be constant */
-struct Object initializeBall(int x, int y){
-	struct Object ballen;
-	ballen.x = x;
-	ballen.y = y;
-	ballen.speed = 1; /* Setter her speed til 1, men dette kan endres */
-	ballen.dx = 1; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
-	ballen.dy = 0; /* Betyr at ballen kommer til å gå mot høyre hver gang */
-	printf("ballens dx %d", ballen.dx);
-	printf("ballens dy %d", ballen.dy);
-    return ballen;
+void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
+{
+    // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
+    init_canvas(canvas, x, y, width, height, speed, dx, dy, colour, fade);
 }
 
-struct Object initializePads(int x, int y){
-	struct Object pad;
-	pad.x = x;
-	pad.y = y;
-	pad.speed = 0;
-	pad.dx = 0;
-	pad.dy = 0; 
-    return pad;
+void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
+{
+    // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
+    init_canvas(canvas, x, y, 5, 5, 1, 1, 0, 0xFFF, 0xF);
 }
 
+void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
+{
+    // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
+    init_canvas(canvas, x, y, 2, 30, 0, 0, 0, 0xFFF, 0xF);
+}
+
+int collisionDetectionBall(struct Game game){
+	if (game.ballen.x - (game.ballen.width/2) == game.pad1.x + (game.pad1.width/2) && 
+		(game.ballen.y + game.ballen.height <= game.pad1.y + game.pad1.height/2) || game.ballen.y + game.ballen.height <= game.pad1.y + game.pad1.height)
+		{return 1;}
+
+	else if (game.ballen.x + (game.ballen.width/2) == game.pad2.x - (game.pad2.width/2) && 
+		(game.ballen.y - game.ballen.height <= game.pad1.y + game.pad1.height/2) || game.ballen.y + game.ballen.height <= game.pad2.y + game.pad2.height)
+		{return 2;}
+
+	else if( (game.ballen.y - (game.ballen.height/2) == 0) || (game.ballen.y + (game.ballen.height/2) == 240) )
+		{return 3;}
+	
+	else if( (game.ballen.x - (game.ballen.width/2) < 0) || (game.ballen.x + (game.ballen.width/2) > 320) )
+		{return 4;}
+}
+
+int collisionDetectionPad(struct Game game){
+	if( (game.pad1.y - (game.pad1.height/2) == 0)  )
+		{return 1;}
+	
+	else if ( (game.pad1.y + (game.pad1.width/2) == 240) )
+		{return 2;}
+
+	else if ( (game.pad2.y - (game.pad2.height/2) == 0)  )
+		{return 3;}
+	
+	else if ((game.pad2.y + (game.pad2.width/2) == 240) )
+		{return 4;}
+}
+
+
+/* data */
 /* Checks for where collision occured */
 int whereCollision(struct Game game){
-	/* Implementation for padcrash 
-	1. Will have an array of pixels that we are operating with
-	2. If the ball has the same x value as the pad, and if the y-value of ball is equal to some y-value of pad
-	3. Then check for how far the y-value is from the center of the y-value of the pad
-	4. Give the ball a new angle based on how many pixels away from y and disregard the incoming angle. */
-	if (game.ballen.x == game.pad1.x && (game.ballen.y > game.pad1.y - 15 || game.ballen.y < game.pad1.y + 15)){ 
+
+	if (game.ballen.x == game.pad1.x && (game.ballen.y >= (game.pad1.y - 15) && game.ballen.y <= (game.pad1.y + 15))){ 
 		return 0; 
 	} 
 	
-	else if (game.ballen.y == game.pad2.x && (game.ballen.y > game.pad2.y - 15 || game.ballen.y < game.pad2.y + 15)){
+	else if (game.ballen.x == game.pad2.x && (game.ballen.y >= game.pad2.y - 15 && game.ballen.y <= (game.pad2.y + 15))){
 		return 1; 
 	}
 
@@ -142,72 +157,59 @@ void checkPadPositions(struct Game game){
 	}
 }
 
+
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
 void handleCollision(struct Game game){
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (whereCollision(game) == 0){
-		if (game.ballen.y >= (game.pad1.y + 12) && (game.ballen.dy < (game.pad1.y + 15))){
-			game.ballen.dy *= 0.8;
-			game.ballen.dx *= -1;	
-		}
-		else if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.y < (game.pad1.y + 12))){
-			game.ballen.dy *= 0.6;
+		if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.dy < (game.pad1.y + 15))){
+			game.ballen.dy = 2;
 			game.ballen.dx *= -1;	
 		}
 		else if (game.ballen.y >= (game.pad1.y + 5) && (game.ballen.y < (game.pad1.y + 10))){
-			game.ballen.dy *= 0.4;	
-			game.ballen.dx *= -1;
+			game.ballen.dy = 1;
+			game.ballen.dx *= -1;	
 		}
 		else if (game.ballen.y <= game.pad1.y + 5 || game.ballen.y > game.pad1.y - 5){
+			game.ballen.dy = 0;
 			game.ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 12))){
-			game.ballen.dy *= -0.8;
-			game.ballen.dx *= -1;	
-		}
-		else if (game.ballen.y >= (game.pad1.y - 12) && (game.ballen.y < (game.pad1.y - 10))){
-			game.ballen.dy *= -0.6;
+		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 10))){
+			game.ballen.dy *= -2;
 			game.ballen.dx *= -1;	
 		}
 		else if (game.ballen.y >= (game.pad1.y - 10) && (game.ballen.y < (game.pad1.y - 5))){
-			game.ballen.dy *= -0.4;
+			game.ballen.dy = -1;
 			game.ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision(game) == 1){
-		if (game.ballen.y >= (game.pad2.y + 12) && (game.ballen.dy < (game.pad2.y + 15))){
-			game.ballen.dy *= 0.8;
+		if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.dy < (game.pad1.y + 15))){
+			game.ballen.dy = 2;
 			game.ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad2.y + 10) && (game.ballen.y < (game.pad2.y + 12))){
-			game.ballen.dy *= 0.6;
+		else if (game.ballen.y >= (game.pad1.y + 5) && (game.ballen.y < (game.pad1.y + 10))){
+			game.ballen.dy = 1;
 			game.ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad2.y + 5) && (game.ballen.y < (game.pad2.y + 10))){
-			game.ballen.dy *= 0.4;	
-			game.ballen.dx *= -1;
-		}
-		else if (game.ballen.y <= game.pad2.y + 5 || game.ballen.y > game.pad2.y - 5){
+		else if (game.ballen.y <= game.pad1.y + 5 || game.ballen.y > game.pad1.y - 5){
+			game.ballen.dy = 0;
 			game.ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad2.y - 15) && (game.ballen.y < (game.pad2.y - 12))){
-			game.ballen.dy *= -0.8;
+		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 10))){
+			game.ballen.dy *= -2;
 			game.ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad2.y - 12) && (game.ballen.y < (game.pad2.y - 10))){
-			game.ballen.dy *= -0.6;
-			game.ballen.dx *= -1;	
-		}
-		else if (game.ballen.y >= (game.pad2.y - 10) && (game.ballen.y < (game.pad2.y - 5))){
-			game.ballen.dy *= -0.4;
+		else if (game.ballen.y >= (game.pad1.y - 10) && (game.ballen.y < (game.pad1.y - 5))){
+			game.ballen.dy = -1;
 			game.ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision(game) == 2){
-		if (game.ballen.x == 0){
+		if (game.ballen.x <= 0){
 			P2Score += 1;
 		}
-		if (game.ballen.x == 320){
+		if (game.ballen.x >= 320){
 			P1Score += 1;
 		}
 		//Her må det legges inn en "clean funksjon" som starter cleaner hele brettet og starter opp på nytt bare med en ny score. 
@@ -219,28 +221,33 @@ void handleCollision(struct Game game){
 }
 
 struct Game timeStep(struct Game game){
-	draw_ball(game.settings, game.ballen.x, game.ballen.y, 0, 0);
-    draw_pad(game.settings, game.pad1.x, game.pad1.y, 0, 0);
-    draw_pad(game.settings, game.pad2.x, game.pad2.y, 0, 0);
-	game.ballen.x += game.ballen.dx;
-	game.ballen.y += game.ballen.dy;
+    mod_canvas(&game.ballen, game.ballen.x + 1, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
+    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
+    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
+	draw_ball(game);
+	// draw_pads(game);
+
 	handleCollision(game);
-	checkPadPositions(game);
-	draw_ball(game.settings, game.ballen.x, game.ballen.y, 0xFFF, 0xF);
-    draw_pad(game.settings, game.pad1.x, game.pad1.y, 0xFFF, 0xF);
-    draw_pad(game.settings, game.pad2.x, game.pad2.y, 0xFFF, 0xF);
-    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
-    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
+
+    mod_canvas(&game.ballen, game.ballen.x + 1, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
+    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
+    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+	draw_ball(game);
+	// draw_pads(game);
+	smart_refresh(game);
+
+	//int x = whereCollision(game);
+	//printf(x);
+
     return game;
 }
 
+// still to be implemented properly
 void smart_refresh(struct Game game){
-	refresh_display(game.settings, game.pad1.x, game.pad1.y, HEIGHT, WIDTH);
-	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
-	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
+	refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
 }
 
-/* Function for converting input from driver to commands to pads */
+/* Function for converting input from driver to commands to pads
 int movePads(){
 	/* Here is what the implementation might look like: 
 	Using mmap to map the file input to the memory output. 
@@ -248,19 +255,19 @@ int movePads(){
 	a connector between driver and graphic. 
 	*/
 
-}
+//}
 
-/* Function for reading from driver */ 
+/* Function for reading from driver 
 void checkDriver(){
-	/* This function will check whether the driver is functioning and shut down game if not */
+	/* This function will check whether the driver is functioning and shut down game if not 
 }
 
 void checkLCD(){ 
-	/* This funciton will check whether the LCD screen is functioning and shut down game if not */
+	/* This funciton will check whether the LCD screen is functioning and shut down game if not
 }
 
 void ResetScreen(){
-	/* This function will clean the entire screen and start the game up again given that no player has reached the maxiumum score */
+	 This function will clean the entire screen and start the game up again given that no player has reached the maxiumum score 
 	// clear_screen(settings);
 }
 
@@ -274,23 +281,38 @@ bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
 };
 */
 
+void draw_ball(struct Game game)
+{
+    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
+    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
+    draw_canvas(&game.ballen, game.settings);
+}
+
+void draw_pads(struct Game game)
+{
+    draw_canvas(&game.pad1, game.settings);
+    draw_canvas(&game.pad2, game.settings);
+}
+
 int main(int argc, char *argv[])
 {
     int count = 0;
 	printf("Hello World, I'm game!\n");
 	struct Game game = initializeGame();
+
 	while (isGameFinished(P1Score, P2Score)){
-        game = timeStep(game);
+        timeStep(game);
         sleep(.1);        
         count++;
-        if (count > 50){
+        if (count > 10){
             P1Score = 5;
         }
 	}
-	// ResetScreen();
 
-    // game_dummy();
-	printf("Rahim wuz here.");
+    free((&game.ballen)->pixels);
+    free((&game.pad1)->pixels);
+    free((&game.pad2)->pixels);
+    printf("done.\n");
 
 	exit(EXIT_SUCCESS);
 }

@@ -10,6 +10,7 @@
 #include <asm/io.h>
 
 #include "efm32gg.h"
+#include "driver-test.h"
 
 /* 
  * Need these constants because we need to offset so we can use the memomry remap.
@@ -52,11 +53,11 @@ struct fasync_struct *pasync_queue;
 static int debug = 1;
 static void debugStr(char *msg) {
   if (debug) 
-    printk("%s\n", msg)
+    printk("%s\n", msg);
 }
 static void debugInt(int msg) {
   if (debug) 
-    printk("%d\n", msg)
+    printk("%d\n", msg);
 }
 
 
@@ -157,6 +158,7 @@ static int __init gamepad_init(void)
   unsigned int gpio1;
   unsigned int gpio2;
 
+  does_this_exist();
 
   // Request memory region for gpio. This is actually not strictly neede, but 
   // is good practice so that drivers do not access same mem regions

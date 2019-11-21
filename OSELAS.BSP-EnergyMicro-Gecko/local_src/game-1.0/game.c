@@ -25,7 +25,7 @@ bool isGameFinished(int P1Score, int P2Score);
 void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 struct Canvas initializePads(int x, int y);
 int whereCollision(struct Game* game);
-void checkPadPositions(struct Game game);
+void checkPadPositions(struct Game* game);
 void handleCollision(struct Game* game);
 int movePads();
 int collisionDetectionBall(struct Game game);
@@ -36,6 +36,8 @@ void draw_ball(struct Game game);
 void draw_pads(struct Game game);
 struct Game timeStep(struct Game game);
 void smart_refresh(struct Game game);
+void movePad1(struct Game* game, int dy);
+void movePad1(struct Game* game, int dy);
 
 struct Game {
 	struct Settings settings;
@@ -52,7 +54,7 @@ struct Game initializeGame(){
    game.pad1 = pad1;
    game.pad2 = pad2;
 
-   init_ball(&game.ballen, 75, 50, 0xFFF, 0xF);
+   init_ball(&game.ballen, 75, 200, 0xFFF, 0xF);
    init_pad(&game.pad1, 50, 40, 0xFFF, 0xF);
    init_pad(&game.pad2, 100, 40, 0xFFF, 0xF);
  
@@ -76,7 +78,7 @@ void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int 
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
-    init_canvas(canvas, x, y, 5, 5, 1, 1, 0, 0xFFF, 0xF);
+    init_canvas(canvas, x, y, 5, 5, 1, 3, 0, 0xFFF, 0xF);
 }
 
 void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
@@ -129,7 +131,7 @@ int whereCollision(struct Game* game){
 	}
 
 	/* wallcrash in vertical direction */ 
-	else if (game->ballen.x < 0  || game->ballen.x > 320) {
+	else if (game->ballen.x <= 10  || game->ballen.x >= 310) {
 		return 2;
 	}
 
@@ -141,19 +143,19 @@ int whereCollision(struct Game* game){
 	return -1; 
 }
 
-
-void checkPadPositions(struct Game game){
-	if (game.pad1.y < 0+15){
-		game.pad1.y == 15; 
+//Checks the pad positions and if they are outside the buffer, then update their positions back.
+void checkPadPositions(struct Game* game){
+	if (game->pad1.y < 16){
+		game->pad1.y = 16; 
 	}
-	if (game.pad1.y > 240-15){
-		game.pad1.y == 225; 
+	if (game->pad1.y > 224){
+		game->pad1.y = 224; 
 	}
-	if (game.pad2.y < 0+15){
-		game.pad2.y == 15; 
+	if (game->pad2.y < 16){
+		game->pad2.y = 16; 
 	}
-	if (game.pad2.y > 240-15){
-		game.pad2.y == 225; 
+	if (game->pad2.y > 224){
+		game->pad2.y = 224; 
 	}
 }
 
@@ -206,10 +208,10 @@ void handleCollision(struct Game* game){
 		}
 	}
 	if (whereCollision(game) == 2){
-		if (game->ballen.x <= 0){
+		if (game->ballen.x <= 10){
 			P2Score += 1;
 		}
-		if (game->ballen.x >= 320){
+		if (game->ballen.x >= 310){
 			P1Score += 1;
 		}
 		//Her må det legges inn en "clean funksjon" som starter cleaner hele brettet og starter opp på nytt bare med en ny score. 
@@ -246,13 +248,16 @@ void smart_refresh(struct Game game){
 	refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
 }
 
-/* Function for converting input from driver to commands to pads
-int movePads(){
-	/* Here is what the implementation might look like: 
-	Using mmap to map the file input to the memory output. 
-	Will potentially have to files that we are reading from. This game.c file will then only work as 
-	a connector between driver and graphic. 
+// Function for converting input from driver to commands to pads
 
+void movePad1(struct Game* game, int dy){
+    game->pad1.y += dy;
+    checkPadPositions(game);
+}
+
+void movePad2(struct Game* game, int dy){
+	game->pad2.y += dy;
+    checkPadPositions(game);
 }
 
 /* Function for reading from driver 
@@ -294,15 +299,19 @@ void draw_pads(struct Game game)
 
 int main(int argc, char *argv[])
 {
-    int count = 0;
 	printf("Hello World, I'm game!\n");
 	struct Game game = initializeGame();
+
+    mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, 1, 0, 0);
+    mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, 1, 0, 0);
 
 	while (isGameFinished(P1Score, P2Score)){
         // timestep ------------------------------------------
         // debug
 	    printf("where collision: %d" , whereCollision(&game));
 
+        movePad1(&game, game.pad1.dy);
+        movePad2(&game, game.pad2.dy);
         // erase old image
 		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
@@ -311,9 +320,10 @@ int main(int argc, char *argv[])
 		draw_pads(game);
 		smart_refresh(game);
 
-		handleCollision(&game);
+        sleep(GAME_SPEED);        
 
         // draw new image
+		handleCollision(&game);
     	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
     	mod_canvas(&game.pad1, game.pad1.x + game.pad1.dx, game.pad1.y + game.pad1.dy, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
     	mod_canvas(&game.pad2, game.pad2.x + game.pad2.dx, game.pad2.y + game.pad2.dy, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
@@ -324,11 +334,6 @@ int main(int argc, char *argv[])
         // timestep ------------------------------------------
 
         // game = timeStep(game);
-        sleep(GAME_SPEED);        
-        count++;
-        if (count > 50){
-            P1Score = 5;
-        }
 	}
 
     free((&game.ballen)->pixels);

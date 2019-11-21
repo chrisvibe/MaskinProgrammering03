@@ -24,9 +24,9 @@ struct Game initializeGame();
 bool isGameFinished(int P1Score, int P2Score);
 void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 struct Canvas initializePads(int x, int y);
-int whereCollision(struct Game game);
+int whereCollision(struct Game* game);
 void checkPadPositions(struct Game game);
-void handleCollision(struct Game game);
+void handleCollision(struct Game* game);
 int movePads();
 int collisionDetectionBall(struct Game game);
 int collisionDetectionPad(struct Game game);
@@ -53,8 +53,8 @@ struct Game initializeGame(){
    game.pad2 = pad2;
 
    init_ball(&game.ballen, 75, 50, 0xFFF, 0xF);
-   init_pad(&game.pad1, 50, 50, 0xFFF, 0xF);
-   init_pad(&game.pad2, 100, 50, 0xFFF, 0xF);
+   init_pad(&game.pad1, 50, 40, 0xFFF, 0xF);
+   init_pad(&game.pad2, 100, 40, 0xFFF, 0xF);
  
    game.settings = setup_display();
    return game;
@@ -118,23 +118,23 @@ int collisionDetectionPad(struct Game game){
 
 /* data */
 /* Checks for where collision occured */
-int whereCollision(struct Game game){
+int whereCollision(struct Game* game){
 
-	if (game.ballen.x == game.pad1.x && (game.ballen.y >= (game.pad1.y - 15) && game.ballen.y <= (game.pad1.y + 15))){ 
+	if (game->ballen.x == game->ballen.y >= (game->ballen.y <= (game->pad1.y + 15))){ 
 		return 0; 
 	} 
 	
-	else if (game.ballen.x == game.pad2.x && (game.ballen.y >= game.pad2.y - 15 && game.ballen.y <= (game.pad2.y + 15))){
+	else if (game->ballen.x == game->pad2.x && (game->ballen.y >= game->pad2.y - 15 && game->ballen.y <= (game->pad2.y + 15))){
 		return 1; 
 	}
 
 	/* wallcrash in vertical direction */ 
-	else if (game.ballen.x < 0  || game.ballen.x > 320) {
+	else if (game->ballen.x < 0  || game->ballen.x > 320) {
 		return 2;
 	}
 
 	/* wallcrash in horizontal direction */ 
-	else if (game.ballen.y < 10 || game.ballen.y > 230) {
+	else if (game->ballen.y < 10 || game->ballen.y > 230) {
 		return 3;
 	}
 
@@ -159,63 +159,63 @@ void checkPadPositions(struct Game game){
 
 
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
-void handleCollision(struct Game game){
+void handleCollision(struct Game* game){
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (whereCollision(game) == 0){
-		if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.dy < (game.pad1.y + 15))){
-			game.ballen.dy = 2;
-			game.ballen.dx *= -1;	
+		if (game->ballen.y >= (game->pad1.y + 10) && (game->ballen.dy < (game->pad1.y + 15))){
+			game->ballen.dy = 2;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y + 5) && (game.ballen.y < (game.pad1.y + 10))){
-			game.ballen.dy = 1;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y + 5) && (game->ballen.y < (game->pad1.y + 10))){
+			game->ballen.dy = 1;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y <= game.pad1.y + 5 || game.ballen.y > game.pad1.y - 5){
-			game.ballen.dy = 0;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y <= game->pad1.y + 5 || game->ballen.y > game->pad1.y - 5){
+			game->ballen.dy = 0;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 10))){
-			game.ballen.dy *= -2;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y - 15) && (game->ballen.y < (game->pad1.y - 10))){
+			game->ballen.dy *= -2;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y - 10) && (game.ballen.y < (game.pad1.y - 5))){
-			game.ballen.dy = -1;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y - 10) && (game->ballen.y < (game->pad1.y - 5))){
+			game->ballen.dy = -1;
+			game->ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision(game) == 1){
-		if (game.ballen.y >= (game.pad1.y + 10) && (game.ballen.dy < (game.pad1.y + 15))){
-			game.ballen.dy = 2;
-			game.ballen.dx *= -1;	
+		if (game->ballen.y >= (game->pad1.y + 10) && (game->ballen.dy < (game->pad1.y + 15))){
+			game->ballen.dy = 2;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y + 5) && (game.ballen.y < (game.pad1.y + 10))){
-			game.ballen.dy = 1;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y + 5) && (game->ballen.y < (game->pad1.y + 10))){
+			game->ballen.dy = 1;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y <= game.pad1.y + 5 || game.ballen.y > game.pad1.y - 5){
-			game.ballen.dy = 0;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y <= game->pad1.y + 5 || game->ballen.y > game->pad1.y - 5){
+			game->ballen.dy = 0;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y - 15) && (game.ballen.y < (game.pad1.y - 10))){
-			game.ballen.dy *= -2;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y - 15) && (game->ballen.y < (game->pad1.y - 10))){
+			game->ballen.dy *= -2;
+			game->ballen.dx *= -1;	
 		}
-		else if (game.ballen.y >= (game.pad1.y - 10) && (game.ballen.y < (game.pad1.y - 5))){
-			game.ballen.dy = -1;
-			game.ballen.dx *= -1;	
+		else if (game->ballen.y >= (game->pad1.y - 10) && (game->ballen.y < (game->pad1.y - 5))){
+			game->ballen.dy = -1;
+			game->ballen.dx *= -1;	
 		}
 	}
 	if (whereCollision(game) == 2){
-		if (game.ballen.x <= 0){
+		if (game->ballen.x <= 0){
 			P2Score += 1;
 		}
-		if (game.ballen.x >= 320){
+		if (game->ballen.x >= 320){
 			P1Score += 1;
 		}
 		//Her må det legges inn en "clean funksjon" som starter cleaner hele brettet og starter opp på nytt bare med en ny score. 
 	}
 	if (whereCollision(game) == 3){
-		game.ballen.dy *= -1;
+		game->ballen.dy *= -1;
 	}
 	
 }
@@ -229,7 +229,7 @@ struct Game timeStep(struct Game game){
 	// draw_pads(game);
 	smart_refresh(game);
 
-	handleCollision(game);
+	handleCollision(&game);
 
     mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
     // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
 	while (isGameFinished(P1Score, P2Score)){
         // timestep ------------------------------------------
         // debug
-	    printf("where collision: %d" , whereCollision(game));
+	    printf("where collision: %d" , whereCollision(&game));
 
         // erase old image
 		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
@@ -311,7 +311,7 @@ int main(int argc, char *argv[])
 		draw_pads(game);
 		smart_refresh(game);
 
-		handleCollision(game);
+		handleCollision(&game);
 
         // draw new image
     	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
@@ -326,7 +326,7 @@ int main(int argc, char *argv[])
         // game = timeStep(game);
         sleep(GAME_SPEED);        
         count++;
-        if (count > 10){
+        if (count > 50){
             P1Score = 5;
         }
 	}

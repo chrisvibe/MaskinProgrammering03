@@ -50,7 +50,7 @@ struct fasync_struct *pasync_queue;
 
 
 // Debugging. Set debug variable to 1 to enable.
-static int debug = 0;
+static int debug = 1;
 static void debugStr(char *msg) {
   if (debug) 
     printk("%s\n", msg);
@@ -78,10 +78,10 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   debugInt(res);
   debugStr("sizeof Read:");
   debugInt(sizeof(res));
-  debugStr("Loff_t:"):
-  degubInt(*offp);
-  debugStr("count:"):
-  degubInt(count);
+  debugStr("Loff_t:");
+  debugInt(*offp);
+  debugStr("count:");
+  debugInt(count);
   if (*offp == 0)
   {
       if (copy_to_user(buff, &res, 4) != 0)

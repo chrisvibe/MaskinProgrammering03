@@ -75,6 +75,19 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
   printk(res);
+  printk(KERN_INFO "Driver: read()\n");
+    if (*offp == 0)
+    {
+        if (copy_to_user(buff, &res, 1) != 0)
+            return -EFAULT;
+        else
+        {
+            (*offp)++;
+            return 1;
+        }
+    }
+    else
+        return 0;
   return 0;
 }
 
@@ -157,8 +170,6 @@ static int __init gamepad_init(void)
 
   unsigned int gpio1;
   unsigned int gpio2;
-
-  does_this_exist();
 
   // Request memory region for gpio. This is actually not strictly neede, but 
   // is good practice so that drivers do not access same mem regions

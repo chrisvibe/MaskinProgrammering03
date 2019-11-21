@@ -2,9 +2,4 @@
 
 void does_this_exist() {
   printk("NEVER GONNA GIVE YOU UP");
-  printk("NEVER GONNA GIVE YOU UP");
-  printk("NEVER GONNA GIVE YOU UP");
-  printk("NEVER GONNA GIVE YOU UP");
-  printk("NEVER GONNA GIVE YOU UP");
-  printk("NEVER GONNA GIVE YOU UP AND DESERT YOUUUU");
 }

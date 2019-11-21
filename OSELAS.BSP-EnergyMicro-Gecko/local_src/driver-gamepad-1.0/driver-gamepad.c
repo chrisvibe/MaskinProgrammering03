@@ -251,6 +251,8 @@ static int __init gamepad_init(void)
 static void __exit gamepad_cleanup(void)
 {
 	 printk("Gamepad driver cleanup\n");
+   free_irq(17, NULL);
+   free_irq(18, NULL);
    unregister_chrdev_region(*devno, 1);
    device_destroy(cl, *devno);
    class_destroy(cl);

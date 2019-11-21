@@ -3,6 +3,7 @@
 #include <linux/init.h>
 #include <linux/ioport.h>
 #include <linux/fs.h>
+#include <linux/signal.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
 #include <linux/interrupt.h>
@@ -43,27 +44,48 @@ static struct class *cl;
 static int gpioMapReturn;
 static int cmuMapReturn;
 
+// For sending SIGIO
+struct fasync_struct *pasync_queue;
+
+
+// Debugging. Set debug variable to 1 to enable.
+static int debug = 1;
+static void debugStr(char *msg) {
+  if (debug) 
+    printk("%s\n", msg)
+}
+static void debugInt(int msg) {
+  if (debug) 
+    printk("%d\n", msg)
+}
+
 
 static int my_open (struct inode *inode, struct  file *filp) {
-  printk("opening\n");
+  debugStr("opening");
   return 0;
 }
 
 static int my_release (struct inode *inode, struct  file *filp) {
-  printk("releasing\n");
+  debugStr("releasing");
   return 0;
 }
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
-  printk("%d\n", res);
+  printk(res);
   return 0;
 }
 
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
-  printk("writing\n");
+  debugStr("writing");
   return 0;
+}
+
+static int exer_fasync(int fd, struct file *pfile, int mode)
+{
+     struct fasync_struct **fapp = &pasync_queue;
+     return fasync_helper(fd, pfile, mode, fapp);
 }
 
 static struct file_operations my_fops = {
@@ -71,7 +93,8 @@ static struct file_operations my_fops = {
   .read = my_read,
   .write = my_write,
   .open = my_open,
-  .release = my_release
+  .release = my_release,
+  .fasync = exer_fasync
 };
 
 
@@ -90,13 +113,22 @@ struct cdev my_cdev = {
 irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   unsigned int GPIO_IF_res;
 
-  printk("Interrupt fired\n");
-  printk("Setting interrupt as handled, reading from gpio_if\n");
+  debugStr("Interrupt fired");
+  debugStr("Setting interrupt as handled, reading from gpio_if");
   GPIO_IF_res = ioread32(gpioMapReturn + GPIO_IF_OFFSET);
-  printk("Writing gpio if to gpio ifc\n");
+  debugStr("Writing gpio if to gpio ifc");
   iowrite32(
       GPIO_IF_res,
       (gpioMapReturn + GPIO_IFC_OFFSET));
+
+
+  // Send SIGIO
+  debugStr("Firing SIGIO signal");
+  struct fasync_struct **fapp = &pasync_queue;
+  kill_fasync(fapp, SIGIO, POLL_IN);
+
+
+  debugStr("Interrupt handled, returning IRQ_HANDLED");
   return IRQ_HANDLED;
 }
 
@@ -109,7 +141,6 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
  *
  * Returns 0 if successfull, otherwise -1
  */
-
 static int __init gamepad_init(void)
 {
   printk("Initializing gamepad driver\n");
@@ -132,18 +163,18 @@ static int __init gamepad_init(void)
   printk("Allocating memory region for GPIO\n");
   gpioAlloc = "GPIO";
   if (request_mem_region(GPIO_ADDR_START, GPIO_ADDR_SIZE, "GPIO") == NULL)  {
-    printk("An error occured! Could not reserve memory region for GPIO\n");
+    printk(KERN_WARNING "An error occured! Could not reserve memory region for GPIO\n");
     return 1;
   }
   printk("Allocating memory region for CMU\n");
   cmuAlloc = "CMU";
   if (request_mem_region(CMU_ADDR_START, CMU_ADDR_SIZE, "CMU") == NULL)  {
-    printk("An error occured! Could not reserve memory region for CMU\n");
+    printk(KERN_WARNING "An error occured! Could not reserve memory region for CMU\n");
     return 1;
   }
 
   // Map I/O address space to new address space that we will use for hardware access. 
-  // This is actually not strictly needed since all I/O is memory mapped on the 
+  // This is actually not strictly needed since I/O is memory mapped on the 
   // EFM32GG, but still good practice.
   printk("Initializing io memory remap for GPIO\n");
   gpioMapReturn = ioremap_nocache((resource_size_t) GPIO_ADDR_START, GPIO_ADDR_SIZE);
@@ -164,7 +195,6 @@ static int __init gamepad_init(void)
   if (cdev_result < 0) {
     printk(KERN_WARNING "Gamepad driver: Failed to add character device\n");
   } 
-
   
   // Make driver visible to user space
   printk("Making driver visible to user space\n");
@@ -201,7 +231,7 @@ static int __init gamepad_init(void)
         0,
         "GPIO IRQ even",
         NULL) < 0) {
-    printk("Interrupt handler error for even GPIO!\n");
+    printk(KERN_WARNING "Interrupt handler error for even GPIO!\n");
   }
   printk("Enabling interrupt for GPIO irq number %d\n", GPIO_ODD_IRQ_NUM);
   if (request_irq(GPIO_ODD_IRQ_NUM, 
@@ -209,7 +239,7 @@ static int __init gamepad_init(void)
         0,
         "GPIO IRQ odd",
         NULL) < 0) {
-    printk("interrupt handler error for odd GPIO\n");
+    printk(KERN_WARNING "Interrupt handler error for odd GPIO\n");
   }
 
 

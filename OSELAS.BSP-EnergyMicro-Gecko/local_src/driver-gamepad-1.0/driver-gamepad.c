@@ -7,10 +7,10 @@
 #include <linux/cdev.h>
 #include <linux/device.h>
 #include <linux/interrupt.h>
+#include <linux/uaccess.h>
 #include <asm/io.h>
 
 #include "efm32gg.h"
-#include "driver-test.h"
 
 /* 
  * Need these constants because we need to offset so we can use the memomry remap.
@@ -50,7 +50,7 @@ struct fasync_struct *pasync_queue;
 
 
 // Debugging. Set debug variable to 1 to enable.
-static int debug = 1;
+static int debug = 0;
 static void debugStr(char *msg) {
   if (debug) 
     printk("%s\n", msg);
@@ -74,20 +74,24 @@ static int my_release (struct inode *inode, struct  file *filp) {
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   unsigned int res;
   res = ioread32(gpioMapReturn + 72 + 28);
-  printk(res);
-  printk(KERN_INFO "Driver: read()\n");
-    if (*offp == 0)
-    {
-        if (copy_to_user(buff, &res, 1) != 0)
-            return -EFAULT;
-        else
-        {
-            (*offp)++;
-            return 1;
-        }
-    }
-    else
-        return 0;
+  debugStr("Read:");
+  debugInt(res);
+  debugStr("sizeof Read:");
+  debugInt(sizeof(res));
+  debugStr("Loff_t:"):
+  degubInt(*offp);
+  debugStr("count:"):
+  degubInt(count);
+  if (*offp == 0)
+  {
+      if (copy_to_user(buff, &res, 4) != 0)
+          return -EFAULT;
+      else
+      {
+          *offp = 4;
+          return 1;
+      }
+  }
   return 0;
 }
 

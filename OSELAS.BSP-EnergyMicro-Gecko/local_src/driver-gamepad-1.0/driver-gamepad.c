@@ -195,13 +195,21 @@ static int __init gamepad_init(void)
 
 
   // Should be placed before hardware generates interrupts
-  printk("Enabling interrupt for GPIO irq number 17\n");
+  printk("Enabling interrupt for even GPIO irq number %d\n", GPIO_EVEN_IRQ_NUM);
   if (request_irq(GPIO_EVEN_IRQ_NUM, 
         GPIO_interrupt,
         0,
-        "Gamepad",
+        "GPIO IRQ even",
         NULL) < 0) {
-    printk("interrupt handler error!\n");
+    printk("Interrupt handler error for even GPIO!\n");
+  }
+  printk("Enabling interrupt for GPIO irq number %d\n", GPIO_ODD_IRQ_NUM);
+  if (request_irq(GPIO_ODD_IRQ_NUM, 
+        GPIO_interrupt,
+        0,
+        "GPIO IRQ odd",
+        NULL) < 0) {
+    printk("interrupt handler error for odd GPIO\n");
   }
 
 

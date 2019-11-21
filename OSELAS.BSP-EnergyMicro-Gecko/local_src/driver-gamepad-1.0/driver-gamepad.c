@@ -82,13 +82,16 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   debugInt(*offp);
   debugStr("count:");
   debugInt(count);
+  // If user requests read with offset to 0, then we can copy data to user. If there
+  // is not 0, we return immediatly. When read is coompleted, set offset to 1 so 
+  // that no more reading is done.
   if (*offp == 0)
   {
       if (copy_to_user(buff, &res, 4) != 0)
           return -EFAULT;
       else
       {
-          *offp = 4;
+          *offp = 1;
           return 1;
       }
   }

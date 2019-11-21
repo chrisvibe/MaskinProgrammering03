@@ -29,7 +29,6 @@ struct Settings setup_display()
    settings.addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings.fbfd, 0);
 
    clear_screen(settings);
-
    return settings;
 }
 
@@ -39,9 +38,11 @@ void tear_down_display(struct Settings settings)
    close(settings.fbfd);
 }
 
-void reset_screen(struct Settings settings)
+void clear_screen(struct Settings settings)
 {
-    printf("reset screen (not done)");
+    struct Canvas screen;
+    init_canvas(&screen, 0, 0, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
+    draw_canvas(&screen, settings);
 }
 
 void refresh_display(struct Settings settings, int x, int y, int width, int height)
@@ -110,10 +111,6 @@ void draw_pixel(struct Settings settings, int x, int y, int colour)
     settings.addr[x + (HEIGHT - y) * WIDTH] = colour;
 }
 
-void clear_screen(struct Settings settings)
-{
-}
-
 void erase_canvas(struct Canvas * canvas, struct Settings settings)
 {
     int x, y;
@@ -141,26 +138,3 @@ void init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int
     fill(canvas, colour);
     smooth(canvas, fade);
 }
-
-// int main(void) {
-void game_dummy()
-{
-//     struct Settings settings = setup_display();
-//     struct Canvas ballen, pad;
-
-//     init_ball(&ballen, 100, 100, 0xFFF, 0xF);
-//     init_pad(&pad, 50, 50, 0xFFF, 0xF);
-    
-//     print_canvas(&ballen);
-//     print_canvas(&pad);
-
-//     draw_canvas(&ballen, settings);
-//     draw_canvas(&pad, settings);
-
-//     refresh_display(settings, 0, 0, WIDTH, HEIGHT);
-
-//     free((&ballen)->pixels);
-//     free((&pad)->pixels);
-//     printf("done.\n");
-}
-

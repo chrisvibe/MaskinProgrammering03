@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <unistd.h>
 #include <time.h>
 
 #define P1 1
@@ -28,13 +27,26 @@ void checkPadPositions(struct Game game);
 void handleCollision(struct Game game);
 int movePads();
 
+// all objects are "smoothed" rectangles
 struct Object {
-	int16_t x;
-	int16_t y;
+	uint16_t x;  // centroid
+	uint16_t y;
 	int16_t speed; /* Could be constant as we have no plans of changing speed as of yet */
 	int16_t dx; /* Can not be unsigned as we might get som negative values */
 	int16_t dy;
 };
+
+void makeObject(int x, int y, int dx, int dy, int colour, int fade)
+  1 {
+        struct Object newObject;
+
+  2     makeRectangle(settings, x - dx, y - dy, x + dx, y + dy, colour);
+  3     set_pixel(settings, x - dx, y - dy, fade);
+  4     set_pixel(settings, x - dx, y + dy, fade);
+  5     set_pixel(settings, x + dx, y - dy, fade);
+  6     set_pixel(settings, x + dx, y + dy, fade);
+  7 }
+
 
 struct Game {
 	struct Settings settings;
@@ -219,8 +231,13 @@ struct Game timeStep(struct Game game){
     draw_pad(game.settings, game.pad2.x, game.pad2.y, 0xFFF, 0xF);
     printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
     printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
-	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
     return game;
+}
+
+void smart_refresh(struct Game game){
+	refresh_display(game.settings, game.pad1.x, game.pad1.y, HEIGHT, WIDTH);
+	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
+	refresh_display(game.settings, 0, 0, HEIGHT, WIDTH);
 }
 
 /* Function for converting input from driver to commands to pads */

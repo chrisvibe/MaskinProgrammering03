@@ -21,7 +21,7 @@ struct Game;
 struct Canvas initializeBall(int x, int y);
 struct Game initializeGame();
 bool isGameFinished(int P1Score, int P2Score);
-void mod_canvas(struct Canvas canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
+void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 struct Canvas initializePads(int x, int y);
 int whereCollision(struct Game game);
 void checkPadPositions(struct Game game);
@@ -67,9 +67,9 @@ bool isGameFinished(int P1Score, int P2Score){
 	return 1;
 }
 
-void mod_canvas(struct Canvas canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
+void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
 {
-    init_canvas(&canvas, x, y, width, height, speed, dx, dy, colour,fade);
+    init_canvas(canvas, x, y, width, height, speed, dx, dy, colour,fade);
 }
 
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
@@ -220,17 +220,17 @@ void handleCollision(struct Game game){
 }
 
 struct Game timeStep(struct Game game){
-    mod_canvas(game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
+    mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
     // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
 
 	draw_ball(game);
-	draw_pads(game);
+	// draw_pads(game);
 	smart_refresh(game);
 
 	handleCollision(game);
 
-    mod_canvas(game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
+    mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
     // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
     // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
 	draw_ball(game);
@@ -302,8 +302,27 @@ int main(int argc, char *argv[])
 	while (isGameFinished(P1Score, P2Score)){
         // mod_canvas(game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
         // init_ball(&game.ballen, game.ballen.x + 1, 50, 0xFFF, 0xF);
+	
 
-        game = timeStep(game);
+        // timestep ------------------------------------------
+		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
+
+		draw_ball(game);
+		// draw_pads(game);
+		smart_refresh(game);
+
+		handleCollision(game);
+
+    	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+		draw_ball(game);
+		// draw_pads(game);
+		smart_refresh(game);
+
+        // timestep ------------------------------------------
+
+        // game = timeStep(game);
         sleep(.1);        
         count++;
         if (count > 10){

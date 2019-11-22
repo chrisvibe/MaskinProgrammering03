@@ -1,8 +1,8 @@
 #include "display_tools.h"
 
 struct Settings {
-int fbfd;
-uint16_t * addr;
+    int fbfd;
+    uint16_t * addr;
 };
 
 struct Canvas {
@@ -12,35 +12,28 @@ struct Canvas {
     uint16_t y0;
     uint16_t width;
     uint16_t height;
-	int16_t speed;
-	int16_t dx;
-	int16_t dy;
+    int16_t speed;
+    int16_t dx;
+    int16_t dy;
     uint16_t * pixels;
 };
 
 void setup_display(struct Settings * settings)
 {
-//    open the frame buffer for read/write
-   settings->fbfd = open("/dev/fb0", O_RDWR);
+    // open the frame buffer for read/write
+    settings->fbfd = open("/dev/fb0", O_RDWR);
 
-   // get address where we can store pixels (write implies read too)
-   settings->addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings->fbfd, 0);
+    // get address where we can store pixels (write implies read too)
+    settings->addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings->fbfd, 0);
 }
 
 void tear_down_display(struct Settings * settings)
 {
-   munmap(settings->addr, LENGTH);
-   close(settings->fbfd);
-   free(settings);
+    munmap(settings->addr, LENGTH);
+    close(settings->fbfd);
+    free(settings);
 }
 
-void clear_screen(struct Settings settings)
-{
-    // struct Canvas screen;
-    // init_canvas(&screen, WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
-    // draw_canvas(&screen, settings);
-    // free((&screen)->pixels);
-}
 
 void refresh_display(struct Settings *settings, int x, int y, int width, int height)
 {
@@ -65,7 +58,6 @@ void set_pixel(struct Canvas* canvas, int x, int y, int colour)
 void fill(struct Canvas* canvas, int colour)
 {
     int xi, yi;
-
     for (yi = 0; yi < canvas->height; yi++) {
         for (xi = 0; xi < canvas->width; xi++) {
             set_pixel(canvas, xi, yi, colour);
@@ -131,9 +123,9 @@ void init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int
     canvas->height = height;
     canvas->x0 = canvas->x - canvas->width / 2;
     canvas->y0 = canvas->y - canvas->height / 2;
-	canvas->speed = speed; /* Setter her speed til 1, men dette kan endres */
-	canvas->dx = dx; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
-	canvas->dy = dy; /* Betyr at ballen kommer til å gå mot høyre hver gang */
+    canvas->speed = speed; /* Setter her speed til 1, men dette kan endres */
+    canvas->dx = dx; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
+    canvas->dy = dy; /* Betyr at ballen kommer til å gå mot høyre hver gang */
     uint16_t length = canvas->width * canvas->height;
     canvas->pixels = malloc(length * sizeof(uint16_t));
 

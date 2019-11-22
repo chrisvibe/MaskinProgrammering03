@@ -14,7 +14,6 @@ struct Settings;
 void setup_display(struct Settings * settings);
 void tear_down_display(struct Settings * settings);
 void refresh_display(struct Settings *settings, int x, int y, int width, int height);
-void clear_screen(struct Settings settings);
 
 struct Canvas;
 void set_pixel(struct Canvas* canvas, int x, int y, int colour);

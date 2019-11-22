@@ -93,7 +93,7 @@ void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
 void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
-    init_canvas(canvas, x, y, 2, 30, 0, 0, 0, 0xFFF, 0xF);
+    init_canvas(canvas, x, y, 2, 30, 0, 0, 1, 0xFFF, 0xF);
 }
 
 void init_background(struct Canvas* canvas, int colour)
@@ -185,45 +185,45 @@ void handleCollision(struct Game* game){
 
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (collisionState == 0){
-		if (game->ballen.y >= (game->pad1.y + 10) && (game->ballen.y < (game->pad1.y + 15))){
+		if ((game->ballen.y >= game->pad1.y + 10) && (game->ballen.y <= game->pad1.y + 15)){
 			game->ballen.dy = 2;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad1.y + 5) && (game->ballen.y < (game->pad1.y + 10))){
+		else if ((game->ballen.y >= game->pad1.y + 5) && (game->ballen.y < game->pad1.y + 10)){
 			game->ballen.dy = 1;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y <= game->pad1.y + 5 || game->ballen.y > game->pad1.y - 5){
+		else if ((game->ballen.y < game->pad1.y + 5) && (game->ballen.y > game->pad1.y - 5)){
 			game->ballen.dy = 0;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad1.y - 15) && (game->ballen.y < (game->pad1.y - 10))){
+		else if ((game->ballen.y >= game->pad1.y - 15) && (game->ballen.y <= game->pad1.y - 10)){
 			game->ballen.dy = -2;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad1.y - 10) && (game->ballen.y < (game->pad1.y - 5))){
+		else if ((game->ballen.y > game->pad1.y - 10) && (game->ballen.y <= game->pad1.y - 5)){
 			game->ballen.dy = -1;
 			game->ballen.dx *= -1;	
 		}
 	}
 	if (collisionState == 1){
-		if (game->ballen.y >= (game->pad2.y + 10) && (game->ballen.y < (game->pad2.y + 15))){
+		if ((game->ballen.y >= game->pad2.y + 10) && (game->ballen.y <= game->pad2.y + 15)){
 			game->ballen.dy = 2;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad2.y + 5) && (game->ballen.y < (game->pad2.y + 10))){
+		else if ((game->ballen.y >= game->pad2.y + 5) && (game->ballen.y < game->pad2.y + 10)){
 			game->ballen.dy = 1;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y <= game->pad2.y + 5 || game->ballen.y > game->pad2.y - 5){
+		else if ((game->ballen.y < game->pad2.y + 5) && (game->ballen.y > game->pad2.y - 5)){
 			game->ballen.dy = 0;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad2.y - 15) && (game->ballen.y < (game->pad2.y - 10))){
+		else if ((game->ballen.y >= game->pad2.y - 15) && (game->ballen.y <= game->pad2.y - 10)){
 			game->ballen.dy = -2;
 			game->ballen.dx *= -1;	
 		}
-		else if (game->ballen.y >= (game->pad2.y - 10) && (game->ballen.y < (game->pad2.y - 5))){
+		else if ((game->ballen.y > game->pad2.y - 10) && (game->ballen.y <= game->pad2.y - 5)){
 			game->ballen.dy = -1;
 			game->ballen.dx *= -1;	
 		}
@@ -244,38 +244,24 @@ void handleCollision(struct Game* game){
 }
 
 struct Game timeStep(struct Game game){
-    mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
-    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
-    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-
-	draw_ball(game);
-	// draw_pads(game);
-	smart_refresh(&game);
-
-	handleCollision(&game);
-
-    mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
-    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
-	draw_ball(game);
-	// draw_pads(game);
-	smart_refresh(&game);
-
     return game;
 }
 
 // still to be implemented properly
 void smart_refresh(struct Game* game){
 	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
-	refresh_display(game->settings, game->pad1.x0, game->pad1.y0, game->pad1.width, game->pad1.height);
-	refresh_display(game->settings, game->pad2.x0, game->pad2.y0, game->pad2.width, game->pad2.height);
-	refresh_display(game->settings, game->ballen.x0, game->ballen.y0, game->ballen.width, game->ballen.height);
+	refresh_display(game->settings, game->pad1.x0, game->pad1.y0, game->pad1.x0 + game->pad1.width, game->pad1.y0 + game->pad1.height);
+	refresh_display(game->settings, game->pad2.x0, game->pad2.y0, game->pad2.x0 + game->pad2.width, game->pad2.y0 + game->pad2.height);
+	refresh_display(game->settings, game->ballen.x0, game->ballen.y0, game->ballen.x0 + game->ballen.width, game->ballen.y0 + game->ballen.height);
 }
 
 // Function for converting input from driver to commands to pads
 
 void movePad1(struct Game* game, int dy){
+	printf("MOVING PAD 1, with val: %d\n", dy);
+	printf("MOVING PAD 1, before: %d\n", game->pad1.y);
     game->pad1.y += dy;
+	printf("MOVING PAD 1, after: %d\n", game->pad1.y);
     checkPadPositions(game);
 }
 
@@ -291,18 +277,22 @@ void move_pads(struct Game* game)
 	printf("ball dy %d\n", game->ballen.dy);
 	// Left player up
     if ((flippedButtonState & 0b00000010) != 0){
+		printf("left up\n");
         movePad1(game, game->pad1.dy);
     } 
 	// Left player down
     else if ((flippedButtonState & 0b00001000) != 0){
+		printf("left down\n");
         movePad1(game, -game->pad1.dy);
     } 
 	// Right player up
     if ((flippedButtonState & 0b00100000) != 0){
+		printf("right up\n");
         movePad2(game, game->pad2.dy);
     }
 	// Right player down
     else if ((flippedButtonState & 0b10000000) != 0){
+		printf("right down\n");
         movePad2(game, -game->pad2.dy);
     } 
 }
@@ -340,23 +330,28 @@ int main(int argc, char *argv[])
 	    printf("where collision: %d\n" , whereCollision(&game));
 
         // erase old image
-		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
-    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
-    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-		draw_ball(game);
-		draw_pads(game);
-		smart_refresh(&game);
+		// mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
+    	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
+    	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
+		// erase_canvas(&game.ballen, game.settings);
+		// erase_canvas(&game.pad1, game.settings);
+		// erase_canvas(&game.pad2, game.settings);
+		// draw_ball(game);
+		// draw_pads(game);
+		// smart_refresh(&game);
 
         sleep(GAME_SPEED);
 
         // draw new image
 		handleCollision(&game);
-    	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+		game.ballen.x += game.ballen.dx;
+		game.ballen.y += game.ballen.dy;
 		printf("BEFORE: pad1: y: %d, height: %d\n", game.pad1.y, game.pad1.height);
         move_pads(&game);
-		printf("BEFORE: pad1: y: %d, height: %d\n", game.pad1.y, game.pad1.height);
+		printf("AFTER: pad1: y: %d, height: %d\n", game.pad1.y, game.pad1.height);
 		draw_ball(game);
 		draw_pads(game);
 		smart_refresh(&game);

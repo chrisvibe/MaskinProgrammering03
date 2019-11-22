@@ -1,3 +1,5 @@
+// #include "button_driver.c"
+// #include "button_driver.h"
 #include "display_tools.c"
 #include "display_tools.h"
 #include <sys/mman.h>
@@ -119,7 +121,7 @@ int collisionDetectionPad(struct Game game){
 
 /* data */
 /* Checks for where collision occured */
-int whereCollision(struct Game* game){
+/*int whereCollision(struct Game* game){
 
 	if (game->ballen.x == game->ballen.y >= (game->ballen.y <= (game->pad1.y + 15))){ 
 		return 0; 
@@ -130,45 +132,46 @@ int whereCollision(struct Game* game){
 	}
 
 	/* wallcrash in vertical direction */ 
-	else if (game->ballen.x < 0  || game->ballen.x > 320) {
+	/*else if (game->ballen.x < 0  || game->ballen.x > 320) {
+		return 2;
+	}
+
+	/* wallcrash in horizontal direction */ 
+	/*else if (game->ballen.y < 10 || game->ballen.y > 230) {
+		return 3;
+	}
+
+	return -1; 
+}*/
+
+int whereCollision(struct Game* game){
+
+	if (game->ballen.x == game->pad1.x && (game->ballen.y >= game->pad1.y - 15 && game->ballen.y <= game->pad1.y + 15)){ 
+        
+		printf("returning 0\n");
+		return 0; 
+	} 
+	
+	else if (game->ballen.x == game->pad2.x && (game->ballen.y >= game->pad2.y - 15 && game->ballen.y <= game->pad2.y + 15)){
+		printf("returning 1\n");
+		return 1; 
+	}
+
+	/* wallcrash in vertical direction */ 
+	else if (game->ballen.x <= 10  || game->ballen.x >= 310) {
+		printf("returning 2\n");
 		return 2;
 	}
 
 	/* wallcrash in horizontal direction */ 
 	else if (game->ballen.y < 10 || game->ballen.y > 230) {
-		return 3;
-	}
-
-	return -1; 
-}
-/*
-int whereCollision(struct Game* game){
-
-	if (game->ballen->x == game->pad1->x && (game->ballen->y >= game->pad1->y - 15 && game->ballen->y <= game->pad1->y + 15)){ 
-		printf("returning 0\n");
-		return 0; 
-	} 
-	
-	else if (game->ballen->x == game->pad2->x && (game->ballen->y >= game->pad2->y - 15 && game->ballen->y <= game->pad2->y + 15)){
-		printf("returning 1\n");
-		return 1; 
-	}
-
-	/* wallcrash in vertical direction */ /*
-	else if (game->ballen->x <= 10  || game->ballen->x >= 310) {
-		printf("returning 2\n");
-		return 2;
-	}
-
-	/* wallcrash in horizontal direction */ /*
-	else if (game->ballen->y < 10 || game->ballen->y > 230) {
 		printf("returning 3\n");
 		return 3;
 	}
 
 	return -1; 
 }
-*/
+
 
 
 
@@ -374,37 +377,7 @@ void smart_refresh(struct Game game){
     refresh_display(game.settings, game.ballen.x0, game.ballen.y0, game.ballen.width, game.ballen.height);
 }
 
-/* Function for converting input from driver to commands to pads
-int movePads(){
-	/* Here is what the implementation might look like: 
-	Using mmap to map the file input to the memory output. 
-	Will potentially have to files that we are reading from. This game.c file will then only work as 
-	a connector between driver and graphic. 
 
-}
-
-/* Function for reading from driver 
-void checkDriver(){
-	This function will check whether the driver is functioning and shut down game if not 
-}
-
-void checkLCD(){ 
-	This funciton will check whether the LCD screen is functioning and shut down game if not
-}
-
-void ResetScreen(){
-	 This function will clean the entire screen and start the game up again given that no player has reached the maxiumum score 
-	 clear_screen(settings);
-}
-
-THINK THIS MIGHT BE REDUNDANT
- Check whether a collision has occured 
-bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
-	if (ballen.x == pad1.x && ballen.y == pad1.y || ballen.y == pad2.x && ballen.y == pad2.y || ballen.x == 0 || ballen.x == 320 || ballen.y == 0 || ballen.y == 240){
-		return 1; 
-	};
-};
-*/
 
 void draw_ball(struct Game game)
 {
@@ -454,7 +427,7 @@ int main(int argc, char *argv[])
         // game = timeStep(game);
         sleep(GAME_SPEED);        
         count++;
-        if (count > 50){
+        if (count > 500){
             P1Score = 5;
         }
 	}

@@ -1,3 +1,9 @@
+// driver --------------------
+#include <signal.h>
+#include <unistd.h>
+#include <math.h>
+// ---------------------------
+
 #include "display_tools.c"
 #include "display_tools.h"
 #include <sys/mman.h>
@@ -16,6 +22,12 @@
 int P1Score = 0; 
 int P2Score = 0;
 int maxScore = 5;
+
+// driver --------------------
+void init_gamepad();
+void sigio_handler(int signo);
+FILE *device;
+// ---------------------------
 
 struct Canvas;
 struct Game;
@@ -317,8 +329,9 @@ void draw_background(struct Game game)
 int main(int argc, char *argv[])
 {
 	printf("Hello World, I'm game!\n");
+    init_gamepad();
 	struct Game game = initializeGame();
-    draw_background(game);
+    // draw_background(game);
 
     mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, 1, 0, 0);
     mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, 1, 0, 0);
@@ -362,4 +375,41 @@ int main(int argc, char *argv[])
     printf("done.\n");
 
 	exit(EXIT_SUCCESS);
+}
+
+// driver stuff ----------------------------------------------------------------------
+void init_gamepad()
+{
+  printf("Running signal handler test\n");
+ 
+  device = fopen("/dev/Gamepad", "rb");
+  if (!device) {
+      printf("Unable to open driver device, maybe you didn't load the module?\n");
+  }
+ 
+  if (signal(SIGIO, &sigio_handler) == SIG_ERR) {
+      printf("An error occurred while register a signal handler.\n");
+  }
+  if (fcntl(fileno(device), F_SETOWN, getpid()) == -1) {
+      printf("Error setting pid as owner.\n");
+  }
+  long oflags = fcntl(fileno(device), F_GETFL);
+  if (fcntl(fileno(device), F_SETFL, oflags | FASYNC) == -1) {
+      printf("Error setting FASYNC flag.\n");
+  }
+ 
+  // Wait for signal. pause() function stops execution until a signal
+  // is received.
+//   while (1) {
+    pause();
+//   }
+ 
+  fclose(device);
+  exit(EXIT_SUCCESS);
+}
+ 
+void sigio_handler(int signo)
+{
+  char res = fgetc(device);
+  printf("Signal handler res: %d\n", res);
 }

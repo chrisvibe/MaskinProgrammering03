@@ -28,7 +28,7 @@ struct Settings setup_display()
    // get address where we can store pixels (write implies read too)
    settings.addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings.fbfd, 0);
 
-//    clear_screen(settings);
+   clear_screen(settings);
    return settings;
 }
 
@@ -40,10 +40,9 @@ void tear_down_display(struct Settings settings)
 
 void clear_screen(struct Settings settings)
 {
-    // struct Canvas screen;
-    // init_canvas(&screen, 0, 0, WIDTH-1, HEIGHT-1, 0, 0, 0, 0, 0);
-    // draw_canvas(&screen, settings);
-    // free((&screen)->pixels);
+    struct Canvas screen;
+    init_canvas(&screen, 0, 0, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
+    draw_canvas(&screen, settings);
 }
 
 void refresh_display(struct Settings settings, int x, int y, int width, int height)

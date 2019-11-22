@@ -325,7 +325,7 @@ void handleCollision(struct Game* game){
 	}
 	
 }
-/*
+
 void movePad1(struct Game* game, int dy){
 	if (dy == 0) {
 		printf("WARNING: dy was null\n");
@@ -341,9 +341,9 @@ void movePad2(struct Game* game, int dy){
 	game->pad2.y += dy;
     checkPadPositions(game);
 }
-*/
 
-/*void move_pads(struct Game* game)
+
+void move_pads(struct Game* game)
 {
 	int flippedButtonState = ~resultFromDeviceDriver;
 	// Left player up
@@ -363,8 +363,6 @@ void movePad2(struct Game* game, int dy){
         movePad2(game, -game->pad2.dy);
     } 
 }
-
-*/
 
 
 struct Game timeStep(struct Game game){

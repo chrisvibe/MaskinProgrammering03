@@ -182,16 +182,23 @@ int whereCollision(struct Game* game){
 //Checks the pad positions and if they are outside the buffer, then update their positions back.
 void checkPadPositions(struct Game* game){
 	if (game->pad1.y < 16){
-		game->pad1.y = 16; 
+		// game->pad1.y = 16; 
+        int dy = 16;
+	    mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
 	}
 	if (game->pad1.y > 224){
-		game->pad1.y = 224; 
+		// game->pad1.y = 224; 
+        int dy = 224;
+	    mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
 	}
 	if (game->pad2.y < 16){
-		game->pad2.y = 16; 
+        int dy = 16;
+	    mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
 	}
 	if (game->pad2.y > 224){
-		game->pad2.y = 224; 
+		// game->pad2.y = 224; 
+        int dy = 224;
+	    mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
 	}
 }
 
@@ -330,7 +337,7 @@ void movePad1(struct Game* game, int dy){
 	if (dy == 0) {
 		printf("WARNING: dy was null\n");
 	}
-	mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xFFF);
+	mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
     // game->pad1.y += dy;
     checkPadPositions(game);
 }
@@ -339,7 +346,7 @@ void movePad2(struct Game* game, int dy){
 	if (dy == 0) {
 		printf("WARNING: dy was null\n");
 	}
-	mod_canvas(&(game->pad2), game->pad2.x, game->pad2.y + dy, game->pad2.width, game->pad2.height, game->pad2.speed, game->pad2.dx, game->pad2.dy, 0xFFF, 0xFFF);
+	mod_canvas(&(game->pad2), game->pad2.x, game->pad2.y + dy, game->pad2.width, game->pad2.height, game->pad2.speed, game->pad2.dx, game->pad2.dy, 0xFFF, 0xF);
 	// game->pad2.y += dy;
     checkPadPositions(game);
 }

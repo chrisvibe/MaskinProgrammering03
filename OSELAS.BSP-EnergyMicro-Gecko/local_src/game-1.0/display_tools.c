@@ -130,8 +130,8 @@ void init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int
     canvas->y = y;
     canvas->width = width;
     canvas->height = height;
-    canvas->x0 = canvas->x - canvas->width / 2;
-    canvas->y0 = canvas->y - canvas->height / 2;
+    canvas->x0 = canvas->x - (canvas->width / 2);
+    canvas->y0 = canvas->y - (canvas->height / 2);
 	canvas->speed = speed; /* Setter her speed til 1, men dette kan endres */
 	canvas->dx = dx; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
 	canvas->dy = dy; /* Betyr at ballen kommer til å gå mot høyre hver gang */

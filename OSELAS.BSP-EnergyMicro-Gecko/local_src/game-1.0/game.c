@@ -17,7 +17,7 @@
 #define GAME_SPEED .5
 int P1Score = 0; 
 int P2Score = 0;
-int maxScore = 5;
+int maxScore = 1;
 
 struct Canvas;
 struct Game;
@@ -82,13 +82,13 @@ void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int 
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
-    init_canvas(canvas, x, y, 5, 5, 1, 1, 0, 0xFFF, 0xF);
+    init_canvas(canvas, x, y, 5, 5, 1, 1, 1, 0xFFF, 0xF);
 }
 
 void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
-    init_canvas(canvas, x, y, 2, 30, 0, 0, 0, 0xFFF, 0xF);
+    init_canvas(canvas, x, y, 2, 30, 0, 0, 1, 0xFFF, 0xF);
 }
 
 /*
@@ -330,7 +330,8 @@ void movePad1(struct Game* game, int dy){
 	if (dy == 0) {
 		printf("WARNING: dy was null\n");
 	}
-    game->pad1.y += dy;
+	mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xFFF);
+    // game->pad1.y += dy;
     checkPadPositions(game);
 }
 
@@ -338,7 +339,8 @@ void movePad2(struct Game* game, int dy){
 	if (dy == 0) {
 		printf("WARNING: dy was null\n");
 	}
-	game->pad2.y += dy;
+	mod_canvas(&(game->pad2), game->pad2.x, game->pad2.y + dy, game->pad2.width, game->pad2.height, game->pad2.speed, game->pad2.dx, game->pad2.dy, 0xFFF, 0xFFF);
+	// game->pad2.y += dy;
     checkPadPositions(game);
 }
 
@@ -366,32 +368,15 @@ void move_pads(struct Game* game)
 
 
 struct Game timeStep(struct Game game){
-    mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
-    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
-    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-
-	draw_ball(game);
-	// draw_pads(game);
-	smart_refresh(game);
-
-	handleCollision(&game);
-
-    mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-    // mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
-    // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
-	draw_ball(game);
-	// draw_pads(game);
-	smart_refresh(game);
-
     return game;
 }
 
 // still to be implemented properly
 void smart_refresh(struct Game game){
 	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
-    refresh_display(game.settings, game.pad1.x0, game.pad1.y0, game.pad1.width, game.pad1.height);
-    refresh_display(game.settings, game.pad2.x0, game.pad2.y0, game.pad2.width, game.pad2.height);
-    refresh_display(game.settings, game.ballen.x0, game.ballen.y0, game.ballen.width, game.ballen.height);
+    refresh_display(game.settings, game.pad1.x0-1, game.pad1.y0+1, 3, 31);
+    refresh_display(game.settings, game.pad2.x0-1, game.pad2.y0+1, 3, 31);
+    refresh_display(game.settings, game.ballen.x0-1, game.ballen.y0, 6, 6);
 }
 
 
@@ -399,20 +384,22 @@ void smart_refresh(struct Game game){
 void draw_ball(struct Game game)
 {
     // debug
-    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
-    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
+    // printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
+    // printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
     draw_canvas(&game.ballen, game.settings);
 }
 
 void draw_pads(struct Game game)
 {
+    printf("pad1j x, y: %d %d\n", game.pad1.x, game.pad1.y);
+    printf("pad1j dx, dy: %d %d\n", game.pad1.dx, game.pad1.dy);
     draw_canvas(&game.pad1, game.settings);
     draw_canvas(&game.pad2, game.settings);
 }
 
 int main(int argc, char *argv[])
 {
-    // init_gamepad();
+    init_gamepad();
     int count = 0;
 	printf("Hello World, I'm game!\n");
 	struct Game game = initializeGame();
@@ -423,20 +410,21 @@ int main(int argc, char *argv[])
 	    printf("where collision: %d" , whereCollision(&game));
 
         // erase old image
-		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
-    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
-    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
+		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, 5, 5, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
+    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, 2, 30, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
+    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, 2, 30, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
 		draw_ball(game);
 		draw_pads(game);
 		smart_refresh(game);
 
+        sleep(GAME_SPEED);        
 		handleCollision(&game);
 
         // draw new image
-    	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad1, game.pad1.x + game.pad1.dx, game.pad1.y + game.pad1.dy, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad2, game.pad2.x + game.pad2.dx, game.pad2.y + game.pad2.dy, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
-        // move_pads(&game);
+    	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, 5, 5, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
+        move_pads(&game);
+    	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, 2, 30, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
+    	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, 2, 30, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
 		draw_ball(game);
 		draw_pads(game);
 		smart_refresh(game);
@@ -444,10 +432,10 @@ int main(int argc, char *argv[])
         // timestep ------------------------------------------
 
         // game = timeStep(game);
-        sleep(GAME_SPEED);        
+        // sleep(GAME_SPEED);        
         count++;
         if (count > 500){
-            P1Score = 5;
+            // P1Score = 5;
         }
 	}
 

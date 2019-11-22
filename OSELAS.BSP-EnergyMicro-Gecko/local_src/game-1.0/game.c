@@ -1,7 +1,7 @@
-// #include "button_driver.c"
-// #include "button_driver.h"
 #include "display_tools.c"
 #include "display_tools.h"
+#include "button_driver.c"
+#include "button_driver.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>

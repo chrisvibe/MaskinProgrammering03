@@ -27,9 +27,9 @@ bool isGameFinished(int P1Score, int P2Score);
 void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 struct Canvas initializePads(int x, int y);
 int whereCollision(struct Game* game);
-void checkPadPositions(struct Game game);
+void checkPadPositions(struct Game* game);
 void handleCollision(struct Game* game);
-int movePads();
+// int movePads();
 int collisionDetectionBall(struct Game game);
 int collisionDetectionPad(struct Game game);
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade);
@@ -38,6 +38,10 @@ void draw_ball(struct Game game);
 void draw_pads(struct Game game);
 struct Game timeStep(struct Game game);
 void smart_refresh(struct Game game);
+void move_pads(struct Game* game);
+
+void movePad1(struct Game* game, int dy);
+void movePad2(struct Game* game, int dy);
 
 struct Game {
 	struct Settings settings;
@@ -175,40 +179,21 @@ int whereCollision(struct Game* game){
 
 
 
-
-
-void checkPadPositions(struct Game game){
-	if (game.pad1.y < 0+15){
-		game.pad1.y == 15; 
-	}
-	if (game.pad1.y > 240-15){
-		game.pad1.y == 225; 
-	}
-	if (game.pad2.y < 0+15){
-		game.pad2.y == 15; 
-	}
-	if (game.pad2.y > 240-15){
-		game.pad2.y == 225; 
-	}
-}
-
-
 //Checks the pad positions and if they are outside the buffer, then update their positions back.
-/*void checkPadPositions(struct Game* game){
-	if (game->pad1->y < 16){
-		game->pad1->y = 16; 
+void checkPadPositions(struct Game* game){
+	if (game->pad1.y < 16){
+		game->pad1.y = 16; 
 	}
-	if (game->pad1->y > 224){
-		game->pad1->y = 224; 
+	if (game->pad1.y > 224){
+		game->pad1.y = 224; 
 	}
-	if (game->pad2->y < 16){
-		game->pad2->y = 16; 
+	if (game->pad2.y < 16){
+		game->pad2.y = 16; 
 	}
-	if (game->pad2->y > 224){
-		game->pad2->y = 224; 
+	if (game->pad2.y > 224){
+		game->pad2.y = 224; 
 	}
 }
-*/
 
 
 
@@ -342,10 +327,45 @@ void handleCollision(struct Game* game){
 	
 }*/
 
+void movePad1(struct Game* game, int dy){
+	if (dy == 0) {
+		printf("WARNING: dy was null\n");
+	}
+    game->pad1.y += dy;
+    checkPadPositions(game);
+}
 
+void movePad2(struct Game* game, int dy){
+	if (dy == 0) {
+		printf("WARNING: dy was null\n");
+	}
+	game->pad2.y += dy;
+    checkPadPositions(game);
+}
+/*
 
+void move_pads(struct Game* game)
+{
+	int flippedButtonState = ~resultFromDeviceDriver;
+	// Left player up
+    if ((flippedButtonState & 0b00000010) != 0){
+        movePad1(game, game->pad1.dy);
+    } 
+	// Left player down
+    else if ((flippedButtonState & 0b00001000) != 0){
+        movePad1(game, -game->pad1.dy);
+    } 
+	// Right player up
+    if ((flippedButtonState & 0b00100000) != 0){
+        movePad2(game, game->pad2.dy);
+    }
+	// Right player down
+    else if ((flippedButtonState & 0b10000000) != 0){
+        movePad2(game, -game->pad2.dy);
+    } 
+}
 
-
+*/
 
 
 struct Game timeStep(struct Game game){
@@ -395,6 +415,7 @@ void draw_pads(struct Game game)
 
 int main(int argc, char *argv[])
 {
+    // init_gamepad();
     int count = 0;
 	printf("Hello World, I'm game!\n");
 	struct Game game = initializeGame();
@@ -403,6 +424,7 @@ int main(int argc, char *argv[])
         // timestep ------------------------------------------
         // debug
 	    printf("where collision: %d" , whereCollision(&game));
+// move_pads(&game);
 
         // erase old image
 		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);

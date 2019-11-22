@@ -11,7 +11,7 @@
 #define LENGTH HEIGHT * WIDTH * 2 // length in bites
 
 struct Settings;
-struct Settings *setup_display();
+void setup_display(struct Settings * settings);
 void tear_down_display(struct Settings * settings);
 void refresh_display(struct Settings *settings, int x, int y, int width, int height);
 void clear_screen(struct Settings settings);

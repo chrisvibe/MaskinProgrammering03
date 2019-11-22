@@ -1,7 +1,7 @@
 #include "display_tools.c"
-#include "display_tools.h"
+// #include "display_tools.h"
 #include "button_driver.c"
-#include "button_driver.h"
+// #include "button_driver.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -60,7 +60,7 @@ void initializeGame(struct Game* game){
    init_pad(game->pad2, WIDTH - 10, HEIGHT / 2, 0xFFF, 0xF);
    init_background(game->background, 0);
  
-   setup_display(game->settings);
+//    setup_display(game->settings);
 	//    clear_screen(game.settings);
 }
 
@@ -288,15 +288,35 @@ int main(int argc, char *argv[])
 	
 	// test---------------------------------
 		draw_ball(game);
-		smart_refresh(&game);
-		game.ballen->x += game.ballen->dx;
-		game.ballen->y += game.ballen->dy;
+
+		int fbfd = open("/dev/fb0", O_RDWR);
+
+		// get address where we can store pixels (write implies read too)
+		uint16_t * addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, fbfd, 0);
+		struct fb_copyarea rect;
+
+    	rect.dx = 0; 
+    	rect.dy = 0; 
+    	rect.height = HEIGHT;
+    	rect.width = WIDTH;
+
+   		ioctl(fbfd, 0x4680, &rect);
+
+		game.ballen->x += 20; 
+		game.ballen->y += 20; 
         sleep(GAME_SPEED);
 		draw_ball(game);
-		smart_refresh(&game);
+
+    	ioctl(fbfd, 0x4680, &rect);
+
+        sleep(GAME_SPEED);
+        sleep(GAME_SPEED);
+        sleep(GAME_SPEED);
+        sleep(GAME_SPEED);
 	// test---------------------------------
 
-    // draw_background(game);
+    // draw_background(game)
+    // draw_background(game);;
 	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
 
 	// while (isGameFinished(P1Score, P2Score)){
@@ -338,7 +358,7 @@ int main(int argc, char *argv[])
 	// }
 
 	shutdown_driver();
-	tear_down_display(game.settings);
+	// tear_down_display(game.settings);
     free(game.ballen->pixels);
     free(game.pad1->pixels);
     free(game.pad2->pixels);

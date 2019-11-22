@@ -18,9 +18,9 @@ struct Canvas {
     uint16_t * pixels;
 };
 
-struct Settings *setup_display(struct Settings * settings)
+void setup_display(struct Settings * settings)
 {
-   // open the frame buffer for read/write
+//    open the frame buffer for read/write
    settings->fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (write implies read too)
@@ -100,7 +100,7 @@ void draw_canvas(struct Canvas* canvas, struct Settings* settings)
     printf("Drawing canvas x %d ", canvas->x);
     printf("Drawing canvas x0: %d y0: %d ", canvas->x0, canvas->y0);
     printf("Drawing canvas width: %d height: %d ", canvas->width, canvas->height);
-    printf("Settings %d %d\n", settings->fbfd, settings->addr);
+    printf("Settings %d\n", settings->fbfd);
     for (y = 0; y < canvas->height; y++) {
         for (x = 0; x < canvas->width; x++) {
             // draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);

@@ -31,3 +31,8 @@ void sigio_handler(int signo)
   resultFromDeviceDriver = fgetc(device);
   printf("Signal handler res: %d\n", resultFromDeviceDriver);
 }
+
+void shutdown_driver()
+{
+    fclose(device);
+}

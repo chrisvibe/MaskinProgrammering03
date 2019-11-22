@@ -14,7 +14,7 @@
 
 #define P1 1
 #define P2 2
-#define GAME_SPEED .5
+#define GAME_SPEED .5 
 int P1Score = 0; 
 int P2Score = 0;
 int maxScore = 5;
@@ -39,7 +39,7 @@ void draw_ball(struct Game game);
 void draw_pads(struct Game game);
 void draw_background(struct Game game);
 struct Game timeStep(struct Game game);
-void smart_refresh(struct Game game);
+void smart_refresh(struct Game* game);
 void movePad1(struct Game* game, int dy);
 void movePad1(struct Game* game, int dy);
 void move_pads(struct Game* game);
@@ -61,9 +61,9 @@ struct Game initializeGame(){
    game.pad2 = pad2;
    game.background = background;
 
-   init_ball(&game.ballen, 75, 200, 0xFFF, 0xF);
-   init_pad(&game.pad1, 50, 40, 0xFFF, 0xF);
-   init_pad(&game.pad2, 100, 40, 0xFFF, 0xF);
+   init_ball(&game.ballen, WIDTH / 2, HEIGHT / 2, 0xFFF, 0xF);
+   init_pad(&game.pad1, 10, HEIGHT / 2, 0xFFF, 0xF);
+   init_pad(&game.pad2, WIDTH - 10, HEIGHT / 2, 0xFFF, 0xF);
    init_background(&game.background, 0);
  
    game.settings = setup_display();
@@ -99,7 +99,7 @@ void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
 void init_background(struct Canvas* canvas, int colour)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
-    init_canvas(canvas, 0, 0, WIDTH/10, HEIGHT/10, 0, 0, 0, colour, colour);
+    init_canvas(canvas, WIDTH / 2 - 10, HEIGHT / 2 - 10, WIDTH - 1, HEIGHT - 1, 0, 0, 0, colour, colour);
 }
 
 int collisionDetectionBall(struct Game game){
@@ -138,20 +138,24 @@ int collisionDetectionPad(struct Game game){
 int whereCollision(struct Game* game){
 
 	if (game->ballen.x == game->ballen.y >= (game->ballen.y <= (game->pad1.y + 15))){ 
+		printf("returning 0\n");
 		return 0; 
 	} 
 	
 	else if (game->ballen.x == game->pad2.x && (game->ballen.y >= game->pad2.y - 15 && game->ballen.y <= (game->pad2.y + 15))){
+		printf("returning 1\n");
 		return 1; 
 	}
 
 	/* wallcrash in vertical direction */ 
 	else if (game->ballen.x <= 10  || game->ballen.x >= 310) {
+		printf("returning 2\n");
 		return 2;
 	}
 
 	/* wallcrash in horizontal direction */ 
 	else if (game->ballen.y < 10 || game->ballen.y > 230) {
+		printf("returning 3\n");
 		return 3;
 	}
 
@@ -244,7 +248,7 @@ struct Game timeStep(struct Game game){
 
 	draw_ball(game);
 	// draw_pads(game);
-	smart_refresh(game);
+	smart_refresh(&game);
 
 	handleCollision(&game);
 
@@ -253,14 +257,17 @@ struct Game timeStep(struct Game game){
     // mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
 	draw_ball(game);
 	// draw_pads(game);
-	smart_refresh(game);
+	smart_refresh(&game);
 
     return game;
 }
 
 // still to be implemented properly
-void smart_refresh(struct Game game){
-	refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
+void smart_refresh(struct Game* game){
+	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
+	refresh_display(game->settings, game->pad1.x0, game->pad1.y0, game->pad1.width, game->pad1.height);
+	refresh_display(game->settings, game->pad2.x0, game->pad2.y0, game->pad2.width, game->pad2.height);
+	refresh_display(game->settings, game->ballen.x0, game->ballen.y0, game->ballen.width, game->ballen.height);
 }
 
 // Function for converting input from driver to commands to pads
@@ -277,14 +284,23 @@ void movePad2(struct Game* game, int dy){
 
 void move_pads(struct Game* game)
 {
-    printf("Res from dev driver %d\n", resultFromDeviceDriver);
-    if ((resultFromDeviceDriver & 0b00000010) != 0){
-        printf("bit 2 was pressed\n");
+	int flippedButtonState = ~resultFromDeviceDriver;
+	// Left player up
+    if ((flippedButtonState & 0b00000010) != 0){
         movePad1(game, game->pad1.dy);
-    } else
-    {
+    } 
+	// Left player down
+    else if ((flippedButtonState & 0b00001000) != 0){
+        movePad1(game, -game->pad1.dy);
+    } 
+	// Right player up
+    if ((flippedButtonState & 0b00100000) != 0){
         movePad2(game, game->pad2.dy);
     }
+	// Right player down
+    else if ((flippedButtonState & 0b10000000) != 0){
+        movePad2(game, -game->pad2.dy);
+    } 
 }
 
 /* Function for reading from driver 
@@ -313,8 +329,8 @@ bool checkCollision(struct ball *ballen, struct pad *pad1, struct pad *pad2){
 void draw_ball(struct Game game)
 {
     // debug
-    printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
-    printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
+    // printf("ball x, y: %d %d\n", game.ballen.x, game.ballen.y);
+    // printf("ball dx, dy: %d %d\n", game.ballen.dx, game.ballen.dy);
     draw_canvas(&game.ballen, game.settings);
 }
 
@@ -335,6 +351,7 @@ int main(int argc, char *argv[])
     init_gamepad();
 	struct Game game = initializeGame();
     // draw_background(game);
+	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
 
     mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, 1, 0, 0);
     mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, 1, 0, 0);
@@ -344,25 +361,25 @@ int main(int argc, char *argv[])
         // debug
 	    printf("where collision: %d" , whereCollision(&game));
 
-        move_pads(&game);
         // erase old image
 		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
     	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
 		draw_ball(game);
 		draw_pads(game);
-		smart_refresh(game);
+		smart_refresh(&game);
 
         sleep(GAME_SPEED);        
 
         // draw new image
 		handleCollision(&game);
     	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad1, game.pad1.x + game.pad1.dx, game.pad1.y + game.pad1.dy, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
-    	mod_canvas(&game.pad2, game.pad2.x + game.pad2.dx, game.pad2.y + game.pad2.dy, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
+    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
+        move_pads(&game);
 		draw_ball(game);
 		draw_pads(game);
-		smart_refresh(game);
+		smart_refresh(&game);
 
         // timestep ------------------------------------------
 
@@ -374,8 +391,7 @@ int main(int argc, char *argv[])
     free((&game.pad2)->pixels);
     free((&game.background)->pixels);
     tear_down_display(game.settings);
-    fclose(device);
+	shutdown_driver();
     printf("done.\n");
-
 	exit(EXIT_SUCCESS);
 }

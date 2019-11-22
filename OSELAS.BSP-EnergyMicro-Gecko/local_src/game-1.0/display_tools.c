@@ -35,13 +35,13 @@ struct Settings setup_display()
 void tear_down_display(struct Settings settings)
 {
    munmap(settings.addr, LENGTH);
-   close(settings.fbfd);
+   fclose(settings.fbfd);
 }
 
 void clear_screen(struct Settings settings)
 {
     // struct Canvas screen;
-    // init_canvas(&screen, 0, 0, WIDTH-1, HEIGHT-1, 0, 0, 0, 0, 0);
+    // init_canvas(&screen, WIDTH / 2, HEIGHT / 2, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
     // draw_canvas(&screen, settings);
     // free((&screen)->pixels);
 }

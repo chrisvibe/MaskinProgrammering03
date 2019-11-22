@@ -1,0 +1,4122 @@
+gamemelksjdflkjfdslkjsafd
+sh: can't execute 'gamemelksjdflkjfdslkjsafd': No such file or directory
+/ # 
+/ # 
+/ # 
+/ # 
+/ # 
+/ # ls[J[Jmodprobe driver0[J-gamepad
+[   29.390000] Initializing gamepad driver
+[   29.400000] Allocating memory region for GPIO
+[   29.400000] Allocating memory region for CMU
+[   29.410000] Initializing io memory remap for GPIO
+[   29.410000] Initializing io memory remap for CMU
+[   29.420000] Getting device number
+[   29.430000] Initializing as char driver
+[   29.430000] Making driver visible to user space
+[   29.450000] Setting up CMU
+[   29.460000] Writing result: 174448 to cmu
+[   29.460000] Setting up GPIO, using port C offset 72
+[   29.470000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   29.480000] Setting internal pull up resistors with GPIO dout offset 12
+[   29.490000] Enabling interrupt for even GPIO irq number 17
+[   29.500000] Enabling interrupt for GPIO irq number 18
+[   29.510000] Setting gpio extipsell
+[   29.510000] Setting gpio extirise
+[   29.520000] Interrupt fired
+[   29.520000] Setting interrupt as handled, reading from gpio_if
+[   29.520000] Writing gpio if to gpio ifc
+[   29.520000] Firing SIGIO signal
+[   29.520000] Interrupt handled, returning IRQ_HANDLED
+[   29.550000] Setting gpio extifall
+[   29.550000] Setting gpio IEN
+[   29.560000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   31.570000] Opening
+[   35.280000] Interrupt fired
+[   35.280000] Setting interrupt as handled, reading from gpio_if
+[   35.280000] Writing gpio if to gpio ifc
+[   35.280000] Firing SIGIO signal
+[   35.280000] Interrupt handled, returning IRQ_HANDLED
+[   35.310000] Driver button result:
+[   35.320000] 254
+Signal handler res: 254
+where collision: -1ball x, y: 75 200
+ball dx, dy: 3 0
+[   35.450000] Interrupt fired
+[   35.450000] Setting interrupt as handled, reading from gpio_if
+[   35.450000] Writing gpio if to gpio ifc
+[   35.450000] Firing SIGIO signal
+[   35.450000] Interrupt handled, returning IRQ_HANDLED
+[   35.520000] Driver button result:
+[   35.530000] 255
+Signal handler res: 255
+Res from dev driver 255
+ball x, y: 78 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 78 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 81 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 81 200
+ball dx, dy: 3 0
+[   36.010000] Interrupt fired
+[   36.010000] Setting interrupt as handled, reading from gpio_if
+[   36.010000] Writing gpio if to gpio ifc
+[   36.010000] Firing SIGIO signal
+[   36.010000] Interrupt handled, returning IRQ_HANDLED
+[   36.140000] Driver button result:
+[   36.140000] 254
+Signal handler res: 254
+Res from dev driver 254
+bit one
+ball x, y: 84 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 84 200
+ball dx, dy: 3 0
+[   36.390000] Interrupt fired
+[   36.390000] Setting interrupt as handled, reading from gpio_if
+[   36.390000] Writing gpio if to gpio ifc
+[   36.390000] Firing SIGIO signal
+[   36.390000] Interrupt handled, returning IRQ_HANDLED
+[   36.480000] Driver button result:
+[   36.480000] 255
+Signal handler res: 255
+Res from dev driver 255
+ball x, y: 87 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 87 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 90 200
+ball dx, dy: 3 0
+[   36.900000] Interrupt fired
+[   36.900000] Setting interrupt as handled, reading from gpio_if
+[   36.900000] Writing gpio if to gpio ifc
+[   36.900000] Firing SIGIO signal
+[   36.900000] Interrupt handled, returning IRQ_HANDLED
+[   36.950000] Driver button result:
+[   36.950000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 90 200
+ball dx, dy: 3 0
+Res from dev driver 253
+bit two
+ball x, y: 93 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 93 200
+ball dx, dy: 3 0
+[   37.290000] Interrupt fired
+[   37.290000] Setting interrupt as handled, reading from gpio_if
+[   37.290000] Writing gpio if to gpio ifc
+[   37.290000] Firing SIGIO signal
+[   37.290000] Interrupt handled, returning IRQ_HANDLED
+[   37.430000] Driver button result:
+[   37.430000] 255
+Signal handler res: 255
+Res from dev driver 255
+ball x, y: 96 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 96 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 99 200
+ball dx, dy: 3 0
+[   37.770000] Interrupt fired
+[   37.770000] Setting interrupt as handled, reading from gpio_if
+[   37.770000] Writing gpio if to gpio ifc
+[   37.770000] Firing SIGIO signal
+[   37.770000] Interrupt handled, returning IRQ_HANDLED
+[   37.900000] Driver button result:
+[   37.910000] 251
+Signal handler res: 251
+where collision: -1ball x, y: 99 200
+ball dx, dy: 3 0
+Res from dev driver 251
+bit three
+ball x, y: 102 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 102 200[   38.210000] Interrupt fired
+[   38.210000] Setting interrupt as handled, reading from gpio_if
+[   38.210000] Writing gpio if to gpio ifc
+[   38.210000] Firing SIGIO signal
+[   38.210000] Interrupt handled, returning IRQ_HANDLED
+
+[   38.250000] Driver button result:
+[   38.250000] 255
+Signal handler res: 255
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 105 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 105 200
+ball dx, dy: 3 0
+Res from dev driver 255
+bal[   38.690000] Interrupt fired
+[   38.690000] Setting interrupt as handled, reading from gpio_if
+[   38.690000] Writing gpio if to gpio ifc
+[   38.690000] Firing SIGIO signal
+[   38.690000] Interrupt handled, returning IRQ_HANDLED
+l x, y: 108 200
+[   38.720000] Driver button result:
+[   38.730000] 247
+Signal handler res: 247
+ball dx, dy: 3 0
+where collision: -1ball x, y: 108 200
+ball dx, dy: 3 0
+Res from dev driver 247
+bit four
+ball x, y: 111 200
+ball dx, dy: 3 0
+[   39.100000] Interrupt fired
+[   39.100000] Setting interrupt as handled, reading from gpio_if
+[   39.100000] Writing gpio if to gpio ifc
+[   39.100000] Firing SIGIO signal
+[   39.100000] Interrupt handled, returning IRQ_HANDLED
+[   39.190000] Driver button result:
+[   39.190000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 111 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 114 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 114 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 117 200
+ball dx, dy: 3 0
+[   39.670000] Interrupt fired
+[   39.670000] Setting interrupt as handled, reading from gpio_if
+[   39.670000] Writing gpio if to gpio ifc
+[   39.670000] Firing SIGIO signal
+[   39.670000] Interrupt handled, returning IRQ_HANDLED
+[   39.810000] Driver button result:
+[   39.810000] 239
+Signal handler res: 239
+where collision: -1ball x, y: 117 200
+ball dx, dy: 3 0
+Res from dev driver 239
+bit five
+ball x, y: 120 200
+ball dx, dy: 3 0
+[   40.080000] Interrupt fired
+[   40.080000] Setting interrupt as handled, reading from gpio_if
+[   40.080000] Writing gpio if to gpio ifc
+[   40.080000] Firing SIGIO signal
+[   40.080000] Interrupt handled, returning IRQ_HANDLED
+[   40.140000] Driver button result:
+[   40.150000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 120 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 123 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 123 200
+ball dx, dy: 3 0
+[   40.550000] Interrupt fired
+[   40.550000] Setting interrupt as handled, reading from gpio_if
+[   40.550000] Writing gpio if to gpio ifc
+[   40.550000] Firing SIGIO signal
+[   40.550000] Interrupt handled, returning IRQ_HANDLED
+[   40.620000] Driver button result:
+[   40.620000] 223
+Signal handler res: 223
+Res from dev driver 223
+bit six
+ball x, y: 126 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 126 200
+ball dx, dy: 3 0
+Res from dev driver 223
+bit six
+ball x, y: 129 200
+ball dx, dy: 3 0
+[   40.980000] Interrupt fired
+[   40.980000] Setting interrupt as handled, reading from gpio_if
+[   40.980000] Writing gpio if to gpio ifc
+[   40.980000] Firing SIGIO signal
+[   40.980000] Interrupt handled, returning IRQ_HANDLED
+[   41.100000] Driver button result:
+[   41.100000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 129 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 132 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 132 200
+ball dx, dy: 3 0
+[   41.440000] Interrupt fired
+[   41.440000] Setting interrupt as handled, reading from gpio_if
+[   41.440000] Writing gpio if to gpio ifc
+[   41.440000] Firing SIGIO signal
+[   41.440000] Interrupt handled, returning IRQ_HANDLED
+[   41.570000] Driver button result:
+[   41.580000] 191
+Signal handler res: 191
+Res from dev driver 191
+bit seven
+ball x, y: 135 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 135 200
+ball dx, dy: 3 0
+Res from dev driver 191
+Signal handler res: 255
+ball x, y: 138 200
+ball dx, dy: 3 0
+[   41.880000] Interrupt fired
+[   41.880000] Setting interrupt as handled, reading from gpio_if
+[   41.880000] Writing gpio if to gpio ifc
+[   41.880000] Firing SIGIO signal
+[   41.880000] Interrupt handled, returning IRQ_HANDLED
+[   41.890000] Driver button result:
+[   41.890000] 255
+where collision: -1ball x, y: 138 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 141 200
+ball dx, dy: 3 0
+whe[   42.360000] Interrupt fired
+[   42.360000] Setting interrupt as handled, reading from gpio_if
+[   42.360000] Writing gpio if to gpio ifc
+[   42.360000] Firing SIGIO signal
+[   42.360000] Interrupt handled, returning IRQ_HANDLED
+re collision: -1ball x, y: 141 200
+[   42.390000] Driver button result:
+[   42.400000] 127
+Signal handler res: 127
+ball dx, dy: 3 0
+Res from dev driver 127
+bit eight
+ball x, y: 144 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 144 200
+ball dx, dy: 3 0
+[   42.780000] Interrupt fired
+[   42.780000] Setting interrupt as handled, reading from gpio_if
+[   42.780000] Writing gpio if to gpio ifc
+[   42.780000] Firing SIGIO signal
+[   42.780000] Interrupt handled, returning IRQ_HANDLED
+[   42.860000] Driver button result:
+[   42.870000] 255
+Signal handler res: 255
+Res from dev driver 255
+ball x, y: 147 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 147 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 150 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 150 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 153 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 153 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 156 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 156 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 159 200
+ball dx, dy: 3 0
+^Cwhere collision: -1ball x, y: 159 200
+ball dx, dy: 3 0
+^CRes from dev driver 255
+ball x, y: 162 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 162 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 165 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 165 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 168 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 168 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 171 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 171 200
+ball dx, dy: 3 0
+Res from dev driver 255
+ball x, y: 174 200
+ball dx, dy: 3 0
+^[where collision: -1ball x, y: 174 200
+ball dx, dy: 3 0
+Rls[J[Jls[J[Jls[J[Jls[J[Jls[J[Jmodprobe driver-gma[J[Jmae[J[J[Jame[J[J[J[Jgamepad
+[   93.510000] Initializing gamepad driver
+[   93.510000] Allocating memory region for GPIO
+[   93.520000] Allocating memory region for CMU
+[   93.530000] Initializing io memory remap for GPIO
+[   93.530000] Initializing io memory remap for CMU
+[   93.540000] Getting device number
+[   93.550000] Initializing as char driver
+[   93.550000] Making driver visible to user space
+[   93.570000] Setting up CMU
+[   93.580000] Writing result: 174448 to cmu
+[   93.580000] Setting up GPIO, using port C offset 72
+[   93.590000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   93.600000] Setting internal pull up resistors with GPIO dout offset 12
+[   93.610000] Enabling interrupt for even GPIO irq number 17
+[   93.620000] Enabling interrupt for GPIO irq number 18
+[   93.630000] Setting gpio extipsell
+[   93.630000] Setting gpio extirise
+[   93.640000] Interrupt fired
+[   93.640000] Setting interrupt as handled, reading from gpio_if
+[   93.640000] Writing gpio if to gpio ifc
+[   93.640000] Firing SIGIO signal
+[   93.640000] Interrupt handled, returning IRQ_HANDLED
+[   93.670000] Setting gpio extifall
+[   93.670000] Setting gpio IEN
+[   93.680000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # ga[J[Jgame
+Hello World, I'm game!
+Running signal handler test
+[   95.700000] Opening
+[  110.720000] Interrupt fired
+[  110.720000] Setting interrupt as handled, reading from gpio_if
+[  110.720000] Writing gpio if to gpio ifc
+[  110.720000] Firing SIGIO signal
+[  110.720000] Interrupt handled, returning IRQ_HANDLED
+[  110.750000] Driver button result:
+[  110.760000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 75 200
+ball dx, dy: 3 0
+ball x, y: 78 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 78 200
+ball dx, dy: 3 0
+ball x, y: 81 200
+ball dx, dy: 3 0
+[  111.300000] Interrupt fired
+[  111.300000] Setting interrupt as handled, reading from gpio_if
+[  111.300000] Writing gpio if to gpio ifc
+[  111.300000] Firing SIGIO signal
+[  111.300000] Interrupt handled, returning IRQ_HANDLED
+[  111.380000] Driver button result:
+[  111.380000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 81 200
+ball dx, dy: 3 0
+ball x, y: 84 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 84 200
+ball dx, dy: 3 0
+ball x, y: 87 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 87 200
+ball dx, dy: 3 0
+ball x, y: 90 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 90 200
+ball dx, dy: 3 0
+ball x, y: 93 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 93 200
+ball dx, dy: 3 0
+ball x, y: 96 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 96 200
+ball dx, dy: 3 0
+ball x, y: 99 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 99 200
+ball dx, dy: 3 0
+ball x, y: 102 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 102 200
+ball dx, dy: 3 0
+ball x, y: 105 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 105 200
+ball dx, dy: 3 0
+ball x, y: 108 200
+ball dx, dy: 3 0
+[  113.870000] Interrupt fired
+[  113.870000] Setting interrupt as handled, reading from gpio_if
+[  113.870000] Writing gpio if to gpio ifc
+[  113.870000] Firing SIGIO signal
+[  113.870000] Interrupt handled, returning IRQ_HANDLED
+[  113.930000] Driver button result:
+[  113.940000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 108 200
+ball dx, dy: 3 0
+ball x, y: 111 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 111 200
+ball dx, dy: 3 0
+ball x, y: 114 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 114 200
+ball dx, dy: 3 0
+ball x, y: 117 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 117 200
+ball dx, dy: 3 0
+ball x, y: 120 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 120 200
+ball dx, dy: 3 0
+ball x, y: 123 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 123 200
+ball dx, dy: 3 0
+ball x, y: 126 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 126 200
+ball dx, dy: 3 0
+ball x, y: 129 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 129 200
+ball dx, dy: 3 0
+[  116.000000] Interrupt fired
+[  116.000000] Setting interrupt as handled, reading from gpio_if
+[  116.000000] Writing gpio if to gpio ifc
+[  116.000000] Firing SIGIO signal
+[  116.000000] Interrupt handled, returning IRQ_HANDLED
+[  116.080000] Driver button result:
+[  116.080000] 255
+Signal handler res: 255
+ball x, y: 132 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 132 200
+ball dx, dy: 3 0
+ball x, y: 135 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 135 200
+ball dx, dy: 3 0
+ball x, y: 138 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 138 200
+ball dx, dy: 3 0
+ball x, y: 141 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 141 200
+ball dx, dy: 3 0
+ball x, y: 144 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 144 200
+ball dx, dy: 3 0
+ball x, y: 147 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 147 200
+ball dx, dy: 3 0
+ball x, y: 150 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 150 200
+ball dx, dy: 3 0
+ball x, y: 153 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 153 200
+ball dx, dy: 3 0
+ball x, y: 156 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 156 200
+ball dx, dy: 3 0
+ball x, y: 159 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 159 200
+ball dx, dy: 3 0
+ball x, y: 162 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 162 200
+ball dx, dy: 3 0
+ball x, y: 165 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 165 200
+ball dx, dy: 3 0
+ball x, y: 168 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 168 200
+ball dx, dy: 3 0
+[  119.640000] Interrupt fired
+[  119.640000] Setting interrupt as handled, reading from gpio_if
+[  119.640000] Writing gpio if to gpio ifc
+[  119.640000] Firing SIGIO signal
+[  119.640000] Interrupt handled, returning IRQ_HANDLED
+[  119.760000] Driver button result:
+[  119.760000] 253
+Signal handler res: 253
+ball x, y: 171 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 171 200
+ball dx, dy: 3 0
+ball x, y: 174 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 174 200
+ball dx, dy: 3 0
+ball x, y: 177 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 177 200
+ball dx, dy: 3 0
+ball x, y: 180 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 180 200
+ball dx, dy: 3 0
+ball x, y: 183 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 183 200
+ball dx, dy: 3 0
+ball x, y: 186 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 186 200
+ball dx, dy: 3 0
+ball x, y: 189 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 189 200
+ball dx, dy: 3 0
+ball x, y: 192 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 192 200
+ball dx, dy: 3 0
+ball x, y: 195 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 195 200
+ball dx, dy: 3 0
+ball x, y: 198 200
+ball dx, dy: 3 0
+[  122.410000] Interrupt fired
+[  122.410000] Setting interrupt as handled, reading from gpio_if
+[  122.410000] Writing gpio if to gpio ifc
+[  122.410000] Firing SIGIO signal
+[  122.410000] Interrupt handled, returning IRQ_HANDLED
+[  122.460000] Driver button result:
+[  122.470000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 198 200
+ball dx, dy: 3 0
+ball x, y: 201 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 201 200
+ball dx, dy: 3 0
+ball x, y: 204 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 204 200
+ball dx, dy: 3 0
+ball x, y: 207 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 207 200
+ball dx, dy: 3 0
+ball x, y: 210 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 210 200
+ball dx, dy: 3 0
+ball x, y: 213 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 213 200
+ball dx, dy: 3 0
+ball x, y: 216 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 216 200
+ball dx, dy: 3 0
+ball x, y: 219 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 219 200
+ball dx, dy: 3 0
+ball x, y: 222 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 222 200
+ball dx, dy: 3 0
+ball x, y: 225 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 225 200
+ball dx, dy: 3 0
+ball x, y: 228 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 228 200
+ball dx, dy: 3 0
+ball x, y: 231 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 231 200
+ball dx, dy: 3 0
+ball x, y: 234 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 234 200
+ball dx, dy: 3 0
+ball x, y: 237 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 237 200
+ball dx, dy: 3 0
+ball x, y: 240 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 240 200
+ball dx, dy: 3 0
+ball x, y: 243 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 243 200
+ball dx, dy: 3 0
+ball x, y: 246 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 246 200
+ball dx, dy: 3 0
+ball x, y: 249 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 249 200
+ball dx, dy: 3 0
+ball x, y: 252 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 252 200
+ball dx, dy: 3 0
+ball x, y: 255 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 255 200
+ball dx, dy: 3 0
+[  127.930000] Interrupt fired
+[  127.930000] Setting interrupt as handled, reading from gpio_if
+[  127.930000] Writing gpio if to gpio ifc
+[  127.930000] Firing SIGIO signal
+[  127.930000] Interrupt handled, returning IRQ_HANDLED
+[  127.970000] Driver button result:
+[  127.970000] 247
+Signal handler res: 247
+ball x, y: 258 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 258 200
+ball dx, dy: 3 0
+ball x, y: 261 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 261 200
+ball dx, dy: 3 0
+ball x, y: 264 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 264 200
+ball dx, dy: 3 0
+ball x, y: 267 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 267 200
+ball dx, dy: 3 0
+ball x, y: 270 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 270 200
+ball dx, dy: 3 0
+ball x, y: 273 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 273 200
+ball dx, dy: 3 0
+ball x, y: 276 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 276 200
+ball dx, dy: 3 0
+ball x, y: 279 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 279 200
+ball dx, dy: 3 0
+ball x, y: 282 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 282 200
+ball dx, dy: 3 0
+ball x, y: 285 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 285 200
+ball dx, dy: 3 0
+ball x, y: 288 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 288 200
+ball dx, dy: 3 0
+ball x, y: 291 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 291 200
+ball dx, dy: 3 0
+ball x, y: 294 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 294 200
+ball dx, dy: 3 0
+[  131.530000] Interrupt fired
+[  131.530000] Setting interrupt as handled, reading from gpio_if
+[  131.530000] Writing gpio if to gpio ifc
+[  131.530000] Firing SIGIO signal
+[  131.530000] Interrupt handled, returning IRQ_HANDLED
+[  131.650000] Driver button result:
+[  131.650000] 255
+Signal handler res: 255
+ball x, y: 297 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 297 200
+ball dx, dy: 3 0
+ball x, y: 300 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 300 200
+ball dx, dy: 3 0
+ball x, y: 303 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 303 200
+ball dx, dy: 3 0
+ball x, y: 306 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 306 200
+ball dx, dy: 3 0
+ball x, y: 309 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 309 200
+ball dx, dy: 3 0
+ball x, y: 312 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 312 200
+ball dx, dy: 3 0
+ball x, y: 315 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 315 200
+ball dx, dy: 3 0
+ball x, y: 318 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 318 200
+ball dx, dy: 3 0
+ball x, y: 321 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 321 200
+ball dx, dy: 3 0
+ball x, y: 324 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 324 200
+ball dx, dy: 3 0
+ball x, y: 327 200
+ball dx, dy: 3 0
+[  134.590000] Releasing
+done.
+/ # 
+/ # [  144.430000] Interrupt fired
+[  144.430000] Setting interrupt as handled, reading from gpio_if
+[  144.430000] Writing gpio if to gpio ifc
+[  144.430000] Firing SIGIO signal
+[  144.430000] Interrupt handled, returning IRQ_HANDLED
+[  146.580000] Interrupt fired
+[  146.580000] Setting interrupt as handled, reading from gpio_if
+[  146.580000] Writing gpio if to gpio ifc
+[  146.580000] Firing SIGIO signal
+[  146.580000] Interrupt handled, returning IRQ_HANDLED
+[  153.790000] Interrupt fired
+[  153.790000] Setting interrupt as handled, reading from gpio_if
+[  153.790000] Writing gpio if to gpio ifc
+[  153.790000] Firing SIGIO signal
+[  153.790000] Interrupt handled, returning IRQ_HANDLED
+[  154.900000] Interrupt fired
+[  154.900000] Setting interrupt as handled, reading from gpio_if
+[  154.900000] Writing gpio if to gpio ifc
+[  154.900000] Firing SIGIO signal
+[  154.900000] Interrupt handled, returning IRQ_HANDLED
+[  162.100000] Interrupt fired
+[  162.100000] Setting interrupt as handled, reading from gpio_if
+[  162.100000] Writing gpio if to gpio ifc
+[  162.100000] Firing SIGIO signal
+[  162.100000] Interrupt handled, returning IRQ_HANDLED
+[  162.480000] Interrupt fired
+[  162.480000] Setting interrupt as handled, reading from gpio_if
+[  162.480000] Writing gpio if to gpio ifc
+[  162.480000] Firing SIGIO signal
+[  162.480000] Interrupt handled, returning IRQ_HANDLED
+[  162.930000] Interrupt fired
+[  162.930000] Setting interrupt as handled, reading from gpio_if
+[  162.930000] Writing gpio if to gpio ifc
+[  162.930000] Firing SIGIO signal
+[  162.930000] Interrupt handled, returning IRQ_HANDLED
+[  163.100000] Interrupt fired
+[  163.100000] Setting interrupt as handled, reading from gpio_if
+[  163.100000] Writing gpio if to gpio ifc
+[  163.100000] Firing SIGIO signal
+[  163.100000] Interrupt handled, returning IRQ_HANDLED
+[  163.510000] Interrupt fired
+[  163.510000] Setting interrupt as handled, reading from gpio_if
+[  163.510000] Writing gpio if to gpio ifc
+[  163.510000] Firing SIGIO signal
+[  163.510000] Interrupt handled, returning IRQ_HANDLED
+[  163.940000] Interrupt fired
+[  163.940000] Setting interrupt as handled, reading from gpio_if
+[  163.940000] Writing gpio if to gpio ifc
+[  163.940000] Firing SIGIO signal
+[  163.940000] Interrupt handled, returning IRQ_HANDLED
+[  164.190000] Interrupt fired
+[  164.190000] Setting interrupt as handled, reading from gpio_if
+[  164.190000] Writing gpio if to gpio ifc
+[  164.190000] Firing SIGIO signal
+[  164.190000] Interrupt handled, returning IRQ_HANDLED
+[  164.360000] Interrupt fired
+[  164.360000] Setting interrupt as handled, reading from gpio_if
+[  164.360000] Writing gpio if to gpio ifc
+[  164.360000] Firing SIGIO signal
+[  164.360000] Interrupt handled, returning IRQ_HANDLED
+[  164.610000] Interrupt fired
+[  164.610000] Setting interrupt as handled, reading from gpio_if
+[  164.610000] Writing gpio if to gpio ifc
+[  164.610000] Firing SIGIO signal
+[  164.610000] Interrupt handled, returning IRQ_HANDLED
+[  164.700000] Interrupt fired
+[  164.700000] Setting interrupt as handled, reading from gpio_if
+[  164.700000] Writing gpio if to gpio ifc
+[  164.700000] Firing SIGIO signal
+[  164.700000] Interrupt handled, returning IRQ_HANDLED
+[  164.790000] Interrupt fired
+[  164.790000] Setting interrupt as handled, reading from gpio_if
+[  164.790000] Writing gpio if to gpio ifc
+[  164.790000] Firing SIGIO signal
+[  164.790000] Interrupt handled, returning IRQ_HANDLED
+[  164.950000] Interrupt fired
+[  164.950000] Setting interrupt as handled, reading from gpio_if
+[  164.950000] Writing gpio if to gpio ifc
+[  164.950000] Firing SIGIO signal
+[  164.950000] Interrupt handled, returning IRQ_HANDLED
+[  165.100000] Interrupt fired
+[  165.100000] Setting interrupt as handled, reading from gpio_if
+[  165.100000] Writing gpio if to gpio ifc
+[  165.100000] Firing SIGIO signal
+[  165.100000] Interrupt handled, returning IRQ_HANDLED
+[  165.100000] Interrupt fired
+[  165.100000] Setting interrupt as handled, reading from gpio_if
+[  165.100000] Writing gpio if to gpio ifc
+[  165.100000] Firing SIGIO signal
+[  165.100000] Interrupt handled, returning IRQ_HANDLED
+[  165.240000] Interrupt fired
+[  165.240000] Setting interrupt as handled, reading from gpio_if
+[  165.240000] Writing gpio if to gpio ifc
+[  165.240000] Firing SIGIO signal
+[  165.240000] Interrupt handled, returning IRQ_HANDLED
+[  165.350000] Interrupt fired
+[  165.350000] Setting interrupt as handled, reading from gpio_if
+[  165.350000] Writing gpio if to gpio ifc
+[  165.350000] Firing SIGIO signal
+[  165.350000] Interrupt handled, returning IRQ_HANDLED
+[  166.170000] Interrupt fired
+[  166.170000] Setting interrupt as handled, reading from gpio_if
+[  166.170000] Writing gpio if to gpio ifc
+[  166.170000] Firing SIGIO signal
+[  166.170000] Interrupt handled, returning IRQ_HANDLED
+[  166.280000] Interrupt fired
+[  166.280000] Setting interrupt as handled, reading from gpio_if
+[  166.280000] Writing gpio if to gpio ifc
+[  166.280000] Firing SIGIO signal
+[  166.280000] Interrupt handled, returning IRQ_HANDLED
+[  166.390000] Interrupt fired
+[  166.390000] Setting interrupt as handled, reading from gpio_if
+[  166.390000] Writing gpio if to gpio ifc
+[  166.390000] Firing SIGIO signal
+[  166.390000] Interrupt handled, returning IRQ_HANDLED
+[  166.500000] Interrupt fired
+[  166.500000] Setting interrupt as handled, reading from gpio_if
+[  166.500000] Writing gpio if to gpio ifc
+[  166.500000] Firing SIGIO signal
+[  166.500000] Interrupt handled, returning IRQ_HANDLED
+[  166.670000] Interrupt fired
+[  166.670000] Setting interrupt as handled, reading from gpio_if
+[  166.670000] Writing gpio if to gpio ifc
+[  166.670000] Firing SIGIO signal
+[  166.670000] Interrupt handled, returning IRQ_HANDLED
+[  166.770000] Interrupt fired
+[  166.770000] Setting interrupt as handled, reading from gpio_if
+[  166.770000] Writing gpio if to gpio ifc
+[  166.770000] Firing SIGIO signal
+[  166.770000] Interrupt handled, returning IRQ_HANDLED
+[  166.840000] Interrupt fired
+[  166.840000] Setting interrupt as handled, reading from gpio_if
+[  166.840000] Writing gpio if to gpio ifc
+[  166.840000] Firing SIGIO signal
+[  166.840000] Interrupt handled, returning IRQ_HANDLED
+[  166.940000] Interrupt fired
+[  166.940000] Setting interrupt as handled, reading from gpio_if
+[  166.940000] Writing gpio if to gpio ifc
+[  166.940000] Firing SIGIO signal
+[  166.940000] Interrupt handled, returning IRQ_HANDLED
+[  167.650000] Interrupt fired
+[  167.650000] Setting interrupt as handled, reading from gpio_if
+[  167.650000] Writing gpio if to gpio ifc
+[  167.650000] Firing SIGIO signal
+[  167.650000] Interrupt handled, returning IRQ_HANDLED
+[  167.730000] Interrupt fired
+[  167.730000] Setting interrupt as handled, reading from gpio_if
+[  167.730000] Writing gpio if to gpio ifc
+[  167.730000] Firing SIGIO signal
+[  167.730000] Interrupt handled, returning IRQ_HANDLED
+[  167.840000] Interrupt fired
+[  167.840000] Setting interrupt as handled, reading from gpio_if
+[  167.840000] Writing gpio if to gpio ifc
+[  167.840000] Firing SIGIO signal
+[  167.840000] Interrupt handled, returning IRQ_HANDLED
+[  167.970000] Interrupt fired
+[  167.970000] Setting interrupt as handled, reading from gpio_if
+[  167.970000] Writing gpio if to gpio ifc
+[  167.970000] Firing SIGIO signal
+[  167.970000] Interrupt handled, returning IRQ_HANDLED
+[  168.070000] Interrupt fired
+[  168.070000] Setting interrupt as handled, reading from gpio_if
+[  168.070000] Writing gpio if to gpio ifc
+[  168.070000] Firing SIGIO signal
+[  168.070000] Interrupt handled, returning IRQ_HANDLED
+[  168.180000] Interrupt fired
+[  168.180000] Setting interrupt as handled, reading from gpio_if
+[  168.180000] Writing gpio if to gpio ifc
+[  168.180000] Firing SIGIO signal
+[  168.180000] Interrupt handled, returning IRQ_HANDLED
+[  168.250000] Interrupt fired
+[  168.250000] Setting interrupt as handled, reading from gpio_if
+[  168.250000] Writing gpio if to gpio ifc
+[  168.250000] Firing SIGIO signal
+[  168.250000] Interrupt handled, returning IRQ_HANDLED
+[  168.340000] Interrupt fired
+[  168.340000] Setting interrupt as handled, reading from gpio_if
+[  168.340000] Writing gpio if to gpio ifc
+[  168.340000] Firing SIGIO signal
+[  168.340000] Interrupt handled, returning IRQ_HANDLED
+[  168.460000] Interrupt fired
+[  168.460000] Setting interrupt as handled, reading from gpio_if
+[  168.460000] Writing gpio if to gpio ifc
+[  168.460000] Firing SIGIO signal
+[  168.460000] Interrupt handled, returning IRQ_HANDLED
+[  168.530000] Interrupt fired
+[  168.530000] Setting interrupt as handled, reading from gpio_if
+[  168.530000] Writing gpio if to gpio ifc
+[  168.530000] Firing SIGIO signal
+[  168.530000] Interrupt handled, returning IRQ_HANDLED
+[  168.600000] Interrupt fired
+[  168.600000] Setting interrupt as handled, reading from gpio_if
+[  168.600000] Writing gpio if to gpio ifc
+[  168.600000] Firing SIGIO signal
+[  168.600000] Interrupt handled, returning IRQ_HANDLED
+[  168.680000] Interrupt fired
+[  168.680000] Setting interrupt as handled, reading from gpio_if
+[  168.680000] Writing gpio if to gpio ifc
+[  168.680000] Firing SIGIO signal
+[  168.680000] Interrupt handled, returning IRQ_HANDLED
+[  168.780000] Interrupt fired
+[  168.780000] Setting interrupt as handled, reading from gpio_if
+[  168.780000] Writing gpio if to gpio ifc
+[  168.780000] Firing SIGIO signal
+[  168.780000] Interrupt handled, returning IRQ_HANDLED
+[  168.870000] Interrupt fired
+[  168.870000] Setting interrupt as handled, reading from gpio_if
+[  168.870000] Writing gpio if to gpio ifc
+[  168.870000] Firing SIGIO signal
+[  168.870000] Interrupt handled, returning IRQ_HANDLED
+[  168.930000] Interrupt fired
+[  168.930000] Setting interrupt as handled, reading from gpio_if
+[  168.930000] Writing gpio if to gpio ifc
+[  168.930000] Firing SIGIO signal
+[  168.930000] Interrupt handled, returning IRQ_HANDLED
+[  168.990000] Interrupt fired
+[  168.990000] Setting interrupt as handled, reading from gpio_if
+[  168.990000] Writing gpio if to gpio ifc
+[  168.990000] Firing SIGIO signal
+[  168.990000] Interrupt handled, returning IRQ_HANDLED
+[  169.120000] Interrupt fired
+[  169.120000] Setting interrupt as handled, reading from gpio_if
+[  169.120000] Writing gpio if to gpio ifc
+[  169.120000] Firing SIGIO signal
+[  169.120000] Interrupt handled, returning IRQ_HANDLED
+[  169.190000] Interrupt fired
+[  169.190000] Setting interrupt as handled, reading from gpio_if
+[  169.190000] Writing gpio if to gpio ifc
+[  169.190000] Firing SIGIO signal
+[  169.190000] Interrupt handled, returning IRQ_HANDLED
+[  169.250000] Interrupt fired
+[  169.250000] Setting interrupt as handled, reading from gpio_if
+[  169.250000] Writing gpio if to gpio ifc
+[  169.250000] Firing SIGIO signal
+[  169.250000] Interrupt handled, returning IRQ_HANDLED
+[  169.320000] Interrupt fired
+[  169.320000] Setting interrupt as handled, reading from gpio_if
+[  169.320000] Writing gpio if to gpio ifc
+[  169.320000] Firing SIGIO signal
+[  169.320000] Interrupt handled, returning IRQ_HANDLED
+[  170.060000] Interrupt fired
+[  170.060000] Setting interrupt as handled, reading from gpio_if
+[  170.060000] Writing gpio if to gpio ifc
+[  170.060000] Firing SIGIO signal
+[  170.060000] Interrupt handled, returning IRQ_HANDLED
+[  170.060000] Interrupt fired
+[  170.060000] Setting interrupt as handled, reading from gpio_if
+[  170.060000] Writing gpio if to gpio ifc
+[  170.060000] Firing SIGIO signal
+[  170.060000] Interrupt handled, returning IRQ_HANDLED
+[  170.210000] Interrupt fired
+[  170.210000] Setting interrupt as handled, reading from gpio_if
+[  170.210000] Writing gpio if to gpio ifc
+[  170.210000] Firing SIGIO signal
+[  170.210000] Interrupt handled, returning IRQ_HANDLED
+[  170.290000] Interrupt fired
+[  170.290000] Setting interrupt as handled, reading from gpio_if
+[  170.290000] Writing gpio if to gpio ifc
+[  170.290000] Firing SIGIO signal
+[  170.290000] Interrupt handled, returning IRQ_HANDLED
+[  170.380000] Interrupt fired
+[  170.380000] Setting interrupt as handled, reading from gpio_if
+[  170.380000] Writing gpio if to gpio ifc
+[  170.380000] Firing SIGIO signal
+[  170.380000] Interrupt handled, returning IRQ_HANDLED
+[  170.460000] Interrupt fired
+[  170.460000] Setting interrupt as handled, reading from gpio_if
+[  170.460000] Writing gpio if to gpio ifc
+[  170.460000] Firing SIGIO signal
+[  170.460000] Interrupt handled, returning IRQ_HANDLED
+[  170.500000] Interrupt fired
+[  170.500000] Setting interrupt as handled, reading from gpio_if
+[  170.500000] Writing gpio if to gpio ifc
+[  170.500000] Firing SIGIO signal
+[  170.500000] Interrupt handled, returning IRQ_HANDLED
+[  170.550000] Interrupt fired
+[  170.550000] Setting interrupt as handled, reading from gpio_if
+[  170.550000] Writing gpio if to gpio ifc
+[  170.550000] Firing SIGIO signal
+[  170.550000] Interrupt handled, returning IRQ_HANDLED
+
+/ # 
+/ # 
+/ # 
+/ # ls
+tmp      linuxrc  dev      bin      proc     sbin
+lib      etc      sys      usr      root
+/ # 
+/ # clear
+[H[J/ # 
+/ # ei[J[Jexit
+/ # game
+Hello World, I'm game!
+Running signal handler test
+Unable to open driver device, maybe you didn't load the module?
+Error setting pid as owner.
+Error setting FASYNC flag.
+ls  ls
+
+^C^C^Cll  ^@^C^C^C^C^C^C^C^C^C^C [    8.390000] Console: switching to colour frame buffer device 40x30
+[    8.590000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    8.610000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    8.630000] console [ttyefm4] enabled, bootconsole disabled
+[    8.630000] console [ttyefm4] enabled, bootconsole disabled
+[    8.670000] EFM32 UART/USART driver
+[    8.730000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    8.760000] Creating 1 MTD partitions on "rom":
+[    8.760000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    8.900000] mousedev: PS/2 mouse device common for all mice
+[    8.930000] i2c /dev entries driver
+[    9.030000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    9.090000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    9.140000] TCP: cubic registered
+[    9.140000] NET: Registered protocol family 17
+[    9.400000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    9.410000] devtmpfs: mounted
+[    9.420000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gamepad
+[   14.920000] Initializing gamepad driver
+[   14.930000] Allocating memory region for GPIO
+[   14.930000] Allocating memory region for CMU
+[   14.940000] Initializing io memory remap for GPIO
+[   14.950000] Initializing io memory remap for CMU
+[   14.960000] Getting device number
+[   14.960000] Initializing as char driver
+[   14.970000] Making driver visible to user space
+[   14.990000] Setting up CMU
+[   14.990000] Writing result: 174448 to cmu
+[   15.000000] Setting up GPIO, using port C offset 72
+[   15.000000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   15.010000] Setting internal pull up resistors with GPIO dout offset 12
+[   15.020000] Enabling interrupt for even GPIO irq number 17
+[   15.030000] Enabling interrupt for GPIO irq number 18
+[   15.040000] Setting gpio extipsell
+[   15.050000] Setting gpio extirise
+[   15.050000] Interrupt fired
+[   15.050000] Setting interrupt as handled, reading from gpio_if
+[   15.050000] Writing gpio if to gpio ifc
+[   15.050000] Firing SIGIO signal
+[   15.050000] Interrupt handled, returning IRQ_HANDLED
+[   15.080000] Setting gpio extifall
+[   15.090000] Setting gpio IEN
+[   15.090000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   16.200000] Opening
+[   18.810000] Interrupt fired
+[   18.810000] Setting interrupt as handled, reading from gpio_if
+[   18.810000] Writing gpio if to gpio ifc
+[   18.810000] Firing SIGIO signal
+[   18.810000] Interrupt handled, returning IRQ_HANDLED
+[   18.840000] Driver button result:
+[   18.840000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 75 200
+ball d[   18.880000] Interrupt fired
+[   18.880000] Setting interrupt as handled, reading from gpio_if
+[   18.880000] Writing gpio if to gpio ifc
+[   18.880000] Firing SIGIO signal
+[   18.880000] Interrupt handled, returning IRQ_HANDLED
+x, dy: 3 0
+[   18.920000] Driver button result:
+[   18.920000] 255
+Signal handler res: 255
+ball x, y: 78 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 78 200
+ball dx, dy: 3 0
+ball x, y: 81 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 81 200
+ball dx, dy: 3 0
+[   19.610000] Interrupt fired
+[   19.610000] Setting interrupt as handled, reading from gpio_if
+[   19.610000] Writing gpio if to gpio ifc
+[   19.610000] Firing SIGIO signal
+[   19.610000] Interrupt handled, returning IRQ_HANDLED
+[   19.650000] Driver button result:
+[   19.650000] 253
+Signal handler res: 253
+ball x, y: 84 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 84 200
+ball dx, dy: 3 0
+ball x, y: 87 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 87 200
+ball dx, dy: 3 0
+ball x, y: 90 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 90 200
+ball dx, dy: 3 0
+ball x, y: 93 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 93 200
+ball dx, dy: 3 0
+ball x, y: 96 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 96 200
+ball dx, dy: 3 0
+ball x, y: 99 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 99 200
+ball dx, dy: 3 0
+ball x, y: 102 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 102 200
+ball dx, dy: 3 0
+ball x, y: 105 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 105 200
+ball dx, dy: 3 0
+[   21.820000] Interrupt fired
+[   21.820000] Setting interrupt as handled, reading from gpio_if
+[   21.820000] Writing gpio if to gpio ifc
+[   21.820000] Firing SIGIO signal
+[   21.820000] Interrupt handled, returning IRQ_HANDLED
+[   21.920000] Driver button result:
+[   21.930000] 221
+Signal handler res: 221
+ball x, y: 108 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 108 200
+ball dx, dy: 3 0
+ball x, y: 111 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 111 200
+ball dx, dy: 3 0
+ball x, y: 114 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 114 200
+ball dx, dy: 3 0
+ball x, y: 117 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 117 200
+ball dx, dy: 3 0
+ball x, y: 120 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 120 200
+ball dx, dy: 3 0
+ball x, y: 123 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 123 200
+ball dx, dy: 3 0
+ball x, y: 126 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 126 200
+ball dx, dy: 3 0
+ball x, y: 129 200
+ball dx, dy: 3 0
+[   23.970000] Interrupt fired
+[   23.970000] Setting interrupt as handled, reading from gpio_if
+[   23.970000] Writing gpio if to gpio ifc
+[   23.970000] Firing SIGIO signal
+[   23.970000] Interrupt handled, returning IRQ_HANDLED
+[   24.070000] Driver button result:
+[   24.070000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 129 200
+ball dx, dy: 3 0
+ball x, y: 132 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 132 200
+ball dx, dy: 3 0
+ball x, y: 135 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 135 200
+ball dx, dy: 3 0
+ball x, y: 138 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 138 200
+ball dx, dy: 3 0
+ball x, y: 141 200
+ball dx, dy: 3 0
+[   25.080000] Interrupt fired
+[   25.080000] Setting interrupt as handled, reading from gpio_if
+[   25.080000] Writing gpio if to gpio ifc
+[   25.080000] Firing SIGIO signal
+[   25.080000] Interrupt handled, returning IRQ_HANDLED
+[   25.110000] Driver button result:
+[   25.110000] 255
+Signal handler res: 255
+[   25.220000] Interrupt fired
+[   25.220000] Setting interrupt as handled, reading from gpio_if
+[   25.220000] Writing gpio if to gpio ifc
+[   25.220000] Firing SIGIO signal
+[   25.220000] Interrupt handled, returning IRQ_HANDLED
+[   25.280000] Driver button result:
+[   25.280000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 141 200
+ball dx, dy: 3 0
+ball x, y: 144 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 144 200
+ball dx, dy: 3 0
+ball x, y: 147 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 147 200
+ball dx, dy: 3 0
+ball x, y: 150 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 150 200
+ball dx, dy: 3 0
+ball x, y: 153 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 153 200
+ball dx, dy: 3 0
+ball x, y: 156 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 156 200
+ball dx, dy: 3 0
+ball x, y: 159 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 159 200
+ball dx, dy: 3 0
+ball x, y: 162 200
+ball dx, dy: 3 0
+[   27.240000] Interrupt fired
+[   27.240000] Setting interrupt as handled, reading from gpio_if
+[   27.240000] Writing gpio if to gpio ifc
+[   27.240000] Firing SIGIO signal
+[   27.240000] Interrupt handled, returning IRQ_HANDLED
+[   27.280000] Driver button result:
+[   27.280000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 162 200
+ball dx, dy: 3 0
+ball x, y: 165 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 165 200
+ball dx, dy: 3 0
+ball x, y: 168 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 168 200
+ball dx, dy: 3 0
+ball x, y: 171 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 171 200
+ball dx, dy: 3 0
+ball x, y: 174 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 174 200
+ball dx, dy: 3 0
+ball x, y: 177 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 177 200
+ball dx, dy: 3 0
+ball x, y: 180 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 180 200
+ball dx, dy: 3 0
+ball x, y: 183 200
+ball dx, dy: 3 0
+[   29.140000] Interrupt fired
+[   29.140000] Setting interrupt as handled, reading from gpio_if
+[   29.140000] Writing gpio if to gpio ifc
+[   29.140000] Firing SIGIO signal
+[   29.140000] Interrupt handled, returning IRQ_HANDLED
+[   29.280000] Driver button result:
+[   29.290000] 247
+Signal handler res: 247
+where collision: -1ball x, y: 183 200
+ball dx, dy: 3 0
+ball x, y: 186 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 186 200
+ball dx, dy: 3 0
+ball x, y: 189 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 189 200
+ball dx, dy: 3 0
+ball x, y: 192 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 192 200
+ball dx, dy: 3 0
+ball x, y: 195 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 195 200
+ball dx, dy: 3 0
+ball x, y: 198 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 198 200
+ball dx, dy: 3 0
+ball x, y: 201 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 201 200
+ball dx, dy: 3 0
+ball x, y: 204 200
+ball dx, dy: 3 0
+[   31.200000] Interrupt fired
+[   31.200000] Setting interrupt as handled, reading from gpio_if
+[   31.200000] Writing gpio if to gpio ifc
+[   31.200000] Firing SIGIO signal
+[   31.200000] Interrupt handled, returning IRQ_HANDLED
+[   31.290000] Driver button result:
+[   31.290000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 204 200
+ball dx, dy: 3 0
+ball x, y: 207 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 207 200
+ball dx, dy: 3 0
+ball x, y: 210 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 210 200
+ball dx, dy: 3 0
+ball x, y: 213 200
+ball dx, dy: 3 0
+[   32.070000] Interrupt fired
+[   32.070000] Setting interrupt as handled, reading from gpio_if
+[   32.070000] Writing gpio if to gpio ifc
+[   32.070000] Firing SIGIO signal
+[   32.070000] Interrupt handled, returning IRQ_HANDLED
+[   32.180000] Driver button result:
+[   32.180000] 223
+Signal handler res: 223
+where collision: -1ball x, y: 213 200
+ball dx, dy: 3 0
+ball x, y: 216 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 216 200
+ball dx, dy: 3 0
+ball x, y: 219 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 219 200
+ball dx, dy: 3 0
+ball x, y: 222 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 222 200
+ball dx, dy: 3 0
+ball x, y: 225 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 225 200
+ball dx, dy: 3 0
+ball x, y: 228 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 228 200
+ball dx, dy: 3 0
+ball x, y: 231 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 231 200
+ball dx, dy: 3 0
+ball x, y: 234 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 234 200
+ball dx, dy: 3 0
+ball x, y: 237 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 237 200
+ball dx, dy: 3 0
+ball x, y: 240 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 240 200
+ball dx, dy: 3 0
+ball x, y: 243 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 243 200
+ball dx, dy: 3 0
+ball x, y: 246 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 246 200
+ball dx, dy: 3 0
+ball x, y: 249 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 249 200
+ball dx, dy: 3 0
+ball x, y: 252 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 252 200
+ball dx, dy: 3 0
+ball x, y: 255 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 255 200
+ball dx, dy: 3 0
+ball x, y: 258 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 258 200
+ball dx, dy: 3 0
+ball x, y: 261 200
+ball dx, dy: 3 0
+[   36.590000] Interrupt fired
+[   36.590000] Setting interrupt as handled, reading from gpio_if
+[   36.590000] Writing gpio if to gpio ifc
+[   36.590000] Firing SIGIO signal
+[   36.590000] Interrupt handled, returning IRQ_HANDLED
+[   36.690000] Driver button result:
+[   36.700000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 261 200
+ball dx, dy: 3 0
+ball x, y: 264 200
+ball dx, dy: 3 0
+[   36.890000] Interrupt fired
+[   36.890000] Setting interrupt as handled, reading from gpio_if
+[   36.890000] Writing gpio if to gpio ifc
+[   36.890000] Firing SIGIO signal
+[   36.890000] Interrupt handled, returning IRQ_HANDLED
+[   37.020000] Driver button result:
+[   37.030000] 127
+Signal handler res: 127
+where collision: -1ball x, y: 264 200
+ball dx, dy: 3 0
+ball x, y: 267 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 267 200
+ball dx, dy: 3 0
+ball x, y: 270 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 270 200
+ball dx, dy: 3 0
+ball x, y: 273 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 273 200
+ball dx, dy: 3 0
+ball x, y: 276 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 276 200
+ball dx, dy: 3 0
+ball x, y: 279 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 279 200
+ball dx, dy: 3 0
+ball x, y: 282 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 282 200
+ball dx, dy: 3 0
+ball x, y: 285 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 285 200
+ball dx, dy: 3 0
+[   39.020000] Interrupt fired
+[   39.020000] Setting interrupt as handled, reading from gpio_if
+[   39.020000] Writing gpio if to gpio ifc
+[   39.020000] Firing SIGIO signal
+[   39.020000] Interrupt handled, returning IRQ_HANDLED
+[   39.160000] Driver button result:
+[   39.170000] 255
+Signal handler res: 255
+ball x, y: 288 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 288 200
+ball dx, dy: 3 0
+ball x, y: 291 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 291 200
+ball dx, dy: 3 0
+ball x, y: 294 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 294 200
+ball dx, dy: 3 0
+ball x, y: 297 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 297 200
+ball dx, dy: 3 0
+ball x, y: 300 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 300 200
+ball dx, dy: 3 0
+^Cball x, y: 303 200
+ball dx, dy: 3 0
+^Cwhere collision: -1ball x, y: 303 200
+ball dx, dy: 3 0
+^Cball x, y: 306 200
+ball dx, dy: 3 0
+^Cwhere collision: -1ball x, y: 306 200
+ball dx, dy: 3 0
+ball x, y: 309 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 309 200
+ball dx, dy: 3 0
+ball x, y: 312 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 312 200
+ball dx, dy: 3 0
+ball x, y: 315 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 315 200
+ball dx, dy: 3 0
+ball x, y: 318 200
+ball dx, dy: 3 0
+^modprobe driver-gamea[Jad[J[Jpad
+[   11.760000] Initializing gamepad driver
+[   11.760000] Allocating memory region for GPIO
+[   11.770000] Allocating memory region for CMU
+[   11.780000] Initializing io memory remap for GPIO
+[   11.780000] Initializing io memory remap for CMU
+[   11.790000] Getting device number
+[   11.790000] Initializing as char driver
+[   11.800000] Making driver visible to user space
+[   11.820000] Setting up CMU
+[   11.820000] Writing result: 174448 to cmu
+[   11.830000] Setting up GPIO, using port C offset 72
+[   11.840000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   11.850000] Setting internal pull up resistors with GPIO dout offset 12
+[   11.860000] Enabling interrupt for even GPIO irq number 17
+[   11.870000] Enabling interrupt for GPIO irq number 18
+[   11.880000] Setting gpio extipsell
+[   11.880000] Setting gpio extirise
+[   11.890000] Interrupt fired
+[   11.890000] Setting interrupt as handled, reading from gpio_if
+[   11.890000] Writing gpio if to gpio ifc
+[   11.890000] Firing SIGIO signal
+[   11.890000] Interrupt handled, returning IRQ_HANDLED
+[   11.920000] Setting gpio extifall
+[   11.920000] Setting gpio IEN
+[   11.920000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   12.760000] Opening
+[   15.200000] Interrupt fired
+[   15.200000] Setting interrupt as handled, reading from gpio_if
+[   15.200000] Writing gpio if to gpio ifc
+[   15.200000] Firing SIGIO signal
+[   15.200000] Interrupt handled, returning IRQ_HANDLED
+[   15.230000] Driver button result:
+[   15.240000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 75 200
+ball dx, dy: 3 0
+ball x, y: 78 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 78 200
+ball dx, dy: 3 0
+ball x, y: 81 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 81 200
+ball dx, dy: 3 0
+ball x, y: 84 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 84 200
+ball dx, dy: 3 0
+[   16.160000] Interrupt fired
+[   16.160000] Setting interrupt as handled, reading from gpio_if
+[   16.160000] Writing gpio if to gpio ifc
+[   16.160000] Firing SIGIO signal
+[   16.160000] Interrupt handled, returning IRQ_HANDLED
+[   16.280000] Driver button result:
+[   16.280000] 255
+Signal handler res: 255
+ball x, y: 87 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 87 200
+ball dx, dy: 3 0
+ball x, y: 90 200
+ball dx, dy: 3 0
+[   16.660000] Interrupt fired
+[   16.660000] Setting interrupt as handled, reading from gpio_if
+[   16.660000] Writing gpio if to gpio ifc
+[   16.660000] Firing SIGIO signal
+[   16.660000] Interrupt handled, returning IRQ_HANDLED
+[   16.740000] Driver button result:
+[   16.750000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 90 200
+ball dx, dy: 3 0
+ball x, y: 93 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 93 200
+ball dx, dy: 3 0
+ball x, y: 96 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 96 200
+ball dx, dy: 3 0
+ball x, y: 99 200
+ball dx, dy: 3 0
+[   17.510000] Interrupt fired
+[   17.510000] Setting interrupt as handled, reading from gpio_if
+[   17.510000] Writing gpio if to gpio ifc
+[   17.510000] Firing SIGIO signal
+[   17.510000] Interrupt handled, returning IRQ_HANDLED
+[   17.630000] Driver button result:
+[   17.630000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 99 200
+ball dx, dy: 3 0
+ball x, y: 102 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 102 200
+ball dx, dy: 3 0
+[   18.030000] Interrupt fired
+[   18.030000] Setting interrupt as handled, reading from gpio_if
+[   18.030000] Writing gpio if to gpio ifc
+[   18.030000] Firing SIGIO signal
+[   18.030000] Interrupt handled, returning IRQ_HANDLED
+[   18.090000] Driver button result:
+[   18.100000] 223
+Signal handler res: 223
+ball x, y: 105 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 105 200
+ball dx, dy: 3 0
+ball x, y: 108 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 108 200
+ball dx, dy: 3 0
+ball x, y: 111 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 111 200
+ball dx, dy: 3 0
+ball x, y: 114 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 114 200
+ball dx, dy: 3 0
+ball x, y: 117 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 117 200
+ball dx, dy: 3 0
+ball x, y: 120 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 120 200
+ball dx, dy: 3 0
+ball x, y: 123 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 123 200
+ball dx, dy: 3 0
+ball x, y: 126 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 126 200
+ball dx, dy: 3 0
+ball x, y: 129 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 129 200
+ball dx, dy: 3 0
+ball x, y: 132 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 132 200
+ball dx, dy: 3 0
+[   20.890000] Interrupt fired
+[   20.890000] Setting interrupt as handled, reading from gpio_if
+[   20.890000] Writing gpio if to gpio ifc
+[   20.890000] Firing SIGIO signal
+[   20.890000] Interrupt handled, returning IRQ_HANDLED
+[   20.940000] Driver button result:
+[   20.950000] 221
+Signal handler res: 221
+ball x, y: 135 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 135 200
+ball dx, dy: 3 0
+ball x, y: 138 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 138 200
+ball dx, dy: 3 0
+ball x, y: 141 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 141 200
+ball dx, dy: 3 0
+ball x, y: 144 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 144 200
+ball dx, dy: 3 0
+ball x, y: 147 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 147 200
+ball dx, dy: 3 0
+ball x, y: 150 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 150 200
+ball dx, dy: 3 0
+ball x, y: 153 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 153 200
+ball dx, dy: 3 0
+ball x, y: 156 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 156 200
+ball dx, dy: 3 0
+ball x, y: 159 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 159 200
+ball dx, dy: 3 0
+ball x, y: 162 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 162 200
+ball dx, dy: 3 0
+ball x, y: 165 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 165 200
+ball dx, dy: 3 0
+ball x, y: 168 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 168 200
+ball dx, dy: 3 0
+ball x, y: 171 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 171 200
+ball dx, dy: 3 0
+ball x, y: 174 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 174 200
+ball dx, dy: 3 0
+ball x, y: 177 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 177 200
+ball dx, dy: 3 0
+ball x, y: 180 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 180 200
+ball dx, dy: 3 0
+ball x, y: 183 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 183 200
+ball dx, dy: 3 0
+ball x, y: 186 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 186 200
+ball dx, dy: 3 0
+ball x, y: 189 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 189 200
+ball dx, dy: 3 0
+ball x, y: 192 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 192 200
+ball dx, dy: 3 0
+ball x, y: 195 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 195 200
+ball dx, dy: 3 0
+ball x, y: 198 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 198 200
+ball dx, dy: 3 0
+ball x, y: 201 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 201 200
+ball dx, dy: 3 0
+ball x, y: 204 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 204 200
+ball dx, dy: 3 0
+ball x, y: 207 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 207 200
+ball dx, dy: 3 0
+ball x, y: 210 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 210 200
+ball dx, dy: 3 0
+ball x, y: 213 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 213 200
+ball dx, dy: 3 0
+ball x, y: 216 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 216 200
+ball dx, dy: 3 0
+ball x, y: 219 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 219 200
+ball dx, dy: 3 0
+ball x, y: 222 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 222 200
+ball dx, dy: 3 0
+ball x, y: 225 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 225 200
+ball dx, dy: 3 0
+ball x, y: 228 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 228 200
+ball dx, dy: 3 0
+ball x, y: 231 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 231 200
+ball dx, dy: 3 0
+ball x, y: 234 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 234 200
+ball dx, dy: 3 0
+ball x, y: 237 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 237 200
+ball dx, dy: 3 0
+ball x, y: 240 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 240 200
+ball dx, dy: 3 0
+ball x, y: 243 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 243 200
+ball dx, dy: 3 0
+ball x, y: 246 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 246 200
+ball dx, dy: 3 0
+ball x, y: 249 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 249 200
+ball dx, dy: 3 0
+ball x, y: 252 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 252 200
+ball dx, dy: 3 0
+ball x, y: 255 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 255 200
+ball dx, dy: 3 0
+ball x, y: 258 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 258 200
+ball dx, dy: 3 0
+ball x, y: 261 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 261 200
+ball dx, dy: 3 0
+ball x, y: 264 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 264 200
+ball dx, dy: 3 0
+ball x, y: 267 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 267 200
+ball dx, dy: 3 0
+ball x, y: 270 200
+[   33.540000] Interrupt fired
+[   33.540000] Setting interrupt as handled, reading from gpio_if
+[   33.540000] Writing gpio if to gpio ifc
+[   33.540000] Firing SIGIO signal
+[   33.540000] Interrupt handled, returning IRQ_HANDLED
+[   33.570000] Driver button result:
+[   33.580000] 223
+Signal handler res: 223
+Signal handler re[   33.680000] Interrupt fired
+[   33.680000] Setting interrupt as handled, reading from gpio_if
+[   33.680000] Writing gpio if to gpio ifc
+[   33.680000] Firing SIGIO signal
+[   33.680000] Interrupt handled, returning IRQ_HANDLED
+[   33.750000] Driver button result:
+[   33.750000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 270 200
+ball dx, dy: 3 0
+[   33.800000] Interrupt fired
+[   33.800000] Setting interrupt as handled, reading from gpio_if
+[   33.800000] Writing gpio if to gpio ifc
+[   33.800000] Firing SIGIO signal
+[   33.800000] Interrupt handled, returning IRQ_HANDLED
+[   33.930000] Driver button result:
+[   33.940000] 223
+Signal handler res: 223
+ball x, y: 273 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 273 200
+ball dx, dy: 3 0
+ball x, y: 276 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 276 200
+ball dx, dy: 3 0
+ball x, y: 279 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 279 200
+ball dx, dy: 3 0
+ball x, y: 282 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 282 200
+ball dx, dy: 3 0
+ball x, y: 285 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 285 200
+ball dx, dy: 3 0
+ball x, y: 288 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 288 200
+ball dx, dy: 3 0
+ball x, y: 291 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 291 200
+ball dx, dy: 3 0
+ball x, y: 294 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 294 200
+ball dx, dy: 3 0
+ball x, y: 297 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 297 200
+ball dx, dy: 3 0
+ball x, y: 300 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 300 200
+ball dx, dy: 3 0
+ball x, y: 303 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 303 200
+ball dx, dy: 3 0
+ball x, y: 306 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 306 200
+ball dx, dy: 3 0
+ball x, y: 309 200
+ball dx, dy: 3 0
+where collision: -1ball x, y: 309 200
+ball dx, dy: 3 0
+ball x, y: 312 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 312 200
+ball dx, dy: 3 0
+ball x, y: 315 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 315 200
+ball dx, dy: 3 0
+ball x, y: 318 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 318 200
+ball dx, dy: 3 0
+ball x, y: 321 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 321 200
+ball dx, dy: 3 0
+ball x, y: 324 200
+ball dx, dy: 3 0
+where collision: 2ball x, y: 324 200
+ball dx, dy: 3 0
+ball x, y: 327 200
+ball dx, dy: 3 0
+[   39.090000] Interrupt fired
+[   39.090000] Setting interrupt as handled, reading from gpio_if
+[   39.090000] Writing gpio if to gpio ifc
+[   39.090000] Firing SIGIO signal
+[   39.090000] Interrupt handled, returning IRQ_HANDLED
+[   39.150000] Driver button result:
+[   39.150000] 255
+Signal handler res: 255
+[   39.160000] Releasing
+done.
+/ # 
+/ # exi[J[J[J[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+m/ # modprobe driver-gamepad
+[    7.910000] Initializing gamepad driver
+[    7.910000] Allocating memory region for GPIO
+[    7.920000] Allocating memory region for CMU
+[    7.930000] Initializing io memory remap for GPIO
+[    7.930000] Initializing io memory remap for CMU
+[    7.940000] Getting device number
+[    7.950000] Initializing as char driver
+[    7.950000] Making driver visible to user space
+[    7.970000] Setting up CMU
+[    7.980000] Writing result: 174448 to cmu
+[    7.980000] Setting up GPIO, using port C offset 72
+[    7.990000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[    8.000000] Setting internal pull up resistors with GPIO dout offset 12
+[    8.010000] Enabling interrupt for even GPIO irq number 17
+[    8.020000] Enabling interrupt for GPIO irq number 18
+[    8.030000] Setting gpio extipsell
+[    8.030000] Setting gpio extirise
+[    8.040000] Interrupt fired
+[    8.040000] Setting interrupt as handled, reading from gpio_if
+[    8.040000] Writing gpio if to gpio ifc
+[    8.040000] Firing SIGIO signal
+[    8.040000] Interrupt handled, returning IRQ_HANDLED
+[    8.070000] Setting gpio extifall
+[    8.070000] Setting gpio IEN
+[    8.080000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[    8.620000] Opening
+[   10.100000] Interrupt fired
+[   10.100000] Setting interrupt as handled, reading from gpio_if
+[   10.100000] Writing gpio if to gpio ifc
+[   10.100000] Firing SIGIO signal
+[   10.100000] Interrupt handled, returning IRQ_HANDLED
+[   10.130000] Driver button result:
+[   10.130000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 160 120
+ball dx, dy: 3 0
+ball x, y: 163 120
+ball dx, dy:[   10.190000] Interrupt fired
+[   10.190000] Setting interrupt as handled, reading from gpio_if
+[   10.190000] Writing gpio if to gpio ifc
+[   10.190000] Firing SIGIO signal
+[   10.190000] Interrupt handled, returning IRQ_HANDLED
+ 3 0
+[   10.230000] Driver button result:
+[   10.230000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 163 120
+ball dx, dy: 3 0
+ball x, y: 166 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 166 120
+ball dx, dy: 3 0
+ball x, y: 169 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 169 120
+ball dx, dy: 3 0
+ball x, y: 172 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 172 120
+ball dx, dy: 3 0
+ball x, y: 175 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 175 120
+ball dx, dy: 3 0
+ball x, y: 178 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 178 120
+ball dx, dy: 3 0
+ball x, y: 181 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 181 120
+ball dx, dy: 3 0
+ball x, y: 184 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 184 120
+ball dx, dy: 3 0
+ball x, y: 187 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 187 120
+ball dx, dy: 3 0
+ball x, y: 190 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 190 120
+ball dx, dy: 3 0
+ball x, y: 193 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 193 120
+ball dx, dy: 3 0
+ball x, y: 196 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 196 120
+ball dx, dy: 3 0
+ball x, y: 199 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 199 120
+ball dx, dy: 3 0
+ball x, y: 202 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 202 120
+ball dx, dy: 3 0
+ball x, y: 205 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 205 120
+ball dx, dy: 3 0
+ball x, y: 208 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 208 120
+ball dx, dy: 3 0
+ball x, y: 211 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 211 120
+ball dx, dy: 3 0
+ball x, y: 214 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 214 120
+ball dx, dy: 3 0
+ball x, y: 217 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 217 120
+ball dx, dy: 3 0
+ball x, y: 220 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 220 120
+ball dx, dy: 3 0
+ball x, y: 223 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 223 120
+ball dx, dy: 3 0
+ball x, y: 226 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 226 120
+ball dx, dy: 3 0
+ball x, y: 229 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 229 120
+ball dx, dy: 3 0
+ball x, y: 232 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 232 120
+ball dx, dy: 3 0
+ball x, y: 235 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 235 120
+ball dx, dy: 3 0
+ball x, y: 238 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 238 120
+ball dx, dy: 3 0
+ball x, y: 241 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 241 120
+ball dx, dy: 3 0
+ball x, y: 244 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 244 120
+ball dx, dy: 3 0
+ball x, y: 247 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 247 120
+ball dx, dy: 3 0
+ball x, y: 250 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 250 120
+ball dx, dy: 3 0
+ball x, y: 253 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 253 120
+ball dx, dy: 3 0
+ball x, y: 256 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 256 120
+ball dx, dy: 3 0
+ball x, y: 259 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 259 120
+ball dx, dy: 3 0
+ball x, y: 262 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 262 120
+ball dx, dy: 3 0
+ball x, y: 265 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 265 120
+ball dx, dy: 3 0
+ball x, y: 268 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 268 120
+ball dx, dy: 3 0
+ball x, y: 271 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 271 120
+ball dx, dy: 3 0
+ball x, y: 274 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 274 120
+ball dx, dy: 3 0
+ball x, y: 277 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 277 120
+ball dx, dy: 3 0
+ball x, y: 280 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 280 120
+ball dx, dy: 3 0
+ball x, y: 283 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 283 120
+ball dx, dy: 3 0
+ball x, y: 286 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 286 120
+ball dx, dy: 3 0
+ball x, y: 289 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 289 120
+ball dx, dy: 3 0
+ball x, y: 292 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 292 120
+ball dx, dy: 3 0
+ball x, y: 295 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 295 120
+ball dx, dy: 3 0
+ball x, y: 298 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 298 120
+ball dx, dy: 3 0
+ball x, y: 301 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 301 120
+ball dx, dy: 3 0
+ball x, y: 304 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 304 120
+ball dx, dy: 3 0
+ball x, y: 307 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 307 120
+ball dx, dy: 3 0
+ball x, y: 310 120
+ball dx, dy: 3 0
+where collision: 1ball x, y: 310 120
+ball dx, dy: 3 0
+ball x, y: 307 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 307 120
+ball dx, dy: -3 0
+ball x, y: 304 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 304 120
+ball dx, dy: -3 0
+ball x, y: 301 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 301 120
+ball dx, dy: -3 0
+ball x, y: 298 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 298 120
+ball dx, dy: -3 0
+ball x, y: 295 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 295 120
+ball dx, dy: -3 0
+ball x, y: 292 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 292 120
+ball dx, dy: -3 0
+ball x, y: 289 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 289 120
+ball dx, dy: -3 0
+ball x, y: 286 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 286 120
+ball dx, dy: -3 0
+ball x, y: 283 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 283 120
+ball dx, dy: -3 0
+ball x, y: 280 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 280 120
+ball dx, dy: -3 0
+ball x, y: 277 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 277 120
+ball dx, dy: -3 0
+ball x, y: 274 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 274 120
+ball dx, dy: -3 0
+ball x, y: 271 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 271 120
+ball dx, dy: -3 0
+ball x, y: 268 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 268 120
+ball dx, dy: -3 0
+ball x, y: 265 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 265 120
+ball dx, dy: -3 0
+ball x, y: 262 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 262 120
+ball dx, dy: -3 0
+ball x, y: 259 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 259 120
+ball dx, dy: -3 0
+ball x, y: 256 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 256 120
+ball dx, dy: -3 0
+ball x, y: 253 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 253 120
+ball dx, dy: -3 0
+ball x, y: 250 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 250 120
+ball dx, dy: -3 0
+ball x, y: 247 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 247 120
+ball dx, dy: -3 0
+ball x, y: 244 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 244 120
+ball dx, dy: -3 0
+ball x, y: 241 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 241 120
+ball dx, dy: -3 0
+ball x, y: 238 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 238 120
+ball dx, dy: -3 0
+ball x, y: 235 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 235 120
+ball dx, dy: -3 0
+ball x, y: 232 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 232 120
+ball dx, dy: -3 0
+ball x, y: 229 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 229 120
+ball dx, dy: -3 0
+ball x, y: 226 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 226 120
+ball dx, dy: -3 0
+ball x, y: 223 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 223 120
+ball dx, dy: -3 0
+ball x, y: 220 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 220 120
+ball dx, dy: -3 0
+ball x, y: 217 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 217 120
+ball dx, dy: -3 0
+ball x, y: 214 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 214 120
+ball dx, dy: -3 0
+ball x, y: 211 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 211 120
+ball dx, dy: -3 0
+ball x, y: 208 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 208 120
+ball dx, dy: -3 0
+ball x, y: 205 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 205 120
+ball dx, dy: -3 0
+ball x, y: 202 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 202 120
+ball dx, dy: -3 0
+ball x, y: 199 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 199 120
+ball dx, dy: -3 0
+ball x, y: 196 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 196 120
+ball dx, dy: -3 0
+ball x, y: 193 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 193 120
+ball dx, dy: -3 0
+ball x, y: 190 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 190 120
+ball dx, dy: -3 0
+ball x, y: 187 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 187 120
+ball dx, dy: -3 0
+ball x, y: 184 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 184 120
+ball dx, dy: -3 0
+ball x, y: 181 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 181 120
+ball d[   13.080000] Interrupt fired
+[   13.080000] Setting interrupt as handled, reading from gpio_if
+[   13.080000] Writing gpio if to gpio ifc
+[   13.080000] Firing SIGIO signal
+[   13.080000] Interrupt handled, returning IRQ_HANDLED
+x, dy: -3 0
+[   13.120000] Driver button result:
+[   13.120000] 253
+Signal handler res: 253
+ball x, y: 178 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 178 120
+ball dx, dy: -3 0
+ball x, y: 175 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 175 120
+[   13.190000] Interrupt fired
+[   13.190000] Setting interrupt as handled, reading from gpio_if
+[   13.190000] Writing gpio if to gpio ifc
+[   13.190000] Firing SIGIO signal
+[   13.190000] Interrupt handled, returning IRQ_HANDLED
+[   13.220000] Driver button result:
+[   13.230000] 255
+ball dx, dy: Signal handler res: 255
+-3 0
+ball x, y: 172 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 172 120
+ball dx, dy: -3 0
+ball x, y: 169 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 169 120
+ball dx, dy: -3 0
+ball x, y: 166 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 166 120
+ball dx, dy: -3 0
+ball x, y: 163 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 163 120
+ball dx, dy: -3 0
+ball x, y: 160 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 160 120
+ball dx, dy: -3 0
+ball x, y: 157 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 157 120
+ball dx, dy: -3 0
+ball x, y: 154 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 154 120
+ball dx, dy: -3 0
+ball x, y: 151 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 151 120
+ball dx, dy: -3 0
+ball x, y: 148 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 148 120
+ball dx, dy: -3 0
+ball x, y: 145 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 145 120
+ball dx, dy: -3 0
+ball x, y: 142 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 142 120
+ball dx, dy: -3 0
+ball x, y: 139 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 139 120
+ball dx, dy: -3 0
+ball x, y: 136 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 136 120
+ball dx, dy: -3 0
+ball x, y: 133 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 133 120
+ball dx, dy: -3 0
+ball x, y: 130 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 130 120
+ball dx, dy: -3 0
+ball x, y: 127 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 127 120
+ball dx, dy: -3 0
+ball x, y: 124 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 124 120
+ball dx, dy: -3 0
+ball x, y: 121 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 121 120
+ball dx, dy: -3 0
+ball x, y: 118 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 118 120
+ball dx, dy: -3 0
+ball x, y: 115 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 115 120
+ball dx, dy: -3 0
+ball x, y: 112 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 112 120
+ball dx, dy: -3 0
+ball x, y: 109 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 109 120
+ball dx, dy: -3 0
+ball x, y: 106 120
+ball dx, dy: -3 0
+where collision: -1ba[   13.940000] Interrupt fired
+[   13.940000] Setting interrupt as handled, reading from gpio_if
+[   13.940000] Writing gpio if to gpio ifc
+[   13.940000] Firing SIGIO signal
+[   13.940000] Interrupt handled, returning IRQ_HANDLED
+ll x, y: 106 120
+[   13.970000] Driver button result:
+[   13.980000] 247
+Signal handler res: 247
+ball dx, dy: -3 0
+ball x, y: 103 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 103 120
+ball dx, dy: -3 0
+ball x, y: 100 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 100 120
+ball dx, dy: -3 0
+[   14.060000] Interrupt fired
+[   14.060000] Setting interrupt as handled, reading from gpio_if
+[   14.060000] Writing gpio if to gpio ifc
+[   14.060000] Firing SIGIO signal
+[   14.060000] Interrupt handled, returning IRQ_HANDLED
+[   14.090000] Driver button result:
+[   14.090000] 255
+Signal handler res: 255
+ball x, y: 97 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 97 120
+ball dx, dy: -3 0
+ball x, y: 94 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 94 120
+ball dx, dy: -3 0
+ball x, y: 91 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 91 120
+ball dx, dy: -3 0
+ball x, y: 88 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 88 120
+ball dx, dy: -3 0
+ball x, y: 85 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 85 120
+ball dx, dy: -3 0
+ball x, y: 82 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 82 120
+ball dx, dy: -3 0
+ball x, y: 79 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 79 120
+ball dx, dy: -3 0
+ball x, y: 76 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 76 [   14.340000] Interrupt fired
+[   14.340000] Setting interrupt as handled, reading from gpio_if
+[   14.340000] Writing gpio if to gpio ifc
+[   14.340000] Firing SIGIO signal
+[   14.340000] Interrupt handled, returning IRQ_HANDLED
+120
+[   14.370000] Driver button result:
+[   14.380000] 253
+Signal handler res: 253
+ball dx, dy: -3 0
+ball x, y: 73 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 73 120
+ball dx, dy: -3 0
+ball x, y: 70 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 70 120
+ball dx, dy: -3 0
+ball x, y: 67 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 67 120
+ball dx, dy: -3 0
+ball x, y: 64 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 64 120
+ball dx, dy: -3 0
+ball x, y: 61 120
+ball dx, dy: -3 0[   14.520000] Interrupt fired
+[   14.520000] Setting interrupt as handled, reading from gpio_if
+[   14.520000] Writing gpio if to gpio ifc
+[   14.520000] Firing SIGIO signal
+[   14.520000] Interrupt handled, returning IRQ_HANDLED
+
+[   14.560000] Driver button result:
+[   14.560000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 61 120
+ball dx, dy: -3 0
+ball x, y: 58 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 58 120
+ball dx, dy: -3 0
+ball x, y: 55 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 55 120
+ball dx, dy: -3 0
+ball x, y: 52 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 52 120
+ball dx, dy: -3 0
+ball x, y: 49 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 49 120
+ball dx, dy: -3 0
+ball x, y: 46 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 46 120
+ball dx, dy: -3 0
+ball x, y: 43 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 43 120
+ball dx, dy: -3 0
+ball x, y: 40 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 40 120
+ball dx, dy: -3 0
+ball x, y: 37 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 37 120
+ball dx, dy: -3 0
+ball x, y: 34 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 34 120
+ball dx, dy: -3 0
+ball x, y: 31 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 31 120
+ball dx, dy: -3 0
+ball x, y: 28 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 28 120
+ball dx, dy: -3 0
+ball x, y: 25 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 25 120
+ball dx, dy: -3 0
+ball x, y: 22 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 22 120
+ball dx, dy: -3 0
+ball x, y: 19 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 19 120
+ball dx, dy: -3 0
+ball x, y: 16 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 16 120
+ball dx, dy: -3 0
+ball x, y: 13 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 13 120
+ball dx, dy: -3 0
+ball x, y: 10 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 10 120
+ball dx, dy: -3 0
+ball x, y: 7 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 7 120
+ball dx, dy: -3 0
+ball x, y: 4 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 4 120
+ball dx, dy: -3 0
+ball x, y: 1 120
+ball dx, dy: -3 0
+where collision: 0ball x, y: 1 120
+ball dx, dy: -3 0
+ball x, y: 4 120
+ball dx, dy: 3 0
+where collision: 2ball x, y: 4 120
+ball dx, dy: 3 0
+ball x, y: 7 120
+ball dx, dy: 3 0
+where collision: 2ball x, y: 7 120
+ball dx, dy: 3 0
+ball x, y: 10 120
+ball dx, dy: 3 0
+[   15.270000] Releasing
+done.
+/ # 
+/ # [   15.490000] Interrupt fired
+[   15.490000] Setting interrupt as handled, reading from gpio_if
+[   15.490000] Writing gpio if to gpio ifc
+[   15.490000] Firing SIGIO signal
+[   15.490000] Interrupt handled, returning IRQ_HANDLED
+[   15.700000] Interrupt fired
+[   15.700000] Setting interrupt as handled, reading from gpio_if
+[   15.700000] Writing gpio if to gpio ifc
+[   15.700000] Firing SIGIO signal
+[   15.700000] Interrupt handled, returning IRQ_HANDLED
+[   19.490000] Interrupt fired
+[   19.490000] Setting interrupt as handled, reading from gpio_if
+[   19.490000] Writing gpio if to gpio ifc
+[   19.490000] Firing SIGIO signal
+[   19.490000] Interrupt handled, returning IRQ_HANDLED
+[   19.840000] Interrupt fired
+[   19.840000] Setting interrupt as handled, reading from gpio_if
+[   19.840000] Writing gpio if to gpio ifc
+[   19.840000] Firing SIGIO signal
+[   19.840000] Interrupt handled, returning IRQ_HANDLED
+[   20.480000] Interrupt fired
+[   20.480000] Setting interrupt as handled, reading from gpio_if
+[   20.480000] Writing gpio if to gpio ifc
+[   20.480000] Firing SIGIO signal
+[   20.480000] Interrupt handled, returning IRQ_HANDLED
+[   20.760000] Interrupt fired
+[   20.760000] Setting interrupt as handled, reading from gpio_if
+[   20.760000] Writing gpio if to gpio ifc
+[   20.760000] Firing SIGIO signal
+[   20.760000] Interrupt handled, returning IRQ_HANDLED
+[   21.530000] Interrupt fired
+[   21.530000] Setting interrupt as handled, reading from gpio_if
+[   21.530000] Writing gpio if to gpio ifc
+[   21.530000] Firing SIGIO signal
+[   21.530000] Interrupt handled, returning IRQ_HANDLED
+[   21.760000] Interrupt fired
+[   21.760000] Setting interrupt as handled, reading from gpio_if
+[   21.760000] Writing gpio if to gpio ifc
+[   21.760000] Firing SIGIO signal
+[   21.760000] Interrupt handled, returning IRQ_HANDLED
+[   29.580000] Interrupt fired
+[   29.580000] Setting interrupt as handled, reading from gpio_if
+[   29.580000] Writing gpio if to gpio ifc
+[   29.580000] Firing SIGIO signal
+[   29.580000] Interrupt handled, returning IRQ_HANDLED
+[   29.760000] Interrupt fired
+[   29.760000] Setting interrupt as handled, reading from gpio_if
+[   29.760000] Writing gpio if to gpio ifc
+[   29.760000] Firing SIGIO signal
+[   29.760000] Interrupt handled, returning IRQ_HANDLED
+[   32.010000] Interrupt fired
+[   32.010000] Setting interrupt as handled, reading from gpio_if
+[   32.010000] Writing gpio if to gpio ifc
+[   32.010000] Firing SIGIO signal
+[   32.010000] Interrupt handled, returning IRQ_HANDLED
+[   32.250000] Interrupt fired
+[   32.250000] Setting interrupt as handled, reading from gpio_if
+[   32.250000] Writing gpio if to gpio ifc
+[   32.250000] Firing SIGIO signal
+[   32.250000] Interrupt handled, returning IRQ_HANDLED
+[   32.460000] Interrupt fired
+[   32.460000] Setting interrupt as handled, reading from gpio_if
+[   32.460000] Writing gpio if to gpio ifc
+[   32.460000] Firing SIGIO signal
+[   32.460000] Interrupt handled, returning IRQ_HANDLED
+[   32.580000] Interrupt fired
+[   32.580000] Setting interrupt as handled, reading from gpio_if
+[   32.580000] Writing gpio if to gpio ifc
+[   32.580000] Firing SIGIO signal
+[   32.580000] Interrupt handled, returning IRQ_HANDLED
+[   32.700000] Interrupt fired
+[   32.700000] Setting interrupt as handled, reading from gpio_if
+[   32.700000] Writing gpio if to gpio ifc
+[   32.700000] Firing SIGIO signal
+[   32.700000] Interrupt handled, returning IRQ_HANDLED
+[   32.770000] Interrupt fired
+[   32.770000] Setting interrupt as handled, reading from gpio_if
+[   32.770000] Writing gpio if to gpio ifc
+[   32.770000] Firing SIGIO signal
+[   32.770000] Interrupt handled, returning IRQ_HANDLED
+[   32.860000] Interrupt fired
+[   32.860000] Setting interrupt as handled, reading from gpio_if
+[   32.860000] Writing gpio if to gpio ifc
+[   32.860000] Firing SIGIO signal
+[   32.860000] Interrupt handled, returning IRQ_HANDLED
+[   32.940000] Interrupt fired
+[   32.940000] Setting interrupt as handled, reading from gpio_if
+[   32.940000] Writing gpio if to gpio ifc
+[   32.940000] Firing SIGIO signal
+[   32.940000] Interrupt handled, returning IRQ_HANDLED
+[   33.030000] Interrupt fired
+[   33.030000] Setting interrupt as handled, reading from gpio_if
+[   33.030000] Writing gpio if to gpio ifc
+[   33.030000] Firing SIGIO signal
+[   33.030000] Interrupt handled, returning IRQ_HANDLED
+[   33.090000] Interrupt fired
+[   33.090000] Setting interrupt as handled, reading from gpio_if
+[   33.090000] Writing gpio if to gpio ifc
+[   33.090000] Firing SIGIO signal
+[   33.090000] Interrupt handled, returning IRQ_HANDLED
+
+/ # 
+/ # 
+/ #  [    7.070000] Console: switching to colour frame buffer device 40x30
+[    7.270000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    7.290000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    7.310000] console [ttyefm4] enabled, bootconsole disabled
+[    7.310000] console [ttyefm4] enabled, bootconsole disabled
+[    7.350000] EFM32 UART/USART driver
+[    7.410000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    7.440000] Creating 1 MTD partitions on "rom":
+[    7.450000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    7.580000] mousedev: PS/2 mouse device common for all mice
+[    7.610000] i2c /dev entries driver
+[    7.710000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    7.770000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    7.810000] TCP: cubic registered
+[    7.820000] NET: Registered protocol family 17
+[    8.070000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    8.090000] devtmpfs: mounted
+[    8.100000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gamepad
+[   38.270000] Initializing gamepad driver
+[   38.270000] Allocating memory region for GPIO
+[   38.280000] Allocating memory region for CMU
+[   38.280000] Initializing io memory remap for GPIO
+[   38.290000] Initializing io memory remap for CMU
+[   38.300000] Getting device number
+[   38.300000] Initializing as char driver
+[   38.310000] Making driver visible to user space
+[   38.330000] Setting up CMU
+[   38.330000] Writing result: 174448 to cmu
+[   38.340000] Setting up GPIO, using port C offset 72
+[   38.350000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   38.350000] Setting internal pull up resistors with GPIO dout offset 12
+[   38.360000] Enabling interrupt for even GPIO irq number 17
+[   38.370000] Enabling interrupt for GPIO irq number 18
+[   38.380000] Setting gpio extipsell
+[   38.390000] Setting gpio extirise
+[   38.390000] Interrupt fired
+[   38.390000] Setting interrupt as handled, reading from gpio_if
+[   38.390000] Writing gpio if to gpio ifc
+[   38.390000] Firing SIGIO signal
+[   38.390000] Interrupt handled, returning IRQ_HANDLED
+[   38.420000] Setting gpio extifall
+[   38.430000] Setting gpio IEN
+[   38.430000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # gmae
+sh: can't execute 'gmae': No such file or directory
+/ # 
+/ # a[Jgame
+Hello World, I'm game!
+Running signal handler test
+[   41.320000] Opening
+[   83.520000] Interrupt fired
+[   83.520000] Setting interrupt as handled, reading from gpio_if
+[   83.520000] Writing gpio if to gpio ifc
+[   83.520000] Firing SIGIO signal
+[   83.520000] Interrupt handled, returning IRQ_HANDLED
+[   83.550000] Driver button result:
+[   83.550000] 253
+Signal handler res: 253
+where collision: -1ball x, y: 160 120
+ball dx, dy: 3 0
+ball x, y: 163 120
+ball dx, dy: 3 0
+where col[   83.620000] Interrupt fired
+[   83.620000] Setting interrupt as handled, reading from gpio_if
+[   83.620000] Writing gpio if to gpio ifc
+[   83.620000] Firing SIGIO signal
+[   83.620000] Interrupt handled, returning IRQ_HANDLED
+lision: -1ball x, y: 163 120
+[   83.660000] Driver button result:
+[   83.660000] 255
+Signal handler res: 255
+ball dx, dy: 3 0
+ball x, y: 166 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 166 120
+ball dx, dy: 3 0
+ball x, y: 169 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 169 120
+ball dx, dy: 3 0
+ball x, y: 172 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 172 120
+ball dx, dy: 3 0
+ball x, y: 175 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 175 120
+ball dx, dy: 3 0
+ball x, y: 178 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 178 120
+ball dx, dy: 3 0
+ball x, y: 181 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 181 120
+ball dx, dy: 3 0
+ball x, y: 184 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 184 120
+ball dx, dy: 3 0
+ball x, y: 187 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 187 120
+ball dx, dy: 3 0
+ball x, y: 190 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 190 120
+ball dx, dy: 3 0
+ball x, y: 193 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 193 120
+ball dx, dy: 3 0
+ball x, y: 196 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 196 120
+ball dx, dy: 3 0
+ball x, y: 199 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 199 120
+ball dx, dy: 3 0
+ball x, y: 202 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 202 120
+ball dx, dy: 3 0
+ball x, y: 205 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 205 120
+ball dx, dy: 3 0
+ball x, y: 208 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 208 120
+ball dx, dy: 3 0
+ball x, y: 211 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 211 120
+ball dx, dy: 3 0
+ball x, y: 214 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 214 120
+ball dx, dy: 3 0
+ball x, y: 217 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 217 120
+ball dx, dy: 3 0
+ball x, y: 220 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 220 120
+ball dx, dy: 3 0
+ball x, y: 223 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 223 120
+ball dx, dy: 3 0
+ball x, y: 226 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 226 120
+ball dx, dy: 3 0
+ball x, y: 229 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 229 120
+ball dx, dy: 3 0
+ball x, y: 232 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 232 120
+ball dx, dy: 3 0
+ball x, y: 235 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 235 120
+ball dx, dy: 3 0
+ball x, y: 238 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 238 120
+ball dx, dy: 3 0
+ball x, y: 241 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 241 120
+ball dx, dy: 3 0
+ball x, y: 244 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 244 120
+ball dx, dy: 3 0
+ball x, y: 247 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 247 120
+ball dx, dy: 3 0
+ball x, y: 250 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 250 120
+ball dx, dy: 3 0
+ball x, y: 253 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 253 120
+ball dx, dy: 3 0
+ball x, y: 256 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 256 120
+ball dx, dy: 3 0
+ball x, y: 259 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 259 120
+ball dx, dy: 3 0
+ball x, y: 262 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 262 120
+ball dx, dy: 3 0
+ball x, y: 265 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 265 120
+ball dx, dy: 3 0
+ball x, y: 268 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 268 120
+ball dx, dy: 3 0
+ball x, y: 271 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 271 120
+ball dx, dy: 3 0
+ball x, y: 274 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 274 120
+ball dx, dy: 3 0
+ball x, y: 277 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 277 120
+ball dx, dy: 3 0
+ball x, y: 280 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 280 120
+ball dx, dy: 3 0
+ball x, y: 283 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 283 120
+ball dx, dy: 3 0
+ball x, y: 286 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 286 120
+ball dx, dy: 3 0
+ball x, y: 289 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 289 120
+ball dx, dy: 3 0
+ball x, y: 292 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 292 120
+ball dx, dy: 3 0
+ball x, y: 295 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 295 120
+ball dx, dy: 3 0
+ball x, y: 298 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 298 120
+ball dx, dy: 3 0
+ball x, y: 301 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 301 120
+ball dx, dy: 3 0
+ball x, y: 304 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 304 120
+ball dx, dy: 3 0
+ball x, y: 307 120
+ball dx, dy: 3 0
+where collision: -1ball x, y: 307 120
+ball dx, dy: 3 0
+ball x, y: 310 120
+ball dx, dy: 3 0
+where collision: 1ball x, y: 310 120
+ball dx, dy: 3 0
+ball x, y: 307 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 307 120
+ball dx, dy: -3 0
+ball x, y: 304 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 304 120
+ball dx, dy: -3 0
+ball x, y: 301 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 301 120
+ball dx, dy: -3 0
+ball x, y: 298 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 298 120
+ball dx, dy: -3 0
+ball x, y: 295 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 295 120
+ball dx, dy: -3 0
+ball x, y: 292 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 292 120
+ball dx, dy: -3 0
+ball x, y: 289 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 289 120
+ball dx, dy: -3 0
+ball x, y: 286 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 286 120
+ball dx, dy: -3 0
+ball x, y: 283 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 283 120
+ball dx, dy: -3 0
+ball x, y: 280 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 280 120
+ball dx, dy: -3 0
+ball x, y: 277 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 277 120
+ball dx, dy: -3 0
+ball x, y: 274 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 274 120
+ball dx, dy: -3 0
+ball x, y: 271 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 271 120
+ball dx, dy: -3 0
+ball x, y: 268 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 268 120
+ball dx, dy: -3 0
+ball x, y: 265 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 265 120
+ball dx, dy: -3 0
+ball x, y: 262 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 262 120
+ball dx, dy: -3 0
+ball x, y: 259 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 259 120
+ball dx, dy: -3 0
+ball x, y: 256 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 256 120
+ball dx, dy: -3 0
+ball x, y: 253 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 253 120
+ball dx, dy: -3 0
+ball x, y: 250 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 250 120
+ball dx, dy: -3 0
+ball x, y: 247 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 247 120
+ball dx, dy: -3 0
+ball x, y: 244 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 244 120
+ball dx, dy: -3 0
+ball x, y: 241 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 241 120
+ball dx, dy: -3 0
+ball x, y: 238 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 238 120
+ball dx, dy: -3 0
+ball x, y: 235 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 235 120
+ball dx, dy: -3 0
+ball x, y: 232 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 232 120
+ball dx, dy: -3 0
+ball x, y: 229 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 229 120
+ball dx, dy: -3 0
+ball x, y: 226 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 226 120
+ball dx, dy: -3 0
+ball x, y: 223 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 223 120
+ball dx, dy: -3 0
+ball x, y: 220 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 220 120
+ball dx, dy: -3 0
+ball x, y: 217 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 217 120
+ball dx, dy: -3 0
+ball x, y: 214 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 214 120
+ball dx, dy: -3 0
+ball x, y: 211 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 211 120
+ball dx, dy: -3 0
+ball x, y: 208 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 208 120
+ball dx, dy: -3 0
+ball x, y: 205 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 205 120
+ball dx, dy: -3 0
+ball x, y: 202 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 202 120
+ball dx, dy: -3 0
+ball x, y: 199 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 199 120
+ball dx, dy: -3 0
+ball x, y: 196 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 196 120
+ball dx, dy: -3 0
+ball x, y: 193 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 193 120
+ball dx, dy: -3 0
+ball x, y: 190 120
+ball dx, dy: -3 0
+where collision: -1ball x, [   86.400000] Interrupt fired
+[   86.400000] Setting interrupt as handled, reading from gpio_if
+[   86.400000] Writing gpio if to gpio ifc
+[   86.400000] Firing SIGIO signal
+[   86.400000] Interrupt handled, returning IRQ_HANDLED
+y: 190 120
+[   86.440000] Driver button result:
+[   86.440000] 253
+Signal handler res: 253
+ball d[   86.460000] Interrupt fired
+[   86.460000] Setting interrupt as handled, reading from gpio_if
+[   86.460000] Writing gpio if to gpio ifc
+[   86.460000] Firing SIGIO signal
+[   86.460000] Interrupt handled, returning IRQ_HANDLED
+x, dy: -3 0
+[   86.490000] Driver button result:
+[   86.500000] 255
+Signal handler res: 255
+ball x, y: 187 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 187 120
+ball dx, dy: -3 0
+ball x, y: 184 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 184 120
+ball dx, dy: -3 0
+ball x, y: 181 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 181 120
+ball dx, dy: -3 0
+ball x, y: 178 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 178 120
+ball dx, dy: -3 0
+ball x, y: 175 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 175 120
+ball dx, dy: -3 0
+ball x, y: 172 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 172 120
+ball dx, dy: -3 0
+ball x, y: 169 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 169 120
+ball dx, dy: -3 0
+ball x, y: 166 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 166 120
+ball dx, dy: -3 0
+ball x, y: 163 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 163 120
+ball dx, dy: -3 0
+ball x, y: 160 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 160 120
+ball dx, dy: -3 0
+ball x, y: 157 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: [   86.840000] Interrupt fired
+[   86.840000] Setting interrupt as handled, reading from gpio_if
+[   86.840000] Writing gpio if to gpio ifc
+[   86.840000] Firing SIGIO signal
+[   86.840000] Interrupt handled, returning IRQ_HANDLED
+157 120
+[   86.870000] Driver button result:
+[   86.870000] 253
+Signal handler res: 253
+ball dx, dy: -3 0
+ball x, y: 154 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 154 120
+ball dx, dy: -3 0
+ball x, y: 151 120
+ball dx, dy: -3 0[   86.930000] Interrupt fired
+[   86.930000] Setting interrupt as handled, reading from gpio_if
+[   86.930000] Writing gpio if to gpio ifc
+[   86.930000] Firing SIGIO signal
+[   86.930000] Interrupt handled, returning IRQ_HANDLED
+
+[   86.960000] Driver button result:
+[   86.970000] 255
+Signal handler res: 255
+where collision: -1ball x, y: 151 120
+ball dx, dy: -3 0
+ball x, y: 148 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 148 120
+ball dx, dy: -3 0
+ball x, y: 145 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 145 120
+ball dx, dy: -3 0
+ball x, y: 142 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 142 120
+ball dx, dy: -3 0
+ball x, y: 139 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 139 120
+ball dx, dy: -3 0
+ball x, y: 136 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 136 120
+ball dx, dy: -3 0
+ball x, y: 133 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 133 120
+ball dx, dy: -3 0
+ball x, y: 130 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 130 120
+ball dx, dy: -3 0
+ball x, y: 127 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 127 120
+ball dx, dy: -3 0
+ball x, y: 124 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 124 120
+ball dx, dy: -3 0
+ball x, y: 121 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 121 120
+ball dx, dy: -3 0
+ball x, y: 118 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 118 120
+ball dx, dy: -3 0
+ball x, y: 115 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 115 120
+ball dx, dy: -3 0
+ball x, y: 112 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 112 120
+ball dx, dy: -3 0
+ball x, y: 109 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 109 120
+ball dx, dy: -3 0
+ball x, y: 106 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 106 120
+ball dx, dy: -3 0
+ball x, y: 103 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 103 120
+ball dx, dy: -3 0
+ball x, y: 100 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 100 120
+ball dx, dy: -3 0
+ball x, y: 97 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 97 120
+ball dx, dy: -3 0
+ball x, y: 94 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 94 120
+ball dx, dy: -3 0
+ball x, y: 91 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 91 120
+ball dx, dy: -3 0
+ball x, y: 88 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 88 120
+ball dx, dy: -3 0
+ball x, y: 85 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 85 120
+ball dx, dy: -3 0
+ball x, y: 82 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 82 120
+ball dx, dy: -3 0
+ball x, y: 79 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 79 120
+ball dx, dy: -3 0
+ball x, y: 76 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 76 120
+ball dx, dy: -3 0
+ball x, y: 73 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 73 120
+ball dx, dy: -3 0
+ball x, y: 70 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 70 120
+ball dx, dy: -3 0
+ball x, y: 67 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 67 120
+ball dx, dy: -3 0
+ball x, y: 64 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 64 120
+ball dx, dy: -3 0
+ball x, y: 61 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 61 120
+ball dx, dy: -3 0
+ball x, y: 58 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 58 120
+ball dx, dy: -3 0
+ball x, y: 55 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 55 120
+ball dx, dy: -3 0
+ball x, y: 52 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 52 120
+ball dx, dy: -3 0
+ball x, y: 49 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 49 120
+ball dx, dy: -3 0
+ball x, y: 46 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 46 120
+ball dx, dy: -3 0
+ball x, y: 43 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 43 120
+ball dx, dy: -3 0
+ball x, y: 40 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 40 120
+ball dx, dy: -3 0
+ball x, y: 37 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 37 120
+ball dx, dy: -3 0
+ball x, y: 34 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 34 120
+ball dx, dy: -3 0
+ball x, y: 31 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 31 120
+ball dx, dy: -3 0
+ball x, y: 28 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 28 120
+ball dx, dy: -3 0
+ball x, y: 25 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 25 120
+ball dx, dy: -3 0
+ball x, y: 22 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 22 120
+ball dx, dy: -3 0
+ball x, y: 19 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 19 120
+ball dx, dy: -3 0
+ball x, y: 16 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 16 120
+ball dx, dy: -3 0
+ball x, y: 13 120
+ball dx, dy: -3 0
+where collision: -1ball x, y: 13 120
+ball dx, dy: -3 0
+ball x, y: 10 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 10 120
+ball dx, dy: -3 0
+ball x, y: 7 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 7 120
+ball dx, dy: -3 0
+ball x, y: 4 120
+ball dx, dy: -3 0
+where collision: 2ball x, y: 4 120
+ball dx, dy: -3 0
+ball x, y: 1 120
+ball dx, dy: -3 0
+where collision: 0ball x, y: 1 120
+ball dx, dy: -3 0
+ball x, y: 4 120
+ball dx, dy: 3 0
+where collision: 2ball x, y: 4 120
+ball dx, dy: 3 0
+ball x, y: 7 120
+ball dx, dy: 3 0
+where collision: 2ball x, y: 7 120
+ball dx, dy: 3 0
+ball x, y: 10 120
+ball dx, dy: 3 0
+[   88.590000] Releasing
+done.
+/ # 
+/ # exit
+modprobe driver-gamepad
+[   14.540000] Initializing gamepad driver
+[   14.540000] Allocating memory region for GPIO
+[   14.550000] Allocating memory region for CMU
+[   14.560000] Initializing io memory remap for GPIO
+[   14.560000] Initializing io memory remap for CMU
+[   14.570000] Getting device number
+[   14.570000] Initializing as char driver
+[   14.580000] Making driver visible to user space
+[   14.600000] Setting up CMU
+[   14.610000] Writing result: 174448 to cmu
+[   14.610000] Setting up GPIO, using port C offset 72
+[   14.620000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   14.630000] Setting internal pull up resistors with GPIO dout offset 12
+[   14.640000] Enabling interrupt for even GPIO irq number 17
+[   14.650000] Enabling interrupt for GPIO irq number 18
+[   14.660000] Setting gpio extipsell
+[   14.660000] Setting gpio extirise
+[   14.670000] Interrupt fired
+[   14.670000] Setting interrupt as handled, reading from gpio_if
+[   14.670000] Writing gpio if to gpio ifc
+[   14.670000] Firing SIGIO signal
+[   14.670000] Interrupt handled, returning IRQ_HANDLED
+[   14.700000] Setting gpio extifall
+[   14.700000] Setting gpio IEN
+[   14.710000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   15.810000] Opening
+[   19.890000] Interrupt fired
+[   19.890000] Setting interrupt as handled, reading from gpio_if
+[   19.890000] Writing gpio if to gpio ifc
+[   19.890000] Firing SIGIO signal
+[   19.890000] Interrupt handled, returning IRQ_HANDLED
+[   19.920000] Driver button result:
+[   19.930000] 253
+Signal handler res: 253
+[   20.050000] Interrupt fired
+[   20.050000] Setting interrupt as handled, reading from gpio_if
+[   20.050000] Writing gpio if to gpio ifc
+[   20.050000] Firing SIGIO signal
+[   20.050000] Interrupt handled, returning IRQ_HANDLED
+[   20.080000] Driver button result:
+[   20.090000] 255
+where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1Signal handler res: 255
+where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1returning 1
+where collision: 1returning 1
+returning 1
+returning 1
+returning 1
+where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1where collision: -1returning 2
+where collision: 2returning 2
+returning 2
+returning 2
+returning 2
+returning 2
+where collision: 2returning 2
+returning 2
+returning 2
+returning 2
+returning 2
+where collision: 2returning 2
+returning 2
+returning 2
+returning 2
+returning 0
+where collision: 0returning 0
+returning 0
+returning 0
+returning 0
+returning 2
+where collision: 2returning 2
+returning 2
+returning 2
+returning 2
+returning 2
+where collision: 2returning 2
+returning 2
+returning 2
+returning 2
+[   21.200000] Releasing
+done.
+/ # 
+/ # c[J[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe drie[Jver0g[J[J-gamepad
+[   12.270000] Initializing gamepad driver
+[   12.270000] Allocating memory region for GPIO
+[   12.280000] Allocating memory region for CMU
+[   12.290000] Initializing io memory remap for GPIO
+[   12.290000] Initializing io memory remap for CMU
+[   12.300000] Getting device number
+[   12.310000] Initializing as char driver
+[   12.310000] Making driver visible to user space
+[   12.330000] Setting up CMU
+[   12.340000] Writing result: 174448 to cmu
+[   12.340000] Setting up GPIO, using port C offset 72
+[   12.350000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   12.360000] Setting internal pull up resistors with GPIO dout offset 12
+[   12.370000] Enabling interrupt for even GPIO irq number 17
+[   12.380000] Enabling interrupt for GPIO irq number 18
+[   12.390000] Setting gpio extipsell
+[   12.400000] Setting gpio extirise
+[   12.400000] Interrupt fired
+[   12.400000] Setting interrupt as handled, reading from gpio_if
+[   12.400000] Writing gpio if to gpio ifc
+[   12.400000] Firing SIGIO signal
+[   12.400000] Interrupt handled, returning IRQ_HANDLED
+[   12.430000] Setting gpio extifall
+[   12.440000] Setting gpio IEN
+[   12.440000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   13.070000] Opening
+[   16.670000] Interrupt fired
+[   16.670000] Setting interrupt as handled, reading from gpio_if
+[   16.670000] Writing gpio if to gpio ifc
+[   16.670000] Firing SIGIO signal
+[   16.670000] Interrupt handled, returning IRQ_HANDLED
+[   16.700000] Driver button result:
+[   16.700000] Interrupt fired
+[   16.700000] Setting interrupt as handled, reading from gpio_if
+[   16.700000] Writing gpio if to gpio ifc
+[   16.700000] Firing SIGIO signal
+[   16.700000] Interrupt handled, returning IRQ_HANDLED
+[   16.730000] 253
+Signal handler res: 253
+[   16.750000] Driver button result:
+[   16.750000] 255
+Signal handler res: 255
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x00000020
+[    0.640000]  `-> A lockup reset has occurred.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.920000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.930000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.960000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modr[Jr[Jprobe[Je driver-gamepad
+[   13.030000] Initializing gamepad driver
+[   13.040000] Allocating memory region for GPIO
+[   13.040000] Allocating memory region for CMU
+[   13.050000] Initializing io memory remap for GPIO
+[   13.060000] Initializing io memory remap for CMU
+[   13.060000] Getting device number
+[   13.070000] Initializing as char driver
+[   13.070000] Making driver visible to user space
+[   13.090000] Setting up CMU
+[   13.100000] Writing result: 174448 to cmu
+[   13.100000] Setting up GPIO, using port C offset 72
+[   13.110000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   13.120000] Setting internal pull up resistors with GPIO dout offset 12
+[   13.130000] Enabling interrupt for even GPIO irq number 17
+[   13.140000] Enabling interrupt for GPIO irq number 18
+[   13.150000] Setting gpio extipsell
+[   13.160000] Setting gpio extirise
+[   13.160000] Interrupt fired
+[   13.160000] Setting interrupt as handled, reading from gpio_if
+[   13.160000] Writing gpio if to gpio ifc
+[   13.160000] Firing SIGIO signal
+[   13.160000] Interrupt handled, returning IRQ_HANDLED
+[   13.190000] Setting gpio extifall
+[   13.200000] Setting gpio IEN
+[   13.200000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   13.930000] Opening
+[   15.910000] Interrupt fired
+[   15.910000] Setting interrupt as handled, reading from gpio_if
+[   15.910000] Writing gpio if to gpio ifc
+[   15.910000] Firing SIGIO signal
+[   15.910000] Interrupt handled, returning IRQ_HANDLED
+[   15.950000] Driver button result:
+[   15.950000] 253
+Signal handler res: 253
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x00000020
+[    0.640000]  `-> A lockup reset has occurred.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.920000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.930000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.960000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # exit
+/ # modprobe driver-gamepad
+[    9.610000] Initializing gamepad driver
+[    9.610000] Allocating memory region for GPIO
+[    9.620000] Allocating memory region for CMU
+[    9.630000] Initializing io memory remap for GPIO
+[    9.630000] Initializing io memory remap for CMU
+[    9.640000] Getting device number
+[    9.640000] Initializing as char driver
+[    9.650000] Making driver visible to user space
+[    9.670000] Setting up CMU
+[    9.680000] Writing result: 174448 to cmu
+[    9.680000] Setting up GPIO, using port C offset 72
+[    9.690000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[    9.700000] Setting internal pull up resistors with GPIO dout offset 12
+[    9.710000] Enabling interrupt for even GPIO irq number 17
+[    9.720000] Enabling interrupt for GPIO irq number 18
+[    9.730000] Setting gpio extipsell
+[    9.730000] Setting gpio extirise
+[    9.740000] Interrupt fired
+[    9.740000] Setting interrupt as handled, reading from gpio_if
+[    9.740000] Writing gpio if to gpio ifc
+[    9.740000] Firing SIGIO signal
+[    9.740000] Interrupt handled, returning IRQ_HANDLED
+[    9.770000] Setting gpio extifall
+[    9.770000] Setting gpio IEN
+[    9.780000] Init function complete, driver should now be visible under /dev
+/ # 
+/ # game
+Hello World, I'm game!
+Running signal handler test
+[   10.580000] Opening
+[   11.880000] Interrupt fired
+[   11.880000] Setting interrupt as handled, reading from gpio_if
+[   11.880000] Writing gpio if to gpio ifc
+[   11.880000] Firing SIGIO signal
+[   11.880000] Interrupt handled, returning IRQ_HANDLED
+[   11.910000] Driver button result:
+[   11.920000] 253
+Signal handler res: 253
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x00000020
+[    0.640000]  `-> A lockup reset has occurred.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.920000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.930000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.960000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # exit

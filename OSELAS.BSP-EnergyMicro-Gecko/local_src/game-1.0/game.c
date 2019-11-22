@@ -1,7 +1,7 @@
 #include "display_tools.c"
-// #include "display_tools.h"
+#include "display_tools.h"
 #include "button_driver.c"
-// #include "button_driver.h"
+#include "button_driver.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -48,20 +48,13 @@ struct Game {
 };
 
 void initializeGame(struct Game* game){
-//    struct Canvas ballen, pad1, pad2, background;
-
-//    game->ballen = ballen;
-//    game->pad1 = pad1;
-//    game->pad2 = pad2;
-//    game->background = background;
-
    init_ball(game->ballen, WIDTH / 2, HEIGHT / 2, 0xFFF, 0xF);
    init_pad(game->pad1, 10, HEIGHT / 2, 0xFFF, 0xF);
    init_pad(game->pad2, WIDTH - 10, HEIGHT / 2, 0xFFF, 0xF);
    init_background(game->background, 0);
  
-//    setup_display(game->settings);
-	//    clear_screen(game.settings);
+   setup_display(game->settings);
+//    clear_screen(game.settings);
 }
 
 //Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
@@ -277,6 +270,7 @@ int main(int argc, char *argv[])
 {
 	printf("Hello World, I'm game!\n");
     init_gamepad();
+
     struct Game game;
 	struct Canvas *ballen, *pad1, *pad2, *background;
 	game.ballen = malloc(sizeof(struct Canvas));
@@ -285,80 +279,47 @@ int main(int argc, char *argv[])
 	game.background = malloc(sizeof(struct Canvas));
     game.settings = malloc(sizeof(struct Settings));
 	initializeGame(&game);
-	
-	// test---------------------------------
-		draw_ball(game);
 
-		int fbfd = open("/dev/fb0", O_RDWR);
-
-		// get address where we can store pixels (write implies read too)
-		uint16_t * addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, fbfd, 0);
-		struct fb_copyarea rect;
-
-    	rect.dx = 0; 
-    	rect.dy = 0; 
-    	rect.height = HEIGHT;
-    	rect.width = WIDTH;
-
-   		ioctl(fbfd, 0x4680, &rect);
-
-		game.ballen->x += 20; 
-		game.ballen->y += 20; 
-        sleep(GAME_SPEED);
-		draw_ball(game);
-
-    	ioctl(fbfd, 0x4680, &rect);
-
-        sleep(GAME_SPEED);
-        sleep(GAME_SPEED);
-        sleep(GAME_SPEED);
-        sleep(GAME_SPEED);
-	// test---------------------------------
-
-    // draw_background(game)
-    // draw_background(game);;
-	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
-
-	// while (isGameFinished(P1Score, P2Score)){
-    //     // timestep ------------------------------------------
-    //     // debug
-	// 	printf("/n------------/n NEW TICK /n");
+ while (isGameFinished(P1Score, P2Score)){
+ //     // timestep ------------------------------------------
+ //     // debug
+ 	/* printf("/n------------/n NEW TICK /n"); */
 	//     printf("where collision: %d\n" , whereCollision(&game));
 
     //     // erase old image
 	// 	// mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     // 	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
     // 	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-	// 	// erase_canvas(&game.ballen, game.settings);
-	// 	// erase_canvas(&game.pad1, game.settings);
-	// 	// erase_canvas(&game.pad2, game.settings);
-	// 	// draw_ball(game);
-	// 	// draw_pads(game);
-	// 	// smart_refresh(&game);
+	erase_canvas(game.ballen, game.settings);
+	erase_canvas(game.pad1, game.settings);
+	erase_canvas(game.pad2, game.settings);
+	draw_ball(game);
+	draw_pads(game);
+	smart_refresh(&game);
 
-    //     sleep(GAME_SPEED);
+        sleep(GAME_SPEED);
 
     //     // draw new image
-	// 	handleCollision(&game);
+	handleCollision(&game);
     // 	// mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
     // 	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
     // 	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);
-	// 	game.ballen->x += game.ballen->dx;
-	// 	game.ballen->y += game.ballen->dy;
+		game.ballen->x += game.ballen->dx;
+		game.ballen->y += game.ballen->dy;
 	// 	printf("pad1 y before: %d \n", game.pad1->y);
     //     move_pads(&game);
 	// 	printf("pad1 y after: %d\n", game.pad1->y);
-	// 	draw_ball(game);
-	// 	draw_pads(game);
-	// 	smart_refresh(&game);
+	draw_ball(game);
+	draw_pads(game);
+	smart_refresh(&game);
 
     //     // timestep ------------------------------------------
 
     //     // game = timeStep(game);
-	// }
+	}
 
 	shutdown_driver();
-	// tear_down_display(game.settings);
+	tear_down_display(game.settings);
     free(game.ballen->pixels);
     free(game.pad1->pixels);
     free(game.pad2->pixels);

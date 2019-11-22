@@ -30,7 +30,7 @@ void setup_display(struct Settings * settings)
 void tear_down_display(struct Settings * settings)
 {
    munmap(settings->addr, LENGTH);
-   fclose(settings->fbfd);
+   close(settings->fbfd);
    free(settings);
 }
 
@@ -103,8 +103,7 @@ void draw_canvas(struct Canvas* canvas, struct Settings* settings)
     printf("Settings %d\n", settings->fbfd);
     for (y = 0; y < canvas->height; y++) {
         for (x = 0; x < canvas->width; x++) {
-            // draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);
-            draw_pixel(settings, x + canvas->x0, y + canvas->y0, 0xfff);
+            draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);
         }
     }
 }

@@ -1,11 +1,7 @@
-// driver --------------------
-#include <signal.h>
-#include <unistd.h>
-#include <math.h>
-// ---------------------------
-
 #include "display_tools.c"
 #include "display_tools.h"
+#include "button_driver.c"
+#include "button_driver.h"
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -22,12 +18,6 @@
 int P1Score = 0; 
 int P2Score = 0;
 int maxScore = 5;
-
-// driver --------------------
-void init_gamepad();
-void sigio_handler(int signo);
-FILE *device;
-// ---------------------------
 
 struct Canvas;
 struct Game;
@@ -52,6 +42,7 @@ struct Game timeStep(struct Game game);
 void smart_refresh(struct Game game);
 void movePad1(struct Game* game, int dy);
 void movePad1(struct Game* game, int dy);
+void move_pads(struct Game* game);
 
 struct Game {
 	struct Settings settings;
@@ -284,6 +275,18 @@ void movePad2(struct Game* game, int dy){
     checkPadPositions(game);
 }
 
+void move_pads(struct Game* game)
+{
+    printf("Res from dev driver %d\n", resultFromDeviceDriver);
+    if ((resultFromDeviceDriver & 0b00000010) != 0){
+        printf("bit 2 was pressed\n");
+        movePad1(game, game->pad1.dy);
+    } else
+    {
+        movePad2(game, game->pad2.dy);
+    }
+}
+
 /* Function for reading from driver 
 void checkDriver(){
 	This function will check whether the driver is functioning and shut down game if not 
@@ -341,8 +344,7 @@ int main(int argc, char *argv[])
         // debug
 	    printf("where collision: %d" , whereCollision(&game));
 
-        movePad1(&game, game.pad1.dy);
-        movePad2(&game, game.pad2.dy);
+        move_pads(&game);
         // erase old image
 		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
@@ -372,44 +374,8 @@ int main(int argc, char *argv[])
     free((&game.pad2)->pixels);
     free((&game.background)->pixels);
     tear_down_display(game.settings);
+    fclose(device);
     printf("done.\n");
 
 	exit(EXIT_SUCCESS);
-}
-
-// driver stuff ----------------------------------------------------------------------
-void init_gamepad()
-{
-  printf("Running signal handler test\n");
- 
-  device = fopen("/dev/Gamepad", "rb");
-  if (!device) {
-      printf("Unable to open driver device, maybe you didn't load the module?\n");
-  }
- 
-  if (signal(SIGIO, &sigio_handler) == SIG_ERR) {
-      printf("An error occurred while register a signal handler.\n");
-  }
-  if (fcntl(fileno(device), F_SETOWN, getpid()) == -1) {
-      printf("Error setting pid as owner.\n");
-  }
-  long oflags = fcntl(fileno(device), F_GETFL);
-  if (fcntl(fileno(device), F_SETFL, oflags | FASYNC) == -1) {
-      printf("Error setting FASYNC flag.\n");
-  }
- 
-  // Wait for signal. pause() function stops execution until a signal
-  // is received.
-//   while (1) {
-    pause();
-//   }
- 
-  fclose(device);
-  exit(EXIT_SUCCESS);
-}
- 
-void sigio_handler(int signo)
-{
-  char res = fgetc(device);
-  printf("Signal handler res: %d\n", res);
 }

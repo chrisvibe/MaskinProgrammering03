@@ -290,17 +290,17 @@ int main(int argc, char *argv[])
 	// 	// mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
     // 	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
     // 	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-	erase_canvas(game.ballen, game.settings);
-	erase_canvas(game.pad1, game.settings);
-	erase_canvas(game.pad2, game.settings);
-	draw_ball(game);
-	draw_pads(game);
-	smart_refresh(&game);
+	/* erase_canvas(game.ballen, game.settings); */
+	/* erase_canvas(game.pad1, game.settings); */
+	/* erase_canvas(game.pad2, game.settings); */
+	/* draw_ball(game); */
+	/* draw_pads(game); */
+	/* smart_refresh(&game); */
 
         sleep(GAME_SPEED);
 
     //     // draw new image
-	handleCollision(&game);
+	/* handleCollision(&game); */
     // 	// mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
     // 	// mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0xFFF, 0xF);
     // 	// mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0xFFF, 0xF);

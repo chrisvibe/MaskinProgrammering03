@@ -233,11 +233,11 @@ void handleCollision(struct Game* game){
 	if (whereCollision(game) == 2){
 		if (game->ballen.x <= 10){
 			game->P2Score += 1;
-            draw_canvas(&(game->background), game->settings);
+            // draw_canvas(&(game->background), game->settings);
 		}
 		if (game->ballen.x >= 310){
 			game->P1Score += 1;
-            draw_canvas(&(game->background), game->settings);
+            // draw_canvas(&(game->background), game->settings);
 		}
 		//Her må det legges inn en "clean funksjon" som starter cleaner hele brettet og starter opp på nytt bare med en ny score. 
 	}

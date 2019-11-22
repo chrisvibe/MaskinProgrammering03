@@ -40,9 +40,9 @@ void tear_down_display(struct Settings settings)
 
 void clear_screen(struct Settings settings)
 {
-    struct Canvas screen;
-    init_canvas(&screen, 0, 0, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
-    draw_canvas(&screen, settings);
+    // struct Canvas screen;
+    // init_canvas(&screen, 0, 0, WIDTH, HEIGHT, 0, 0, 0, 0, 0);
+    // draw_canvas(&screen, settings);
 }
 
 void refresh_display(struct Settings settings, int x, int y, int width, int height)

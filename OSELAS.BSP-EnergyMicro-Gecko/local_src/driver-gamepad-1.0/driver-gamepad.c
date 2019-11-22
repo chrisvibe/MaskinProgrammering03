@@ -50,7 +50,7 @@ struct fasync_struct *pasync_queue;
 
 
 // Debugging. Set debug variable to 1 to enable.
-static int debug = 1;
+static int debug = 0;
 static void debugStr(char *msg) {
   if (debug) 
     printk("%s\n", msg);

@@ -18,24 +18,20 @@ struct Canvas {
     uint16_t * pixels;
 };
 
-struct Settings setup_display()
+struct Settings *setup_display(struct Settings * settings)
 {
-   struct Settings settings;
-
    // open the frame buffer for read/write
-   settings.fbfd = open("/dev/fb0", O_RDWR);
+   settings->fbfd = open("/dev/fb0", O_RDWR);
 
    // get address where we can store pixels (write implies read too)
-   settings.addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings.fbfd, 0);
-
-//    clear_screen(settings);
-   return settings;
+   settings->addr = (uint16_t *) mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED, settings->fbfd, 0);
 }
 
-void tear_down_display(struct Settings settings)
+void tear_down_display(struct Settings * settings)
 {
-   munmap(settings.addr, LENGTH);
-   fclose(settings.fbfd);
+   munmap(settings->addr, LENGTH);
+   fclose(settings->fbfd);
+   free(settings);
 }
 
 void clear_screen(struct Settings settings)
@@ -46,7 +42,7 @@ void clear_screen(struct Settings settings)
     // free((&screen)->pixels);
 }
 
-void refresh_display(struct Settings settings, int x, int y, int width, int height)
+void refresh_display(struct Settings *settings, int x, int y, int width, int height)
 {
     // setup which part of the frame buffer that is to be refreshed */
     // for performance reasons, use as small rectangle as possible */
@@ -58,7 +54,7 @@ void refresh_display(struct Settings settings, int x, int y, int width, int heig
     rect.width = width;
 
     // command driver to update display */
-    ioctl(settings.fbfd, 0x4680, &rect);
+    ioctl(settings->fbfd, 0x4680, &rect);
 }
 
 void set_pixel(struct Canvas* canvas, int x, int y, int colour)
@@ -97,22 +93,28 @@ void print_canvas(struct Canvas* canvas)
     }
 }
 
-void draw_canvas(struct Canvas* canvas, struct Settings settings)
+void draw_canvas(struct Canvas* canvas, struct Settings* settings)
 {
     int x, y;
+    printf("Drawing canvas y %d ", canvas->y);
+    printf("Drawing canvas x %d ", canvas->x);
+    printf("Drawing canvas x0: %d y0: %d ", canvas->x0, canvas->y0);
+    printf("Drawing canvas width: %d height: %d ", canvas->width, canvas->height);
+    printf("Settings %d %d\n", settings->fbfd, settings->addr);
     for (y = 0; y < canvas->height; y++) {
         for (x = 0; x < canvas->width; x++) {
-            draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);
+            // draw_pixel(settings, x + canvas->x0, y + canvas->y0, canvas->pixels[x + y * canvas->width]);
+            draw_pixel(settings, x + canvas->x0, y + canvas->y0, 0xfff);
         }
     }
 }
 
-void draw_pixel(struct Settings settings, int x, int y, int colour)
+void draw_pixel(struct Settings * settings, int x, int y, int colour)
 {
-    settings.addr[x + (HEIGHT - y) * WIDTH] = colour;
+    (settings->addr)[x + (HEIGHT - y) * WIDTH] = colour;
 }
 
-void erase_canvas(struct Canvas * canvas, struct Settings settings)
+void erase_canvas(struct Canvas * canvas, struct Settings* settings)
 {
     int x, y;
     for (y = 0; y < canvas->height; y++) {

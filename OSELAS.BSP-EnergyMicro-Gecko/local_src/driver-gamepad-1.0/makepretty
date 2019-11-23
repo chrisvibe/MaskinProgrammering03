@@ -1,0 +1,17 @@
+#!/bin/bash
+# to use this file:
+# . cleanup 
+
+make pretty
+for f in *.c 
+do
+    sed -i "s/b0/0b0/g" $f   # replace " b" with "0b"
+    sed -i "s/b1/0b1/g" $f   # replace " b" with "0b"
+done
+for f in *.h 
+do
+    sed -i "s/b0/0b0/g" $f   # replace " b" with "0b"
+    sed -i "s/b1/0b1/g" $f   # replace " b" with "0b"
+done
+make clean
+rm *~

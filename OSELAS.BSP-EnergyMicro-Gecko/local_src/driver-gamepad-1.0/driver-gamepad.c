@@ -90,7 +90,7 @@ static int my_release (struct inode *inode, struct  file *filp) {
  */
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   uint8_t res;
-  res = ioread8(gpio_map_return + GPIO_PC_OFFSET + GPIO_DIN_OFFSET);
+  res = ioread8((uint32_t*) (gpio_map_return + GPIO_PC_OFFSET + GPIO_DIN_OFFSET));
   debug_str("Driver button result:");
   debug_int(res);
   if (copy_to_user(buff, &res, 1) != 0) {

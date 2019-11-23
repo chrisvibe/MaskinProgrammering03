@@ -23,7 +23,7 @@ struct Settings setup_display()
 	struct Settings settings;
 
 	// open the frame0buffer for read/write
-	settings.fbfd = open("/dev/f0000b0", O_RDWR);
+	settings.fbfd = open("/dev/f00000b0", O_RDWR);
 
 	// get address where we can store pixels (write implies read too)
 	settings.addr =

@@ -45,21 +45,14 @@ static int __init gamepad_init(void);
 static void __exit gamepad_cleanup(void);
 
 
-// Global variables for init and cleanup functions
+// Global variables. Many of these are needed as globals only because they need to be
+// freed in the cleanup function.
 static struct miscdevice miscdev;
 static struct platform_device *platform_dev;
-
-// Global variables to access hardware in read function
 static int gpio_map_return;
-
-// Global variables for sending SIGIO
-struct fasync_struct *pasync_queue;
-
-// Global varibles for interrupts. The only reason these are global
-// is because we need to free them in the cleanup function
-int gpio_irq_even;
-int gpio_irq_odd;
-
+static struct fasync_struct *pasync_queue;
+static int gpio_irq_even;
+static int gpio_irq_odd;
 
 // Debugging, Set debug variable to 1 to enable.
 static int debug = 1;
@@ -72,17 +65,29 @@ static void debug_int(int msg) {
     printk("%d\n", msg);
 }
 
-
+/**
+ * Open function for file operations. Will be called when user program is
+ * starting to read device file
+ */
 static int my_open (struct inode *inode, struct  file *filp) {
   debug_str("Opening");
   return 0;
 }
 
+/**
+ * Release function for file operations. Will be called when user program is done
+ * reading device file
+ */
 static int my_release (struct inode *inode, struct  file *filp) {
   debug_str("Releasing");
   return 0;
 }
 
+/**
+ * Read function for file operations. Will be called when the device file is read from.
+ * It reads the button bits and then sends it to user space program that is reading 
+ * the file
+ */
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   uint8_t res;
   res = ioread8(gpio_map_return + GPIO_PC_OFFSET + GPIO_DIN_OFFSET);
@@ -95,6 +100,10 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
   (*offp)++;
 }
 
+/**
+ * Write function for file operations. Will be called when the device file is written to. 
+ * Not used since it makes no sense to write to buttons.
+ */
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   debug_str("Writing");
   return 0;
@@ -117,7 +126,9 @@ static struct file_operations my_fops = {
 
 
 /**
- * GPIO interrupt handler
+ * GPIO interrupt handler. This function will fire a SIGIO signal 
+ * to let the user space program now that a button has been pressed
+ * or released.
  */
 irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   unsigned int GPIO_IF_res;
@@ -144,6 +155,12 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
 
 
 
+/**
+ * This function sets up the driver with hardware access, interrupts, file
+ * operations etc.. Because this is a platform driver, this function will 
+ * only called after the driver has made sure that a correct platform 
+ * device exist
+ */
 static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
@@ -185,13 +202,9 @@ static int my_probe (struct platform_device *dev) {
   // Make driver visible to user space and register as char device
   printk("Making driver visible to user space\n");
   miscdev.minor = MISC_DYNAMIC_MINOR;
-  // This is the visible name
   miscdev.name = "Gamepad";
   miscdev.fops = &my_fops;
   misc_register(&miscdev);
-
-  
-  printk("Setting up GPIO, using port C offset %d\n", GPIO_PC_OFFSET);
 
 	// Button setup 
   printk("Writing to gpio to enable buttons. Using GPIO mode low offset %d \n", GPIO_MODEL_OFFSET);
@@ -270,6 +283,10 @@ static struct platform_driver my_driver = {
   },
 };
 
+
+/**
+ * This functions cleans up and frees memory for the platform driver
+ */
 static int my_remove (struct platform_device *dev) {
    printk("platform driver cleanup\n");
    platform_driver_unregister(&my_driver);
@@ -281,16 +298,17 @@ static int my_remove (struct platform_device *dev) {
 
 
 /*
- * gamepad_init - function to insert this module into kernel space
- * This is the first of two exported functions to handle inserting this
- * code into a running kernel
+ * This function is the first function to be called when the driver is loaded.
+ * Since this driver is a platform driver, all this function does is checking 
+ * that a correct platform device exists, registers the driver as a platform 
+ * driver, then delegates most of the setup to the platform driver specific 
+ * setup function.
  */
 static int __init gamepad_init(void)
 {
   int driver_reg_res;
 
   printk("Initializing gamepad driver\n");
-  
   driver_reg_res = platform_driver_probe(&my_driver, my_probe);
   if (driver_reg_res != 0) {
     printk(KERN_WARNING "Failed to register platform device, err code: %d\n", driver_reg_res);
@@ -299,6 +317,10 @@ static int __init gamepad_init(void)
 }
 
 
+/**
+ * The last function to be called when driver exists. In this driver, all cleanup
+ * is found in the platform specific remove function.
+ */
 static void __exit gamepad_cleanup(void)
 {
 	 printk("Gamepad driver __exit cleanup function\n");

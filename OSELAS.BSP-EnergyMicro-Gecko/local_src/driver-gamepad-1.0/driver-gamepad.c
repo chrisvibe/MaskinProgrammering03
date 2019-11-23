@@ -46,8 +46,7 @@ static struct platform_device *platform_dev;
 /* static struct class *cl; */
 
 // Global variables to access hardware in read function
-static int gpioMapReturn;
-static int cmuMapReturn;
+static int gpio_map_return;
 
 // For sending SIGIO
 struct fasync_struct *pasync_queue;
@@ -55,31 +54,31 @@ struct fasync_struct *pasync_queue;
 
 // Debugging. Set debug variable to 1 to enable.
 static int debug = 1;
-static void debugStr(char *msg) {
+static void debug_str(char *msg) {
   if (debug) 
     printk("%s\n", msg);
 }
-static void debugInt(int msg) {
+static void debug_int(int msg) {
   if (debug) 
     printk("%d\n", msg);
 }
 
 
 static int my_open (struct inode *inode, struct  file *filp) {
-  debugStr("Opening");
+  debug_str("Opening");
   return 0;
 }
 
 static int my_release (struct inode *inode, struct  file *filp) {
-  debugStr("Releasing");
+  debug_str("Releasing");
   return 0;
 }
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   uint8_t res;
-  res = ioread8(gpioMapReturn + 72 + 28);
-  debugStr("Driver button result:");
-  debugInt(res);
+  res = ioread8(gpio_map_return + 72 + 28);
+  debug_str("Driver button result:");
+  debug_int(res);
   if (copy_to_user(buff, &res, 1) != 0) {
     printk(KERN_WARNING "Error when copying data to user space\n");
     return -EFAULT;
@@ -88,7 +87,7 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
 }
 
 static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
-  debugStr("Writing");
+  debug_str("Writing");
   return 0;
 }
 
@@ -123,29 +122,28 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   unsigned int GPIO_IF_res;
 
   printk("IN interrupt handler\n");
-  debugStr("Interrupt fired");
-  debugStr("Setting interrupt as handled, reading from gpio_if");
-  GPIO_IF_res = ioread32(gpioMapReturn + GPIO_IF_OFFSET);
-  debugStr("Writing gpio if to gpio ifc");
+  debug_str("Interrupt fired");
+  debug_str("Setting interrupt as handled, reading from gpio_if");
+  GPIO_IF_res = ioread32(gpio_map_return + GPIO_IF_OFFSET);
+  debug_str("Writing gpio if to gpio ifc");
   iowrite32(
       GPIO_IF_res,
-      (gpioMapReturn + GPIO_IFC_OFFSET));
+      (gpio_map_return + GPIO_IFC_OFFSET));
 
   // Send SIGIO
-  debugStr("Firing SIGIO signal");
+  debug_str("Firing SIGIO signal");
   if (pasync_queue) {
     kill_fasync(&pasync_queue, SIGIO, POLL_IN);
   }
 
-  debugStr("Interrupt handled, returning IRQ_HANDLED");
+  debug_str("Interrupt handled, returning IRQ_HANDLED");
   return IRQ_HANDLED;
 }
 
 static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
-  char *gpioAlloc;
-  char *cmuAlloc;
+  char *gpio_alloc;
   unsigned int gpio1;
   unsigned int gpio2;
   int gpioIrqEven;
@@ -181,7 +179,7 @@ static int my_probe (struct platform_device *dev) {
   // This is actually not strictly needed since I/O is memory mapped on the 
   // EFM32GG, but still good practice.
   printk("Initializing io memory remap for GPIO\n");
-  gpioMapReturn = ioremap_nocache((resource_size_t) start_addr, end_addr);
+  gpio_map_return = ioremap_nocache((resource_size_t) start_addr, end_addr);
   
   // Initialize as char driver
   printk("Initializing as char driver\n");
@@ -201,13 +199,13 @@ static int my_probe (struct platform_device *dev) {
   printk("Writing to gpio to enable buttons. Using GPIO mode low offset %d \n", GPIO_MODEL_OFFSET);
   iowrite32(
       (unsigned int) 0x33333333, 
-      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
+      (gpio_map_return + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
 
   // Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
   printk("Setting internal pull up resistors with GPIO dout offset %d\n", GPIO_DOUT_OFFSET);
   iowrite32(
       (unsigned int) 0xff, 
-      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
+      (gpio_map_return + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
 
 
   // Should be placed before hardware generates interrupts
@@ -237,28 +235,28 @@ static int my_probe (struct platform_device *dev) {
   /* printk("Setting gpio extipsell\n"); */
   iowrite32(
       (unsigned int) 0x22222222,
-      (gpioMapReturn + GPIO_EXTIPSELL_OFFSET));
+      (gpio_map_return + GPIO_EXTIPSELL_OFFSET));
 
 	//*GPIO_EXTIRISE = 0xff; 
   /* printk("Setting gpio extirise\n"); */
   iowrite32(
       (unsigned int) 0xff,
-      (gpioMapReturn + GPIO_EXTIRISE_OFFSET));
+      (gpio_map_return + GPIO_EXTIRISE_OFFSET));
 
 	//*GPIO_EXTIFALL = 0xff;
   /* printk("Setting gpio extifall\n"); */
   iowrite32(
       (unsigned int) 0xff,
-      (gpioMapReturn + GPIO_EXTIFALL_OFFSET));
+      (gpio_map_return + GPIO_EXTIFALL_OFFSET));
 
 	// *GPIO_IEN |= 0xff;
   // CMU setup
   /* printk("Setting gpio IEN\n"); */
-  gpio1 = ioread32(gpioMapReturn + GPIO_IEN_OFFSET); 
+  gpio1 = ioread32(gpio_map_return + GPIO_IEN_OFFSET); 
   gpio2 = gpio1 | 0xff;
   iowrite32(
       (unsigned int) gpio2,
-      (gpioMapReturn + GPIO_IEN_OFFSET));
+      (gpio_map_return + GPIO_IEN_OFFSET));
 
 }
 

@@ -41,7 +41,7 @@
 #define GPIO_EXTIRISE  ((volatile uint32_t*)(GPIO_PA_BASE + 0x108))
 #define GPIO_EXTIFALL  ((volatile uint32_t*)(GPIO_PA_BASE + 0x10c))
 #define GPIO_IEN       ((volatile uint32_t*)(GPIO_PA_BASE + 0x110))
-#define GPIO_IF        ((volatile uint32_t*)(GPIO_PA_BASE + 0x114)) // Added by group
+#define GPIO_IF        ((volatile uint32_t*)(GPIO_PA_BASE + 0x114))	// Added by group
 #define GPIO_IFC       ((volatile uint32_t*)(GPIO_PA_BASE + 0x11c))
 
 // CMU

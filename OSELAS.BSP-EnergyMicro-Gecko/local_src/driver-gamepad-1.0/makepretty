@@ -1,0 +1,12 @@
+#!/bin/bash
+# to use this file:
+# . cleanup 
+
+make pretty
+for f in * 
+do
+    sed -i "s/00b0/000b0/g" $f
+    sed -i "s/00b1/000b1/g" $f   # replace "00b1" with "000b1"
+done
+make clean
+rm *~

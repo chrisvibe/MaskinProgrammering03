@@ -15,3 +15,12 @@ modules modules_install clean:
 	$(MAKE) -C $(PTX_KERNEL_DIR) M=$(CURDIR) V=$(V) $@
 
 endif
+
+# added this:
+.PHONY : pretty
+pretty :
+	-indent *.c *.h
+
+.PHONY : clean
+clean :
+	-rm -rf *.o *.elf *.bin *.hex *.out

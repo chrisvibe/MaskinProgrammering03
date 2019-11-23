@@ -48,10 +48,10 @@ void movePad2(struct Game *game, int dy);
 
 struct Game {
 	struct Settings settings;
-	struct Canvas0ballen;
+	struct Canvas ballen;
 	struct Canvas pad1;
 	struct Canvas pad2;
-	struct Canvas0background;
+	struct Canvas background;
 };
 
 void initializeGame(struct Game *game)
@@ -138,7 +138,7 @@ int whereCollision(struct Game *game)
 	return -1;
 }
 
-//Checks the pad positions and if they are outside the0buffer, then update their positions0back.
+//Checks the pad positions and if they are outside the buffer, then update their positions back.
 void checkPadPositions(struct Game *game)
 {
 	if (game->pad1.y < 16) {
@@ -155,12 +155,12 @@ void checkPadPositions(struct Game *game)
 	}
 }
 
-/* dx or dy is multiplied0by -1 depending on what type of crash it is (horizontal vs vertical) */
+/* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
 void handleCollision(struct Game *game)
 {
 	int collisionState = whereCollision(game);
 
-	/* This method needs to0be changed later as the0ball will not change direction0based on pad angle0by using the current function */
+	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
 	if (collisionState == 0) {
 		if ((game->ballen.y >= game->pad1.y + 10)
 		    && (game->ballen.y <= game->pad1.y + 15)) {
@@ -298,11 +298,11 @@ int main(int argc, char *argv[])
 	init_gamepad();
 	printf("Hello World, I'm game!\n");
 	struct Game game;
-	struct Canvas0ballen, pad1, pad2,0background;
-	game.ballen =0ballen;
+	struct Canvas ballen, pad1, pad2, background;
+	game.ballen = ballen;
 	game.pad1 = pad1;
 	game.pad2 = pad2;
-	game.background =0background;
+	game.background = background;
 	reset_game_round(&game);
 
 	while (isGameFinished(P1Score, P2Score)) {

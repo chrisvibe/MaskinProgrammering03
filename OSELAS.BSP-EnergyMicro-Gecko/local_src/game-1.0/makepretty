@@ -1,0 +1,12 @@
+#!/bin/bash
+# to use this file:
+# make pretty 
+# . cleanup 
+
+make pretty
+for f in * 
+do
+    sed -i "s/0b/0b/g" $f   # replace "0b" with "0b"
+done
+make clean
+rm *~

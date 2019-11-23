@@ -1,24 +1,33 @@
+# Example Makefile
 #
-# Simple development makefile
-#
+# Exercise 2, TDT4258
 
-#
-# add more flags here,
-# but don't remove the "+="
-#
-CFLAGS += -O2 -g -Wall #-Wsign-compare -Wfloat-equal -Wformat-security #-Werror
-CPPFLAGS +=
-LDFLAGS +=
+CC=arm-none-eabi-gcc
+LD=arm-none-eabi-gcc
+OBJCOPY=arm-none-eabi-objcopy
 
+CFLAGS=-mcpu=cortex-m3 -mthumb -g -std=c99 -Wall -Os
+LDFLAGS=-mcpu=cortex-m3 -mthumb -g -lgcc -lc -lcs3 -lcs3unhosted -lefm32gg -Llib
+ASFLAGS=-mcpu=cortex-m3 -mthumb -g
+LINKERSCRIPT=lib/efm32gg.ld
 
-all: game
+ex2.bin : ex2.elf
+	${OBJCOPY} -O binary $< $@
 
-clean:
-	-rm -f game
+ex2.elf : ex2.o timer.o dac.o gpio.o interrupt_handlers.o timer_interrupt_handler.o
+	${LD} -T ${LINKERSCRIPT} $^ -o $@ ${LDFLAGS} 
 
-install:
+%.o : %.c
+	${CC} ${CFLAGS} -c $< -o $@
 
+.PHONY : pretty
+pretty :
+	-indent *.c *.h
 
-.PHONY: all install clean
+.PHONY : upload
+upload :
+	-eACommander.sh -r --address 0x00000000 -f "ex2.bin" -r
 
-# end of development makefile
+.PHONY : clean
+clean :
+	-rm -rf *.o *.elf *.bin *.hex 

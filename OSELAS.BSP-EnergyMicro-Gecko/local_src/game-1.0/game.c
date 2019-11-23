@@ -57,7 +57,7 @@ void initializeGame(struct Game* game){
    init_ball(&(game->ballen), WIDTH / 2, HEIGHT / 2, 0xFFF, 0xF);
    init_pad(&(game->pad1), 10,  HEIGHT / 2, 0xFFF, 0xF);
    init_pad(&(game->pad2), 310, HEIGHT / 2 , 0xFFF, 0xF);
-   init_background(&(game->background), (WIDTH - 1)/2, (HEIGHT - 1)/2, 0, 0);
+   init_background(&(game->background), WIDTH / 2, HEIGHT / 2, 0, 0);
 
    game->settings = setup_display();
 }
@@ -102,7 +102,7 @@ void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
 void init_background(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
-    init_canvas(canvas, x, y, WIDTH-2, HEIGHT-2, 0, 0, 0, colour, fade);
+    init_canvas(canvas, x, y, WIDTH, HEIGHT, 0, 0, 0, colour, fade);
 }
 
 int whereCollision(struct Game* game){

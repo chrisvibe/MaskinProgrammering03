@@ -39,9 +39,12 @@ void tear_down_display(struct Settings settings)
    close(settings.fbfd);
 }
 
-void reset_screen(struct Settings settings)
+void clear_screen(struct Settings settings)
 {
-    printf("reset screen (not done)");
+    /* struct Canvas screen; */
+    /* init_canvas(&screen, WIDTH / 2, HEIGHT / 2, WIDTH - 1, HEIGHT - 1, 0, 0, 0, 0, 0); */
+    /* draw_canvas(&screen, settings); */
+    /* free(screen.pixels); */
 }
 
 void refresh_display(struct Settings settings, int x, int y, int width, int height)
@@ -110,9 +113,6 @@ void draw_pixel(struct Settings settings, int x, int y, int colour)
     settings.addr[x + (HEIGHT - y) * WIDTH] = colour;
 }
 
-void clear_screen(struct Settings settings)
-{
-}
 
 void erase_canvas(struct Canvas * canvas, struct Settings settings)
 {

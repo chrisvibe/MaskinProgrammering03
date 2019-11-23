@@ -29,11 +29,11 @@ struct Canvas initializePads(int x, int y);
 int whereCollision(struct Game* game);
 void checkPadPositions(struct Game* game);
 void handleCollision(struct Game* game);
-// int movePads();
 int collisionDetectionBall(struct Game game);
 int collisionDetectionPad(struct Game game);
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade);
 void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade);
+void init_background(struct Canvas* canvas, int x, int y, int colour, int fade);
 void draw_ball(struct Game game);
 void draw_pads(struct Game game);
 struct Game timeStep(struct Game game);
@@ -48,20 +48,23 @@ struct Game {
 	struct Canvas ballen;
 	struct Canvas pad1;
 	struct Canvas pad2;
+	struct Canvas background;
 };
 
 struct Game initializeGame(){
    struct Game game;
-   struct Canvas ballen, pad1, pad2;
+   struct Canvas ballen, pad1, pad2, background;
 
    game.ballen = ballen;
    game.pad1 = pad1;
    game.pad2 = pad2;
+   game.background = background;
 
    init_ball(&game.ballen, WIDTH / 2, HEIGHT / 2, 0xFFF, 0xF);
    init_pad(&game.pad1, 10,  HEIGHT / 2, 0xFFF, 0xF);
    init_pad(&game.pad2, 310, HEIGHT / 2 , 0xFFF, 0xF);
- 
+   init_background(&game.background, (WIDTH + 1)/2, (HEIGHT + 1)/2, 0xF, 0xFFF);
+
    game.settings = setup_display();
    return game;
 }
@@ -91,6 +94,11 @@ void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
     init_canvas(canvas, x, y, 2, 30, 0, 0, 1, 0xFFF, 0xF);
 }
 
+void init_background(struct Canvas* canvas, int x, int y, int colour, int fade)
+{
+    // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
+    init_canvas(canvas, x, y, WIDTH-100, HEIGHT-100, 0, 0, 0, colour, fade);
+}
 /*
 int collisionDetectionBall(struct Game game){
 	if (game.ballen.x - (game.ballen.width/2) == game.pad1.x + (game.pad1.width/2) && 
@@ -341,6 +349,9 @@ int main(int argc, char *argv[])
     init_gamepad();
 	printf("Hello World, I'm game!\n");
 	struct Game game = initializeGame();
+    draw_canvas(&game.background, game.settings);
+	refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
+ 
 
 	while (isGameFinished(P1Score, P2Score)){
         // timestep ------------------------------------------
@@ -373,6 +384,7 @@ int main(int argc, char *argv[])
     free((&game.ballen)->pixels);
     free((&game.pad1)->pixels);
     free((&game.pad2)->pixels);
+    free((&game.background)->pixels);
     tear_down_display(game.settings);
     printf("done.\n");
 

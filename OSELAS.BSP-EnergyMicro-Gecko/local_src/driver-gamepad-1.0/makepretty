@@ -3,10 +3,13 @@
 # . cleanup 
 
 make pretty
-for f in * 
+for f in *.c 
 do
-    sed -i "s/00b0/000b0/g" $f
-    sed -i "s/00b1/000b1/g" $f   # replace "00b1" with "000b1"
+    sed -i "s/ b/0b/g" $f   # replace " b" with "0b"
+done
+for f in *.h 
+do
+    sed -i "s/ b/0b/g" $f   # replace " b" with "0b"
 done
 make clean
 rm *~

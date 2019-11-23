@@ -34,23 +34,23 @@
 #define GPIO_IF_OFFSET          (uint32_t)(GPIO_IF) - GPIO_PA_BASE
 #define GPIO_IFC_OFFSET         (uint32_t)(GPIO_IFC) - GPIO_PA_BASE
 
-// Other constants
-#define GPIO_EVEN_IRQ_NUM       17
-#define GPIO_ODD_IRQ_NUM        18
 
+static int my_remove (struct platform_device *dev);
 
 // Global variables for init and cleanup functions
-/* static dev_t *devno; */
 static struct miscdevice miscdev;
 static struct platform_device *platform_dev;
-/* static struct class *cl; */
 
 // Global variables to access hardware in read function
 static int gpio_map_return;
 
-// For sending SIGIO
+// Global variables for sending SIGIO
 struct fasync_struct *pasync_queue;
 
+// Global varibles for interrupts. The only reason these are global
+// is because we need to free them in the cleanup function
+int gpio_irq_even;
+int gpio_irq_odd;
 
 // Debugging. Set debug variable to 1 to enable.
 static int debug = 1;
@@ -106,14 +106,6 @@ static struct file_operations my_fops = {
 };
 
 
-/***/
-/* * Struct cdev should have an owner field that should be*/ 
-/* * set to THIS_MODULE*/
-/* */
-/*struct cdev my_cdev = {*/
-/*  .owner = THIS_MODULE*/
-/*};*/
-
 
 /**
  * GPIO interrupt handler
@@ -140,14 +132,14 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   return IRQ_HANDLED;
 }
 
+
+
+
 static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
   char *gpio_alloc;
-  unsigned int gpio1;
-  unsigned int gpio2;
-  int gpio_irq_even;
-  int gpio_irq_odd;
+  unsigned int gpio_ien_tmp;
   uint32_t start_addr;
   uint32_t end_addr;
   struct resource *res;
@@ -181,10 +173,7 @@ static int my_probe (struct platform_device *dev) {
   printk("Initializing io memory remap for GPIO\n");
   gpio_map_return = ioremap_nocache((resource_size_t) start_addr, end_addr);
   
-  // Initialize as char driver
-  printk("Initializing as char driver\n");
-
-  // Make driver visible to user space
+  // Make driver visible to user space and register as char device
   printk("Making driver visible to user space\n");
   miscdev.minor = MISC_DYNAMIC_MINOR;
   // This is the visible name
@@ -227,43 +216,29 @@ static int my_probe (struct platform_device *dev) {
   }
 
 
+  // GPIO interrupt setup
   // DONT LOG BEYOND THIS PART IN THIS FUNCTION!!!
   // Logging will cause an interrupt to happen in the middle of interrupt setup,
   // which will cause modprobe to crash
 
-  //*GPIO_EXTIPSELL = 0x22222222;
-  /* printk("Setting gpio extipsell\n"); */
   iowrite32(
       (unsigned int) 0x22222222,
       (gpio_map_return + GPIO_EXTIPSELL_OFFSET));
 
-	//*GPIO_EXTIRISE = 0xff; 
-  /* printk("Setting gpio extirise\n"); */
   iowrite32(
       (unsigned int) 0xff,
       (gpio_map_return + GPIO_EXTIRISE_OFFSET));
 
-	//*GPIO_EXTIFALL = 0xff;
-  /* printk("Setting gpio extifall\n"); */
   iowrite32(
       (unsigned int) 0xff,
       (gpio_map_return + GPIO_EXTIFALL_OFFSET));
 
-	// *GPIO_IEN |= 0xff;
-  // CMU setup
-  /* printk("Setting gpio IEN\n"); */
-  gpio1 = ioread32(gpio_map_return + GPIO_IEN_OFFSET); 
-  gpio2 = gpio1 | 0xff;
+  gpio_ien_tmp = ioread32(gpio_map_return + GPIO_IEN_OFFSET) | 0xff;
+
   iowrite32(
-      (unsigned int) gpio2,
+      (unsigned int) gpio_ien_tmp,
       (gpio_map_return + GPIO_IEN_OFFSET));
 
-}
-
-
-
-static int my_remove (struct platform_device *dev) {
-  printk("platform driver exiting\n");
 }
 
 
@@ -287,6 +262,15 @@ static struct platform_driver my_driver = {
   },
 };
 
+static int my_remove (struct platform_device *dev) {
+   printk("platform driver exiting\n");
+   platform_driver_unregister(&my_driver);
+   misc_deregister(&miscdev);
+   free_irq(gpio_irq_even, NULL);
+   free_irq(gpio_irq_odd, NULL);
+   printk("platform driver cleanup complete\n");
+}
+
 
 /*
  * gamepad_init - function to insert this module into kernel space
@@ -298,20 +282,25 @@ static struct platform_driver my_driver = {
  */
 static int __init gamepad_init(void)
 {
+  int driver_reg_res;
+
   printk("Initializing gamepad driver\n");
-
-  return platform_driver_probe(&my_driver, my_probe);
-
-  printk("Init function complete, driver should now be visible under /dev\n");
-  return 0;
+  
+  driver_reg_res = platform_driver_probe(&my_driver, my_probe);
+  if (driver_reg_res != 0) {
+    printk(KERN_WARNING "Failed to register platform device, err code: %d\n", driver_reg_res);
+  }
+  return driver_reg_res;
 }
 
 
 static void __exit gamepad_cleanup(void)
 {
 	 printk("Gamepad driver cleanup\n");
-   free_irq(17, NULL);
-   free_irq(18, NULL);
+   /* platform_driver_unregister(&my_driver); */
+   /* misc_deregister(&miscdev); */
+   /* free_irq(gpio_irq_even, NULL); */
+   /* free_irq(gpio_irq_odd, NULL); */
 	 printk("Cleanup complete\n");
 }
 

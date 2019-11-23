@@ -146,8 +146,8 @@ static int my_probe (struct platform_device *dev) {
   char *gpio_alloc;
   unsigned int gpio1;
   unsigned int gpio2;
-  int gpioIrqEven;
-  int gpioIrqOdd;
+  int gpio_irq_even;
+  int gpio_irq_odd;
   uint32_t start_addr;
   uint32_t end_addr;
   struct resource *res;
@@ -155,8 +155,8 @@ static int my_probe (struct platform_device *dev) {
 
   printk("platform driver my_probe running\n");
   res = platform_get_resource(dev, IORESOURCE_MEM, 0);
-  gpioIrqEven = platform_get_irq(dev, 0);
-  gpioIrqOdd = platform_get_irq(dev, 1);
+  gpio_irq_even = platform_get_irq(dev, 0);
+  gpio_irq_odd = platform_get_irq(dev, 1);
 
   start_addr = res->start;
   end_addr = res->end - res->start;
@@ -209,16 +209,16 @@ static int my_probe (struct platform_device *dev) {
 
 
   // Should be placed before hardware generates interrupts
-  printk("Enabling interrupt for even GPIO irq number %d\n", gpioIrqEven);
-  if (request_irq(gpioIrqEven, 
+  printk("Enabling interrupt for even GPIO irq number %d\n", gpio_irq_even);
+  if (request_irq(gpio_irq_even, 
         GPIO_interrupt,
         0,
         "GPIO IRQ even",
         NULL) < 0) {
     printk(KERN_WARNING "Interrupt handler error for even GPIO!\n");
   }
-  printk("Enabling interrupt for GPIO irq number %d\n", gpioIrqOdd);
-  if (request_irq(gpioIrqOdd, 
+  printk("Enabling interrupt for GPIO irq number %d\n", gpio_irq_odd);
+  if (request_irq(gpio_irq_odd, 
         GPIO_interrupt,
         0,
         "GPIO IRQ odd",

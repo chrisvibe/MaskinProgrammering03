@@ -35,7 +35,17 @@
 #define GPIO_IFC_OFFSET         (uint32_t)(GPIO_IFC) - GPIO_PA_BASE
 
 
+// Function prototypes
+static int my_open (struct inode *inode, struct  file *filp);
+static int my_release (struct inode *inode, struct  file *filp);
+static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp);
+static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp);
+irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs);
+static int my_probe (struct platform_device *dev);
 static int my_remove (struct platform_device *dev);
+static int __init gamepad_init(void);
+static void __exit gamepad_cleanup(void);
+
 
 // Global variables for init and cleanup functions
 static struct miscdevice miscdev;
@@ -52,7 +62,8 @@ struct fasync_struct *pasync_queue;
 int gpio_irq_even;
 int gpio_irq_odd;
 
-// Debugging. Set debug variable to 1 to enable.
+
+// Debugging, Set debug variable to 1 to enable.
 static int debug = 1;
 static void debug_str(char *msg) {
   if (debug) 
@@ -220,7 +231,6 @@ static int my_probe (struct platform_device *dev) {
   // DONT LOG BEYOND THIS PART IN THIS FUNCTION!!!
   // Logging will cause an interrupt to happen in the middle of interrupt setup,
   // which will cause modprobe to crash
-
   iowrite32(
       (unsigned int) 0x22222222,
       (gpio_map_return + GPIO_EXTIPSELL_OFFSET));
@@ -263,7 +273,7 @@ static struct platform_driver my_driver = {
 };
 
 static int my_remove (struct platform_device *dev) {
-   printk("platform driver exiting\n");
+   printk("platform driver cleanup\n");
    platform_driver_unregister(&my_driver);
    misc_deregister(&miscdev);
    free_irq(gpio_irq_even, NULL);
@@ -274,11 +284,8 @@ static int my_remove (struct platform_device *dev) {
 
 /*
  * gamepad_init - function to insert this module into kernel space
- *
  * This is the first of two exported functions to handle inserting this
  * code into a running kernel
- *
- * Returns 0 if successfull, otherwise -1
  */
 static int __init gamepad_init(void)
 {
@@ -296,12 +303,7 @@ static int __init gamepad_init(void)
 
 static void __exit gamepad_cleanup(void)
 {
-	 printk("Gamepad driver cleanup\n");
-   /* platform_driver_unregister(&my_driver); */
-   /* misc_deregister(&miscdev); */
-   /* free_irq(gpio_irq_even, NULL); */
-   /* free_irq(gpio_irq_odd, NULL); */
-	 printk("Cleanup complete\n");
+	 printk("Gamepad driver __exit cleanup function\n");
 }
 
 module_init(gamepad_init);

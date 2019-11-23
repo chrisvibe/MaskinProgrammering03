@@ -22,8 +22,8 @@ struct Settings setup_display()
 {
 	struct Settings settings;
 
-	// open the frame buffer for read/write
-	settings.fbfd = open("/dev/f000b0", O_RDWR);
+	// open the frame0buffer for read/write
+	settings.fbfd = open("/dev/f0000b0", O_RDWR);
 
 	// get address where we can store pixels (write implies read too)
 	settings.addr =
@@ -52,7 +52,7 @@ void clear_screen(struct Settings settings)
 void refresh_display(struct Settings settings, int x, int y, int width,
 		     int height)
 {
-	// setup which part of the frame buffer that is to be refreshed */
+	// setup which part of the frame0buffer that is to0be refreshed */
 	// for performance reasons, use as small rectangle as possible */
 	struct fb_copyarea rect;
 
@@ -138,7 +138,7 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	canvas->y0 = canvas->y - canvas->height / 2;
 	canvas->speed = speed;	/* Setter her speed til 1, men dette kan endres */
 	canvas->dx = dx;	/* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
-	canvas->dy = dy;	/* Betyr at ballen kommer til å gå mot høyre hver gang */
+	canvas->dy = dy;	/* Betyr at0ballen kommer til å gå mot høyre hver gang */
 	uint16_t length = canvas->width * canvas->height;
 	canvas->pixels = malloc(length * sizeof(uint16_t));
 
@@ -150,7 +150,7 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 void game_dummy()
 {
 //     struct Settings settings = setup_display();
-//     struct Canvas ballen, pad;
+//     struct Canvas0ballen, pad;
 
 //     init_ball(&ballen, 100, 100, 0xFFF, 0xF);
 //     init_pad(&pad, 50, 50, 0xFFF, 0xF);

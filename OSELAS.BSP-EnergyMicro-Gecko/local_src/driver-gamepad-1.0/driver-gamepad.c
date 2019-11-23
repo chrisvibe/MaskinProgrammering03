@@ -6,6 +6,7 @@
 #include <linux/signal.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
+#include <linux/platform_device.h>
 #include <linux/interrupt.h>
 #include <linux/uaccess.h>
 #include <asm/io.h>
@@ -136,53 +137,50 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   return IRQ_HANDLED;
 }
 
-
-/*
- * gamepad_init - function to insert this module into kernel space
- *
- * This is the first of two exported functions to handle inserting this
- * code into a running kernel
- *
- * Returns 0 if successfull, otherwise -1
- */
-static int __init gamepad_init(void)
-{
-  printk("Initializing gamepad driver\n");
-
+static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
   int cdev_result;
   char *gpioAlloc;
   char *cmuAlloc;
 
-  unsigned int CMU_HFPER;
-  unsigned int result;
+  /* unsigned int CMU_HFPER; */
+  /* unsigned int result; */
 
   unsigned int gpio1;
   unsigned int gpio2;
+
+
+  printk("platform driver my_probe running\n");
+  struct resource *res = platform_get_resource(dev, IORESOURCE_MEM, 0);
+  int gpioIrqEven = platform_get_irq(dev, 0);
+  int gpioIrqOdd = platform_get_irq(dev, 1);
+  printk("start addr%d\n", res->start);
+  printk("end addr%d\n", res->end);
 
   // Request memory region for gpio. This is actually not strictly neede, but 
   // is good practice so that drivers do not access same mem regions
   printk("Allocating memory region for GPIO\n");
   gpioAlloc = "GPIO";
-  if (request_mem_region(GPIO_ADDR_START, GPIO_ADDR_SIZE, "GPIO") == NULL)  {
+  if (request_mem_region(res->start, res->end - res->start, "GPIO") == NULL)  {
     printk(KERN_WARNING "An error occured! Could not reserve memory region for GPIO\n");
     return 1;
   }
-  printk("Allocating memory region for CMU\n");
-  cmuAlloc = "CMU";
-  if (request_mem_region(CMU_ADDR_START, CMU_ADDR_SIZE, "CMU") == NULL)  {
-    printk(KERN_WARNING "An error occured! Could not reserve memory region for CMU\n");
-    return 1;
-  }
+
+  /* printk("Allocating memory region for CMU\n"); */
+  /* cmuAlloc = "CMU"; */
+  /* if (request_mem_region(CMU_ADDR_START, CMU_ADDR_SIZE, "CMU") == NULL)  { */
+  /*   printk(KERN_WARNING "An error occured! Could not reserve memory region for CMU\n"); */
+  /*   return 1; */
+  /* } */
 
   // Map I/O address space to new address space that we will use for hardware access. 
   // This is actually not strictly needed since I/O is memory mapped on the 
   // EFM32GG, but still good practice.
   printk("Initializing io memory remap for GPIO\n");
-  gpioMapReturn = ioremap_nocache((resource_size_t) GPIO_ADDR_START, GPIO_ADDR_SIZE);
-  printk("Initializing io memory remap for CMU\n");
-  cmuMapReturn = ioremap_nocache((resource_size_t) CMU_ADDR_START, CMU_ADDR_SIZE);
+  gpioMapReturn = ioremap_nocache((resource_size_t) res->start, res->end - res->start);
+  /* printk("Initializing io memory remap for CMU\n"); */
+  /* cmuMapReturn = ioremap_nocache((resource_size_t) CMU_ADDR_START, CMU_ADDR_SIZE); */
   
   // Get device version number
   printk("Getting device number\n");
@@ -204,12 +202,12 @@ static int __init gamepad_init(void)
   cl = class_create(THIS_MODULE, "Gamepad");
   device_create(cl, NULL, *devno , NULL, "Gamepad");
 
-  // CMU setup
-  printk("Setting up CMU\n");
-  CMU_HFPER = ioread32(cmuMapReturn + CMU_HFPERCLKEN0_OFFSET); 
-  result = CMU_HFPER | CMU2_HFPERCLKEN0_GPIO;
-  printk("Writing result: %d to cmu\n", result);
-  iowrite32(result, (cmuMapReturn + CMU_HFPERCLKEN0_OFFSET));
+  /* // CMU setup */
+  /* printk("Setting up CMU\n"); */
+  /* CMU_HFPER = ioread32(cmuMapReturn + CMU_HFPERCLKEN0_OFFSET); */ 
+  /* result = CMU_HFPER | CMU2_HFPERCLKEN0_GPIO; */
+  /* printk("Writing result: %d to cmu\n", result); */
+  /* iowrite32(result, (cmuMapReturn + CMU_HFPERCLKEN0_OFFSET)); */
 
   
   printk("Setting up GPIO, using port C offset %d\n", GPIO_PC_OFFSET);
@@ -228,16 +226,16 @@ static int __init gamepad_init(void)
 
 
   // Should be placed before hardware generates interrupts
-  printk("Enabling interrupt for even GPIO irq number %d\n", GPIO_EVEN_IRQ_NUM);
-  if (request_irq(GPIO_EVEN_IRQ_NUM, 
+  printk("Enabling interrupt for even GPIO irq number %d\n", gpioIrqEven);
+  if (request_irq(gpioIrqEven, 
         GPIO_interrupt,
         0,
         "GPIO IRQ even",
         NULL) < 0) {
     printk(KERN_WARNING "Interrupt handler error for even GPIO!\n");
   }
-  printk("Enabling interrupt for GPIO irq number %d\n", GPIO_ODD_IRQ_NUM);
-  if (request_irq(GPIO_ODD_IRQ_NUM, 
+  printk("Enabling interrupt for GPIO irq number %d\n", gpioIrqOdd);
+  if (request_irq(gpioIrqOdd, 
         GPIO_interrupt,
         0,
         "GPIO IRQ odd",
@@ -272,6 +270,49 @@ static int __init gamepad_init(void)
   iowrite32(
       (unsigned int) gpio2,
       (gpioMapReturn + GPIO_IEN_OFFSET));
+}
+
+
+
+static int my_remove (struct platform_device *dev) {
+  printk("platform driver exiting\n");
+}
+
+
+
+static const struct of_device_id my_of_match[] = {
+  {
+    .compatible = "tdt4258",
+  },
+  { },
+};
+
+MODULEDEVICETABLE(of, my_of_match);
+
+static struct platform_driver my_driver = {
+  .probe = my_probe,
+  .remove = my_remove,
+  .driver = {
+    .name = "my",
+    .owner = THIS_MODULE,
+    .of_match_table = my_of_match,
+  },
+};
+
+
+/*
+ * gamepad_init - function to insert this module into kernel space
+ *
+ * This is the first of two exported functions to handle inserting this
+ * code into a running kernel
+ *
+ * Returns 0 if successfull, otherwise -1
+ */
+static int __init gamepad_init(void)
+{
+  printk("Initializing gamepad driver\n");
+
+
 
 
 

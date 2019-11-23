@@ -144,13 +144,8 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
 static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
   int alloc_chrdevice_result;
-  /* int cdev_result; */
   char *gpioAlloc;
   char *cmuAlloc;
-
-  /* unsigned int CMU_HFPER; */
-  /* unsigned int result; */
-
   unsigned int gpio1;
   unsigned int gpio2;
 
@@ -162,13 +157,15 @@ static int my_probe (struct platform_device *dev) {
 
   /* uint32_t start_addr = (res->start)*4; */
   /* uint32_t end_addr = (res->end)*4; */
-  uint32_t start_addr = GPIO_ADDR_START;
-  uint32_t end_addr = GPIO_ADDR_SIZE;
+  uint32_t start_addr = res->start;
+  uint32_t end_addr = res->end - res->start;
 
   printk("start addr: %d\n", res->start);
   printk("end addr: %d\n", res->end);
   printk("GPIO start addr: %d\n", GPIO_ADDR_START);
   printk("GPIO start addr: %d\n", GPIO_ADDR_SIZE);
+  printk("platform dev start addr: %d\n", res->start);
+  printk("platform devend addr: %d\n", res->end);
 
   // Request memory region for gpio. This is actually not strictly neede, but 
   // is good practice so that drivers do not access same mem regions
@@ -179,56 +176,22 @@ static int my_probe (struct platform_device *dev) {
     return 1;
   }
 
-  /* printk("Allocating memory region for CMU\n"); */
-  /* cmuAlloc = "CMU"; */
-  /* if (request_mem_region(CMU_ADDR_START, CMU_ADDR_SIZE, "CMU") == NULL)  { */
-  /*   printk(KERN_WARNING "An error occured! Could not reserve memory region for CMU\n"); */
-  /*   return 1; */
-  /* } */
-
   // Map I/O address space to new address space that we will use for hardware access. 
   // This is actually not strictly needed since I/O is memory mapped on the 
   // EFM32GG, but still good practice.
   printk("Initializing io memory remap for GPIO\n");
   gpioMapReturn = ioremap_nocache((resource_size_t) start_addr, end_addr);
-  /* printk("Initializing io memory remap for CMU\n"); */
-  /* cmuMapReturn = ioremap_nocache((resource_size_t) CMU_ADDR_START, CMU_ADDR_SIZE); */
   
-  // Get device version number
-  /* printk("Getting device number\n"); */
-  /* alloc_chrdevice_result = alloc_chrdev_region(devno, 0, 1, "device_name"); */
-  /* if (alloc_chrdevice_result < 0) { */
-  /*   printk(KERN_WARNING "Gampead driver: Can't get device numbers\n"); */
-  /* } */
-
   // Initialize as char driver
   printk("Initializing as char driver\n");
 
-  /* cdev_init(&my_cdev, &my_fops); */
-  /* cdev_result = cdev_add(&my_cdev, *devno, 1); */
-
-  /* if (cdev_result < 0) { */
-  /*   printk(KERN_WARNING "Gamepad driver: Failed to add character device\n"); */
-  /* } */ 
-  
   // Make driver visible to user space
   printk("Making driver visible to user space\n");
-  /* cl = class_create(THIS_MODULE, "Gamepad"); */
-  /* device_create(cl, NULL, *devno , NULL, "Gamepad"); */
   miscdev.minor = MISC_DYNAMIC_MINOR;
   // This is the visible name
   miscdev.name = "Gamepad";
   miscdev.fops = &my_fops;
   misc_register(&miscdev);
-
-  
-
-  /* // CMU setup */
-  /* printk("Setting up CMU\n"); */
-  /* CMU_HFPER = ioread32(cmuMapReturn + CMU_HFPERCLKEN0_OFFSET); */ 
-  /* result = CMU_HFPER | CMU2_HFPERCLKEN0_GPIO; */
-  /* printk("Writing result: %d to cmu\n", result); */
-  /* iowrite32(result, (cmuMapReturn + CMU_HFPERCLKEN0_OFFSET)); */
 
   
   printk("Setting up GPIO, using port C offset %d\n", GPIO_PC_OFFSET);
@@ -264,6 +227,10 @@ static int my_probe (struct platform_device *dev) {
     printk(KERN_WARNING "Interrupt handler error for odd GPIO\n");
   }
 
+
+  // DONT LOG BEYOND THIS PART IN THIS FUNCTION!!!
+  // Logging will cause an interrupt to happen in the middle of interrupt setup,
+  // which will cause modprobe to crash
 
   //*GPIO_EXTIPSELL = 0x22222222;
   /* printk("Setting gpio extipsell\n"); */
@@ -334,28 +301,7 @@ static int __init gamepad_init(void)
 {
   printk("Initializing gamepad driver\n");
 
-  /* int ret; */
-
   return platform_driver_probe(&my_driver, my_probe);
-
-  /* ret = platform_driver_register(&my_driver); */
-  /* if (ret == 0) { */
-  /*   printk("platform driver registered\n"); */
-  /* } */
-
-  /* platform_dev = platform_device_alloc("my", -1); */
-  /* if (!platform_dev) { */
-  /*   return -ENOMEM; */
-  /* } */
-
-
-
-  /* ret = platform_device_add(platform_dev); */
-  /* if (ret != 0) { */
-  /*   printk("platform driver could not be added\n"); */
-  /* } */
-
-  /* return ret; */
 
   printk("Init function complete, driver should now be visible under /dev\n");
   return 0;
@@ -367,9 +313,6 @@ static void __exit gamepad_cleanup(void)
 	 printk("Gamepad driver cleanup\n");
    free_irq(17, NULL);
    free_irq(18, NULL);
-   /* unregister_chrdev_region(*devno, 1); */
-   /* device_destroy(cl, *devno); */
-   /* class_destroy(cl); */
 	 printk("Cleanup complete\n");
 }
 

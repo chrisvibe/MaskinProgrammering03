@@ -10089,4 +10089,1438 @@ Signal handler res: 255
 [   43.320000] Releasing
 KILL
 / # 
+/ # nvGecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x47000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x000000047000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gamepad
+[   14.560000] Initializing gamepad driver
+[   14.560000] platform driver my_probe running
+[   14.570000] start addr: 1073766400
+[   14.580000] end addr: 1073766911
+[   14.580000] GPIO start addr: 1073766400
+[   14.590000] GPIO start addr: 288
+[   14.590000] platform dev start addr: 1073766400
+[   14.600000] platform devend addr: 1073766911
+[   14.610000] Allocating memory region for GPIO
+[   14.610000] Initializing io memory remap for GPIO
+[   14.620000] Initializing as char driver
+[   14.620000] Making driver visible to user space
+[   14.640000] Setting up GPIO, using port C offset 72
+[   14.650000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   14.660000] Setting internal pull up resistors with GPIO dout offset 12
+[   14.670000] Enabling interrupt for even GPIO irq number 17
+[   14.680000] Enabling interrupt for GPIO irq number 18
+[   14.690000] IN interrupt handler
+[   14.690000] Interrupt fired
+[   14.690000] Setting interrupt as handled, reading from gpio_if
+[   14.690000] Writing gpio if to gpio ifc
+[   14.690000] Firing SIGIO signal
+[   14.690000] Interrupt handled, returning IRQ_HANDLED
 / # 
+/ # [   18.030000] IN interrupt handler
+[   18.030000] Interrupt fired
+[   18.030000] Setting interrupt as handled, reading from gpio_if
+[   18.030000] Writing gpio if to gpio ifc
+[   18.030000] Firing SIGIO signal
+[   18.030000] Interrupt handled, returning IRQ_HANDLED
+[   18.580000] IN interrupt handler
+[   18.580000] Interrupt fired
+[   18.580000] Setting interrupt as handled, reading from gpio_if
+[   18.580000] Writing gpio if to gpio ifc
+[   18.580000] Firing SIGIO signal
+[   18.580000] Interrupt handled, returning IRQ_HANDLED
+game
+Running signal handler test
+[   24.980000] Opening
+[   28.210000] IN interrupt handler
+[   28.210000] Interrupt fired
+[   28.210000] Setting interrupt as handled, reading from gpio_if
+[   28.210000] Writing gpio if to gpio ifc
+[   28.210000] Firing SIGIO signal
+[   28.210000] Interrupt handled, returning IRQ_HANDLED
+[   28.240000] Driver button result:
+[   28.250000] 253
+Signal handler res: 253
+Hello World, I'm game!
+[   28.310000] IN interrupt handler
+[   28.310000] Interrupt fired
+[   28.310000] Setting interrupt as handled, reading from gpio_if
+[   28.310000] Writing gpio if to gpio ifc
+[   28.310000] Firing SIGIO signal
+[   28.310000] Interrupt handled, returning IRQ_HANDLED
+[   28.350000] Driver button result:
+[   28.360000] 255
+Signal handler res: 255
+[   29.280000] IN interrupt handler
+[   29.280000] Interrupt fired
+[   29.280000] Setting interrupt as handled, reading from gpio_if
+[   29.280000] Writing gpio if to gpio ifc
+[   29.280000] Firing SIGIO signal
+[   29.280000] Interrupt handled, returning IRQ_HANDLED
+[   29.310000] Driver button result:
+[   29.320000] 247
+Signal handler res: 247
+[   29.370000] IN interrupt handler
+[   29.370000] Interrupt fired
+[   29.370000] Setting interrupt as handled, reading from gpio_if
+[   29.370000] Writing gpio if to gpio ifc
+[   29.370000] Firing SIGIO signal
+[   29.370000] Interrupt handled, returning IRQ_HANDLED
+[   29.410000] Driver button result:
+[   29.410000] 255
+Signal handler res: 255
+[   30.660000] IN interrupt handler
+[   30.660000] Interrupt fired
+[   30.660000] Setting interrupt as handled, reading from gpio_if
+[   30.660000] Writing gpio if to gpio ifc
+[   30.660000] Firing SIGIO signal
+[   30.660000] Interrupt handled, returning IRQ_HANDLED
+[   30.690000] Driver button result:
+[   30.700000] 253
+Signal handler res: 253
+[   30.750000] IN interrupt handler
+[   30.750000] Interrupt fired
+[   30.750000] Setting interrupt as handled, reading from gpio_if
+[   30.750000] Writing gpio if to gpio ifc
+[   30.750000] Firing SIGIO signal
+[   30.750000] Interrupt handled, returning IRQ_HANDLED
+[   30.780000] Driver button result:
+[   30.790000] 255
+Signal handler res: 255
+[   31.290000] IN interrupt handler
+[   31.290000] Interrupt fired
+[   31.290000] Setting interrupt as handled, reading from gpio_if
+[   31.290000] Writing gpio if to gpio ifc
+[   31.290000] Firing SIGIO signal
+[   31.290000] Interrupt handled, returning IRQ_HANDLED
+[   31.330000] Driver button result:
+[   31.330000] 247
+Signal handler res: 247
+[   31.380000] IN interrupt handler
+[   31.380000] Interrupt fired
+[   31.380000] Setting interrupt as handled, reading from gpio_if
+[   31.380000] Writing gpio if to gpio ifc
+[   31.380000] Firing SIGIO signal
+[   31.380000] Interrupt handled, returning IRQ_HANDLED
+[   31.520000] Driver button result:
+[   31.530000] 255
+Signal handler res: 255
+[   32.210000] IN interrupt handler
+[   32.210000] Interrupt fired
+[   32.210000] Setting interrupt as handled, reading from gpio_if
+[   32.210000] Writing gpio if to gpio ifc
+[   32.210000] Firing SIGIO signal
+[   32.210000] Interrupt handled, returning IRQ_HANDLED
+[   32.240000] Driver button result:
+[   32.250000] 253
+Signal handler res: 253
+[   32.300000] IN interrupt handler
+[   32.300000] Interrupt fired
+[   32.300000] Setting interrupt as handled, reading from gpio_if
+[   32.300000] Writing gpio if to gpio ifc
+[   32.300000] Firing SIGIO signal
+[   32.300000] Interrupt handled, returning IRQ_HANDLED
+[   32.330000] Driver button result:
+[   32.340000] 255
+Signal handler res: 255
+[   32.610000] IN interrupt handler
+[   32.610000] Interrupt fired
+[   32.610000] Setting interrupt as handled, reading from gpio_if
+[   32.610000] Writing gpio if to gpio ifc
+[   32.610000] Firing SIGIO signal
+[   32.610000] Interrupt handled, returning IRQ_HANDLED
+[   32.650000] Driver button result:
+[   32.650000] 247
+Signal handler res: 247
+[   32.710000] IN interrupt handler
+[   32.710000] Interrupt fired
+[   32.710000] Setting interrupt as handled, reading from gpio_if
+[   32.710000] Writing gpio if to gpio ifc
+[   32.710000] Firing SIGIO signal
+[   32.710000] Interrupt handled, returning IRQ_HANDLED
+[   32.750000] Driver button result:
+[   32.750000] 255
+Signal handler res: 255
+[   37.470000] IN interrupt handler
+[   37.470000] Interrupt fired
+[   37.470000] Setting interrupt as handled, reading from gpio_if
+[   37.470000] Writing gpio if to gpio ifc
+[   37.470000] Firing SIGIO signal
+[   37.470000] Interrupt handled, returning IRQ_HANDLED
+[   37.510000] Driver button result:
+[   37.510000] 253
+Signal handler res: 253
+[   37.570000] IN interrupt handler
+[   37.570000] Interrupt fired
+[   37.570000] Setting interrupt as handled, reading from gpio_if
+[   37.570000] Writing gpio if to gpio ifc
+[   37.570000] Firing SIGIO signal
+[   37.570000] Interrupt handled, returning IRQ_HANDLED
+[   37.600000] Driver button result:
+[   37.610000] 255
+Signal handler res: 255
+[   37.870000] IN interrupt handler
+[   37.870000] Interrupt fired
+[   37.870000] Setting interrupt as handled, reading from gpio_if
+[   37.870000] Writing gpio if to gpio ifc
+[   37.870000] Firing SIGIO signal
+[   37.870000] Interrupt handled, returning IRQ_HANDLED
+[   37.900000] Driver button result:
+[   37.900000] IN interrupt handler
+[   37.900000] Interrupt fired
+[   37.900000] Setting interrupt as handled, reading from gpio_if
+[   37.900000] Writing gpio if to gpio ifc
+[   37.900000] Firing SIGIO signal
+[   37.900000] Interrupt handled, returning IRQ_HANDLED
+[   37.940000] 255
+Signal handler res: 255
+[   37.950000] Driver button result:
+[   37.960000] 247
+Signal handler res: 247
+[   38.040000] IN interrupt handler
+[   38.040000] Interrupt fired
+[   38.040000] Setting interrupt as handled, reading from gpio_if
+[   38.040000] Writing gpio if to gpio ifc
+[   38.040000] Firing SIGIO signal
+[   38.040000] Interrupt handled, returning IRQ_HANDLED
+[   38.070000] Driver button result:
+[   38.080000] 255
+Signal handler res: 255
+[   38.440000] IN interrupt handler
+[   38.440000] Interrupt fired
+[   38.440000] Setting interrupt as handled, reading from gpio_if
+[   38.440000] Writing gpio if to gpio ifc
+[   38.440000] Firing SIGIO signal
+[   38.440000] Interrupt handled, returning IRQ_HANDLED
+[   38.480000] Driver button result:
+[   38.480000] IN interrupt handler
+[   38.480000] Interrupt fired
+[   38.480000] Setting interrupt as handled, reading from gpio_if
+[   38.480000] Writing gpio if to gpio ifc
+[   38.480000] Firing SIGIO signal
+[   38.480000] Interrupt handled, returning IRQ_HANDLED
+[   38.520000] 253
+Signal handler res: 253
+[   38.530000] Driver button result:
+[   38.530000] 255
+Signal handler res: 255
+[   41.100000] 
+[   41.100000] Unhandled exception: IPSR = 00000005 LR = fffffff1
+[   41.100000] 
+[   41.100000] CPU: 0 PID: 16 Comm: kswapd0 Tainted: G           O 3.12.0-rc4 #1
+[   41.100000] task: 162707e0 ti: 162b4000 task.ti: 162b4000
+[   41.100000] PC is at 0x1034f882
+[   41.100000] LR is at shrink_page_list.isra.58+0x135/0x5e0
+[   41.100000] pc : [<1034f882>]    lr : [<18034bf5>]    psr: 0100000b
+[   41.100000] sp : 162b5d58  ip : 00000081  fp : 000000d0
+[   41.100000] r10: 00000002  r9 : 162b5e10  r8 : 00000000
+[   41.100000] r7 : 16001f34  r6 : 162b5f18  r5 : 163bc0ac  r4 : 16001f20
+[   41.100000] r3 : 1034f883  r2 : 00000000  r1 : 00000002  r0 : 0f0af091
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x46000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x000000046000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x49000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x000000049000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x47000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x000000047000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gamepad
+[   13.110000] Initializing gamepad driver
+[   13.120000] platform driver my_probe running
+[   13.120000] start addr: 1073766400
+[   13.130000] end addr: 1073766911
+[   13.130000] GPIO start addr: 1073766400
+[   13.140000] GPIO start addr: 288
+[   13.150000] platform dev start addr: 1073766400
+[   13.150000] platform devend addr: 1073766911
+[   13.160000] Allocating memory region for GPIO
+[   13.170000] An error occured! Could not reserve memory region for GPIO
+[   13.180000] my: probe of 40006000.tdt4258 failed with error 1
+[   13.280000] Initializing gamepad driver
+[   13.280000] platform driver my_probe running
+[   13.290000] start addr: 1073766400
+[   13.300000] end addr: 1073766911
+[   13.300000] GPIO start addr: 1073766400
+[   13.310000] GPIO start addr: 288
+[   13.310000] platform dev start addr: 1073766400
+[   13.320000] platform devend addr: 1073766911
+[   13.320000] Allocating memory region for GPIO
+[   13.330000] An error occured! Could not reserve memory region for GPIO
+[   13.340000] my: probe of 40006000.tdt4258 failed with error 1
+modprobe: 'extra/driver-gamepad.ko': No such device
+/ # 
+/ # Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.180000] 
+[    0.180000] Unhandled exception: IPSR = 00000006 LR = fffffff1
+[    0.180000] 
+[    0.180000] CPU: 0 PID: 1332346952 Comm: `DH!A`BH Not tainted 3.12.0-rc4 #1
+[    0.180000] 
+[    0.180000] Unhandled exception: IPSR = 00000003 LR = fffffff1
+[    0.180000] 
+[    0.180000] CPU: 0 PID: 1332346952 Comm: `DH!A`BH Not tainted 3.12.0-rc4 #1
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.000000] Calibrating delay loop... Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+Gecko
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 3.12.0-rc4 (non-root@76523091abb7) (gcc version 4.7.2 (OSELAS.Toolchain-2012.12.0) ) #1 PREEMPT Thu Nov 21 21:47:41 UTC 2019
+[    0.000000] CPU: ARMv7-M [412fc231] revision 1 (ARMv7M), cr=00000000
+[    0.000000] CPU: unknown data cache, unknown instruction cache
+[    0.000000] Machine: EFM32 (Device Tree Support), model: Energy Micro Giant Gecko Development Kit
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] On node 0 totalpages: 986
+[    0.000000] free_area_init_node: node 0, pgdat 16027d10, node_mem_map 16000000
+[    0.000000]   Normal zone: 8 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 986 pages, LIFO batch:0
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 978
+[    0.000000] Kernel command line: console=ttyefm4,115200 init=/linuxrc ignore_loglevel ihash_entries=64 dhash_entries=64 earlyprintk uclinux.physaddr=0x18400000 root=/dev/mtdblock0
+[    0.000000] PID hash table entries: 16 (order: -6, 64 bytes)
+[    0.000000] Dentry cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Inode-cache hash table entries: 64 (order: -4, 256 bytes)
+[    0.000000] Memory: 3684K/3944K available (1287K kernel code, 104K rwdata, 596K rodata, 66K init, 51K bss, 260K reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0x00000000 - 0x00001000   (   4 kB)
+[    0.000000]     fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+[    0.000000]     vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+[    0.000000]     lowmem  : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]     modules : 0x16000000 - 0x163da000   (   3 MB)
+[    0.000000]       .text : 0x18000000 - 0x181d6d44   (1884 kB)
+[    0.000000]       .init : 0x1600a000 - 0x16010000   (  24 kB)
+[    0.000000]       .data : 0x16008000 - 0x16028360   ( 129 kB)
+[    0.000000]        .bss : 0x1602836c - 0x16034f74   (  52 kB)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] sched_clock: 32 bits at 100 Hz, resolution 10000000ns, wraps every 4294967286ms
+[    0.000000] Console: colour dummy device 80x30
+[    0.020000] Calibrating delay loop... 30.72 BogoMIPS (lpj=153600)
+[    0.110000] pid_max: default: 4096 minimum: 301
+[    0.120000] Mount-cache hash table entries: 512
+[    0.360000] devtmpfs: initialized
+[    0.430000] NET: Registered protocol family 16
+[    0.640000] Reset Cause: 0x0000006c
+[    0.640000]  `-> An external reset has been applied.
+[    0.650000] Energy Micro Giant Gecko, EFM32GG990F1024 (rev 1D, prodrev 20), 128 kB RAM
+[    0.660000] Missing cpus node, bailing out
+[    0.950000] bio: create slab <bio-0> at 0
+[    1.060000] Switched to clocksource efm32 timer
+[    1.850000] NET: Registered protocol family 2
+[    1.910000] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    1.930000] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    1.940000] TCP: Hash tables configured (established 512 bind 512)
+[    1.950000] TCP: reno registered
+[    1.950000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    1.960000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    1.990000] NET: Registered protocol family 1
+[    2.580000] ROMFS MTD (C) 2007 Red Hat, Inc.
+[    2.660000] io scheduler noop registered (default)
+[    2.990000] Console: switching to colour frame buffer device 40x30
+[    3.200000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[    3.220000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.230000] console [ttyefm4] enabled, bootconsole disabled
+[    3.270000] EFM32 UART/USART driver
+[    3.340000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[    3.360000] Creating 1 MTD partitions on "rom":
+[    3.370000] 0x000000000000-0x00000004a000 : "ROMfs"
+[    3.500000] mousedev: PS/2 mouse device common for all mice
+[    3.530000] i2c /dev entries driver
+[    3.640000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.690000] lm75 0-0048: hwmon1: sensor 'stds75'
+[    3.740000] TCP: cubic registered
+[    3.750000] NET: Registered protocol family 17
+[    4.000000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[    4.010000] devtmpfs: mounted
+[    4.020000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gamepad
+[   16.950000] Initializing gamepad driver
+[   16.960000] platform driver my_probe running
+[   16.970000] start addr: 1073766400
+[   16.970000] end addr: 1073766911
+[   16.980000] GPIO start addr: 1073766400
+[   16.980000] GPIO start addr: 288
+[   16.990000] platform dev start addr: 1073766400
+[   16.990000] platform devend addr: 1073766911
+[   17.000000] Allocating memory region for GPIO
+[   17.010000] Initializing io memory remap for GPIO
+[   17.010000] Initializing as char driver
+[   17.020000] Making driver visible to user space
+[   17.040000] Setting up GPIO, using port C offset 72
+[   17.040000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   17.050000] Setting internal pull up resistors with GPIO dout offset 12
+[   17.060000] Enabling interrupt for even GPIO irq number 17
+[   17.070000] Enabling interrupt for GPIO irq number 18
+[   17.080000] IN interrupt handler
+[   17.080000] Interrupt fired
+[   17.080000] Setting interrupt as handled, reading from gpio_if
+[   17.080000] Writing gpio if to gpio ifc
+[   17.080000] Firing SIGIO signal
+[   17.080000] Interrupt handled, returning IRQ_HANDLED
+/ # 
+/ # gmae[J[J[Jamge[J[Je
+Running signal handler test
+[   30.830000] Opening
+[   33.670000] IN interrupt handler
+[   33.670000] Interrupt fired
+[   33.670000] Setting interrupt as handled, reading from gpio_if
+[   33.670000] Writing gpio if to gpio ifc
+[   33.670000] Firing SIGIO signal
+[   33.670000] Interrupt handled, returning IRQ_HANDLED
+[   33.710000] Driver button result:
+[   33.710000] 253
+Signal handler res: 253
+Hello World, I'm game!
+[   33.940000] IN interrupt handler
+[   33.940000] Interrupt fired
+[   33.940000] Setting interrupt as handled, reading from gpio_if
+[   33.940000] Writing gpio if to gpio ifc
+[   33.940000] Firing SIGIO signal
+[   33.940000] Interrupt handled, returning IRQ_HANDLED
+[   34.000000] Driver button result:
+[   34.010000] 255
+Signal handler res: 255
+[   34.290000] IN interrupt handler
+[   34.290000] Interrupt fired
+[   34.290000] Setting interrupt as handled, reading from gpio_if
+[   34.290000] Writing gpio if to gpio ifc
+[   34.290000] Firing SIGIO signal
+[   34.290000] Interrupt handled, returning IRQ_HANDLED
+[   34.330000] Driver button result:
+[   34.330000] 247
+Signal handler res: 247
+[   34.480000] IN interrupt handler
+[   34.480000] Interrupt fired
+[   34.480000] Setting interrupt as handled, reading from gpio_if
+[   34.480000] Writing gpio if to gpio ifc
+[   34.480000] Firing SIGIO signal
+[   34.480000] Interrupt handled, returning IRQ_HANDLED
+[   34.510000] Driver button result:
+[   34.520000] 255
+Signal handler res: 255
+[   34.750000] IN interrupt handler
+[   34.750000] Interrupt fired
+[   34.750000] Setting interrupt as handled, reading from gpio_if
+[   34.750000] Writing gpio if to gpio ifc
+[   34.750000] Firing SIGIO signal
+[   34.750000] Interrupt handled, returning IRQ_HANDLED
+[   34.790000] Driver button result:
+[   34.790000] 253
+Signal handler res: 253
+[   34.920000] IN interrupt handler
+[   34.920000] Interrupt fired
+[   34.920000] Setting interrupt as handled, reading from gpio_if
+[   34.920000] Writing gpio if to gpio ifc
+[   34.920000] Firing SIGIO signal
+[   34.920000] Interrupt handled, returning IRQ_HANDLED
+[   34.960000] Driver button result:
+[   34.960000] 255
+Signal handler res: 255
+[   36.060000] IN interrupt handler
+[   36.060000] Interrupt fired
+[   36.060000] Setting interrupt as handled, reading from gpio_if
+[   36.060000] Writing gpio if to gpio ifc
+[   36.060000] Firing SIGIO signal
+[   36.060000] Interrupt handled, returning IRQ_HANDLED
+[   36.100000] Driver button result:
+[   36.100000] 247
+Signal handler res: 247
+[   36.200000] IN interrupt handler
+[   36.200000] Interrupt fired
+[   36.200000] Setting interrupt as handled, reading from gpio_if
+[   36.200000] Writing gpio if to gpio ifc
+[   36.200000] Firing SIGIO signal
+[   36.200000] Interrupt handled, returning IRQ_HANDLED
+[   36.230000] Driver button result:
+[   36.240000] 255
+Signal handler res: 255
+[   36.440000] IN interrupt handler
+[   36.440000] Interrupt fired
+[   36.440000] Setting interrupt as handled, reading from gpio_if
+[   36.440000] Writing gpio if to gpio ifc
+[   36.440000] Firing SIGIO signal
+[   36.440000] Interrupt handled, returning IRQ_HANDLED
+[   36.470000] Driver button result:
+[   36.480000] 253
+Signal handler res: 253
+[   36.570000] IN interrupt handler
+[   36.570000] Interrupt fired
+[   36.570000] Setting interrupt as handled, reading from gpio_if
+[   36.570000] Writing gpio if to gpio ifc
+[   36.570000] Firing SIGIO signal
+[   36.570000] Interrupt handled, returning IRQ_HANDLED
+[   36.600000] Driver button result:
+[   36.610000] 255
+Signal handler res: 255
+[   36.800000] IN interrupt handler
+[   36.800000] Interrupt fired
+[   36.800000] Setting interrupt as handled, reading from gpio_if
+[   36.800000] Writing gpio if to gpio ifc
+[   36.800000] Firing SIGIO signal
+[   36.800000] Interrupt handled, returning IRQ_HANDLED
+[   36.840000] Driver button result:
+[   36.840000] 247
+Signal handler res: 247
+[   36.960000] IN interrupt handler
+[   36.960000] Interrupt fired
+[   36.960000] Setting interrupt as handled, reading from gpio_if
+[   36.960000] Writing gpio if to gpio ifc
+[   36.960000] Firing SIGIO signal
+[   36.960000] Interrupt handled, returning IRQ_HANDLED
+[   37.000000] Driver button result:
+[   37.000000] 255
+Signal handler res: 255
+[   37.170000] IN interrupt handler
+[   37.170000] Interrupt fired
+[   37.170000] Setting interrupt as handled, reading from gpio_if
+[   37.170000] Writing gpio if to gpio ifc
+[   37.170000] Firing SIGIO signal
+[   37.170000] Interrupt handled, returning IRQ_HANDLED
+[   37.260000] Driver button result:
+[   37.260000] 253
+Signal handler res: 253
+[   37.310000] IN interrupt handler
+[   37.310000] Interrupt fired
+[   37.310000] Setting interrupt as handled, reading from gpio_if
+[   37.310000] Writing gpio if to gpio ifc
+[   37.310000] Firing SIGIO signal
+[   37.310000] Interrupt handled, returning IRQ_HANDLED
+[   37.350000] Driver button result:
+[   37.350000] 255
+Signal handler res: 255
+[   37.660000] IN interrupt handler
+[   37.660000] Interrupt fired
+[   37.660000] Setting interrupt as handled, reading from gpio_if
+[   37.660000] Writing gpio if to gpio ifc
+[   37.660000] Firing SIGIO signal
+[   37.660000] Interrupt handled, returning IRQ_HANDLED
+[   37.700000] Driver button result:
+[   37.700000] 247
+Signal handler res: 247
+[   37.780000] IN interrupt handler
+[   37.780000] Interrupt fired
+[   37.780000] Setting interrupt as handled, reading from gpio_if
+[   37.780000] Writing gpio if to gpio ifc
+[   37.780000] Firing SIGIO signal
+[   37.780000] Interrupt handled, returning IRQ_HANDLED
+[   37.820000] Driver button result:
+[   37.820000] 255
+Signal handler res: 255
+[   38.070000] IN interrupt handler
+[   38.070000] Interrupt fired
+[   38.070000] Setting interrupt as handled, reading from gpio_if
+[   38.070000] Writing gpio if to gpio ifc
+[   38.070000] Firing SIGIO signal
+[   38.070000] Interrupt handled, returning IRQ_HANDLED
+[   38.110000] Driver button result:
+[   38.110000] 253
+Signal handler res: 253
+[   38.170000] IN interrupt handler
+[   38.170000] Interrupt fired
+[   38.170000] Setting interrupt as handled, reading from gpio_if
+[   38.170000] Writing gpio if to gpio ifc
+[   38.170000] Firing SIGIO signal
+[   38.170000] Interrupt handled, returning IRQ_HANDLED
+[   38.210000] Driver button result:
+[   38.210000] 255
+Signal handler res: 255
+[   38.740000] IN interrupt handler
+[   38.740000] Interrupt fired
+[   38.740000] Setting interrupt as handled, reading from gpio_if
+[   38.740000] Writing gpio if to gpio ifc
+[   38.740000] Firing SIGIO signal
+[   38.740000] Interrupt handled, returning IRQ_HANDLED
+[   38.770000] Driver button result:
+[   38.780000] 247
+Signal handler res: 247
+[   38.880000] IN interrupt handler
+[   38.880000] Interrupt fired
+[   38.880000] Setting interrupt as handled, reading from gpio_if
+[   38.880000] Writing gpio if to gpio ifc
+[   38.880000] Firing SIGIO signal
+[   38.880000] Interrupt handled, returning IRQ_HANDLED
+[   38.920000] Driver button result:
+[   38.920000] 255
+Signal handler res: 255
+[   39.120000] 
+[   39.120000] Unhandled exception: IPSR = 00000006 LR = fffffff1
+[   39.120000] 
+[   39.120000] CPU: 0 PID: 36 Comm: game Tainted: G           O 3.12.0-rc4 #1
+[   39.120000] task: 16270fc0 ti: 160ec000 task.ti: 160ec000
+[   39.120000] PC is at add_nommu_region+0x1e/0x3c
+[   39.120000] LR is at do_mmap_pgoff+0x50d/0x640
+[   39.120000] pc : [<180389fa>]    lr : [<1803933d>]    psr: 8100000b
+[   39.120000] sp : 160edf08  ip : 00000000  fp : 1629db00
+[   39.120000] r10: 00000026  r9 : 00000000  r8 : 00000000
+[   39.120000] r7 : 00026000  r6 : 000000fb  r5 : 1638dc00  r4 : 16362660
+[   39.120000] r3 : 16347150  r2 : 16300000  r1 : 16300000  r0 : 1638dc00

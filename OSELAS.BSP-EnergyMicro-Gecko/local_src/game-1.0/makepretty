@@ -5,8 +5,8 @@
 make pretty
 for f in * 
 do
-    sed -i "s/b0/0b0/g" $f
-    sed -i "s/b1/0b1/g" $f   # replace "b1" with "0b1"
+    sed -i "s/000b0/0000b0/g" $f
+    sed -i "s/000b1/0000b1/g" $f   # replace "000b1" with "0000b1"
 done
 make clean
 rm *~

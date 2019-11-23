@@ -24,9 +24,7 @@
 #define GPIO_PC_OFFSET          GPIO_PC_BASE - GPIO_PA_BASE
 #define GPIO_MODEL_OFFSET       (uint32_t)(GPIO_PA_MODEL) - GPIO_PA_BASE
 #define GPIO_DOUT_OFFSET        (uint32_t)(GPIO_PA_DOUT) - GPIO_PA_BASE
-#define CMU_ADDR_START          CMU_BASE2
-#define CMU_ADDR_SIZE           (uint32_t)(CMU_HFPERCLKEN0) + 4 - CMU_BASE2 
-#define CMU_HFPERCLKEN0_OFFSET  (uint32_t)(CMU_HFPERCLKEN0) - CMU_BASE2
+#define GPIO_DIN_OFFSET         (uint32_t)(GPIO_PA_DIN) - GPIO_PA_BASE
 #define GPIO_EXTIPSELL_OFFSET   (uint32_t)(GPIO_EXTIPSELL) - GPIO_PA_BASE
 #define GPIO_EXTIRISE_OFFSET    (uint32_t)(GPIO_EXTIRISE) - GPIO_PA_BASE
 #define GPIO_EXTIFALL_OFFSET    (uint32_t)(GPIO_EXTIFALL) - GPIO_PA_BASE
@@ -87,7 +85,7 @@ static int my_release (struct inode *inode, struct  file *filp) {
 
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
   uint8_t res;
-  res = ioread8(gpio_map_return + 72 + 28);
+  res = ioread8(gpio_map_return + GPIO_PC_OFFSET + GPIO_DIN_OFFSET);
   debug_str("Driver button result:");
   debug_int(res);
   if (copy_to_user(buff, &res, 1) != 0) {

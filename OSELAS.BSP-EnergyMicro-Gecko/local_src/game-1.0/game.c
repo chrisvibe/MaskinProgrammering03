@@ -15,9 +15,9 @@
 #define P1 1
 #define P2 2
 #define GAME_SPEED .8 
+#define maxScore 3
 int P1Score = 0; 
 int P2Score = 0;
-int maxScore = 5;
 
 struct Canvas;
 struct Game;
@@ -74,6 +74,7 @@ void reset_game_round(struct Game* game){
     initializeGame(game);
     draw_canvas(&(game->background), game->settings);
 	refresh_display(game->settings, 0, 0, WIDTH, HEIGHT);
+    printf("Round %d -- score P1: %d -- score P2: %d\n", P1Score+P2Score, P1Score, P2Score);
 }
 
 void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
@@ -81,16 +82,10 @@ void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int 
     init_canvas(canvas, x, y, width, height, speed, dx, dy, colour,fade);
 }
 
-// void mod_canvas(struct Canvas* canvas, int colour, int fade)
-// {
-//     init_canvas(canvas, canvas.x, canvas.y, canvas.width, canvas.height, canvas.speed, canvas.dx, canvas.dy, colour, fade);
-// }
-
-
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
     // init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
-    init_canvas(canvas, x, y, 5, 5, 1, 1, 0, colour, fade);
+    init_canvas(canvas, x, y, 6, 6, 1, 1, 0, colour, fade);
 }
 
 void init_pad(struct Canvas* canvas, int x, int y, int colour, int fade)
@@ -280,32 +275,29 @@ int main(int argc, char *argv[])
    	game.pad2 = pad2;
    	game.background = background;
    	reset_game_round(&game);
+    sleep(1);        
  
 
 	while (isGameFinished(P1Score, P2Score)){
         // timestep ------------------------------------------
 
         // erase old image
-		/* mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0); */
-    	/* mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0); */
-    	/* mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0); */
-		/* draw_ball(game); */
-		/* draw_pads(game); */
-
-		/* smart_refresh(game); */
-
-        // draw new image
+		smart_refresh(game);
         erase_canvas(&(game.ballen), game.settings);
+		smart_refresh(game);
         erase_canvas(&(game.pad1), game.settings);
+		smart_refresh(game);
         erase_canvas(&(game.pad2), game.settings);
 		smart_refresh(game);
 
-        sleep(0.1);        
+        // sleep(0.1);        
 
+        // draw new image
     	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
 		handleCollision(&game);
         move_pads(&game);
 		draw_ball(game);
+		smart_refresh(game);
 		draw_pads(game);
 		smart_refresh(game);
 

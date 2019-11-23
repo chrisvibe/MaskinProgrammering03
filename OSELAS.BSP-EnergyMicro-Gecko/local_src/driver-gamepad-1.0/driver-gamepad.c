@@ -148,29 +148,30 @@ static int my_probe (struct platform_device *dev) {
   char *cmuAlloc;
   unsigned int gpio1;
   unsigned int gpio2;
+  int gpioIrqEven;
+  int gpioIrqOdd;
+  uint32_t start_addr;
+  uint32_t end_addr;
+  struct resource *res;
 
 
   printk("platform driver my_probe running\n");
-  struct resource *res = platform_get_resource(dev, IORESOURCE_MEM, 0);
-  int gpioIrqEven = platform_get_irq(dev, 0);
-  int gpioIrqOdd = platform_get_irq(dev, 1);
+  res = platform_get_resource(dev, IORESOURCE_MEM, 0);
+  gpioIrqEven = platform_get_irq(dev, 0);
+  gpioIrqOdd = platform_get_irq(dev, 1);
 
-  /* uint32_t start_addr = (res->start)*4; */
-  /* uint32_t end_addr = (res->end)*4; */
-  uint32_t start_addr = res->start;
-  uint32_t end_addr = res->end - res->start;
+  start_addr = res->start;
+  end_addr = res->end - res->start;
 
-  printk("start addr: %d\n", res->start);
-  printk("end addr: %d\n", res->end);
   printk("GPIO start addr: %d\n", GPIO_ADDR_START);
-  printk("GPIO start addr: %d\n", GPIO_ADDR_SIZE);
+  printk("GPIO addr size: %d\n", GPIO_ADDR_SIZE);
   printk("platform dev start addr: %d\n", res->start);
-  printk("platform devend addr: %d\n", res->end);
+  printk("platform dev end addr: %d\n", res->end);
+  printk("platform dev addr size: %d\n", res->end - res->start);
 
   // Request memory region for gpio. This is actually not strictly neede, but 
   // is good practice so that drivers do not access same mem regions
   printk("Allocating memory region for GPIO\n");
-  gpioAlloc = "GPIO";
   if (request_mem_region(start_addr, end_addr, "GPIO") == NULL)  {
     printk(KERN_WARNING "An error occured! Could not reserve memory region for GPIO\n");
     return 1;

@@ -29,6 +29,6 @@ install:
 pretty :
 	-indent *.c *.h
 
-.PHONY : clean
-clean :
+.PHONY : clean2
+clean2 :
 	-rm -rf *.o *.elf *.bin *.hex *.out

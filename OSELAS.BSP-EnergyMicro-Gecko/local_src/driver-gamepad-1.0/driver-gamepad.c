@@ -116,11 +116,11 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   printk("IN interrupt handler\n");
   debugStr("Interrupt fired");
   debugStr("Setting interrupt as handled, reading from gpio_if");
-  GPIO_IF_res = ioread32((uint32_t*) gpioMapReturn + GPIO_IF_OFFSET);
+  GPIO_IF_res = ioread32(gpioMapReturn + GPIO_IF_OFFSET);
   debugStr("Writing gpio if to gpio ifc");
   iowrite32(
       GPIO_IF_res,
-      (uint32_t*)(gpioMapReturn + GPIO_IFC_OFFSET));
+      (gpioMapReturn + GPIO_IFC_OFFSET));
 
   // Send SIGIO
   debugStr("Firing SIGIO signal");
@@ -192,13 +192,13 @@ static int my_probe (struct platform_device *dev) {
   printk("Writing to gpio to enable buttons. Using GPIO mode low offset %d \n", GPIO_MODEL_OFFSET);
   iowrite32(
       (unsigned int) 0x33333333, 
-      (uint32_t*)(gpioMapReturn + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
+      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
 
   // Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
   printk("Setting internal pull up resistors with GPIO dout offset %d\n", GPIO_DOUT_OFFSET);
   iowrite32(
       (unsigned int) 0xff, 
-      (uint32_t*)(gpioMapReturn + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
+      (gpioMapReturn + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
 
 
   // Should be placed before hardware generates interrupts

@@ -11936,3 +11936,109 @@ Signal handler res: 255
 [   86.610000] r10: 00000002  r9 : 162b5e10  r8 : 00000000
 [   86.610000] r7 : 16001f34  r6 : 162b5f18  r5 : 163bc0ac  r4 : 16001f20
 [   86.610000] r3 : 1034f883  r2 : 00000000  r1 : 00000002  r0 : 0f0af091
+[   15.100000] Console: switching to colour frame buffer device 40x30
+[   15.300000] dk3750_fb 84000000.framebuffer: fb0: dk3750_fb registered!
+[   15.320000] 4000e400.uart: ttyefm4 at MMIO 0x4000e400 (irq = 24, base_baud = 0) is a efm32-uart
+[   15.340000] console [ttyefm4] enabled, bootconsole disabled
+[   15.340000] console [ttyefm4] enabled, bootconsole disabled
+[   15.380000] EFM32 UART/USART driver
+[   15.440000] uclinux[mtd]: probe address=0x18400000 size=0x4a000
+[   15.470000] Creating 1 MTD partitions on "rom":
+[   15.470000] 0x000000000000-0x00000004a000 : "ROMfs"
+[   15.610000] mousedev: PS/2 mouse device common for all mice
+[   15.650000] i2c /dev entries driver
+[   15.750000] at24 0-0050: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[   15.810000] lm75 0-0048: hwmon1: sensor 'stds75'
+[   15.850000] TCP: cubic registered
+[   15.860000] NET: Registered protocol family 17
+[   16.110000] VFS: Mounted root (romfs filesystem) readonly on device 31:0.
+[   16.130000] devtmpfs: mounted
+[   16.130000] Freeing unused kernel memory: 24K (1600a000 - 16010000)
+ _____                            __  __ _                
+| ____|_ __   ___ _ __ __ _ _   _|  `/  (_) ___ _ __ ___  
+|  _| | '_ ` / _ ` '__/ _` | | | | |`/| | |/ __| '__/ _ ` 
+| |___| | | |  __/ | | (_| | |_| | |  | | | (__| | | (_) |
+|_____|_| |_|`___|_|  `__, |`__, |_|  |_|_|`___|_|  `___/ 
+                      |___/ |___/                         
+
+
+
+OSELAS(R)-Gecko-2012.10.0+ / energymicro-efm32gg-dk3750-2012.10.0+
+ptxdist-2013.07.1/2019-11-19T16:45:31+0000
+
+/ # modprobe driver-gmaepad[J[J[J[J[J[Jame-ad[J[J[Jpad
+[   24.140000] Initializing gamepad driver
+[   24.150000] platform driver my_probe running
+[   24.160000] GPIO start addr: 1073766400
+[   24.160000] GPIO addr size: 288
+[   24.170000] platform dev start addr: 1073766400
+[   24.180000] platform dev end addr: 1073766911
+[   24.180000] platform dev addr size: 511
+[   24.190000] Allocating memory region for GPIO
+[   24.200000] Initializing io memory remap for GPIO
+[   24.200000] Initializing as char driver
+[   24.210000] Making driver visible to user space
+[   24.220000] Setting up GPIO, using port C offset 72
+[   24.230000] Writing to gpio to enable buttons. Using GPIO mode low offset 4 
+[   24.240000] Setting internal pull up resistors with GPIO dout offset 12
+[   24.250000] Enabling interrupt for even GPIO irq number 17
+[   24.260000] Enabling interrupt for GPIO irq number 18
+[   24.270000] IN interrupt handler
+[   24.270000] Interrupt fired
+[   24.270000] Setting interrupt as handled, reading from gpio_if
+[   24.270000] Writing gpio if to gpio ifc
+[   24.270000] Firing SIGIO signal
+[   24.270000] Interrupt handled, returning IRQ_HANDLED
+/ # 
+/ # [   27.550000] IN interrupt handler
+[   27.550000] Interrupt fired
+[   27.550000] Setting interrupt as handled, reading from gpio_if
+[   27.550000] Writing gpio if to gpio ifc
+[   27.550000] Firing SIGIO signal
+[   27.550000] Interrupt handled, returning IRQ_HANDLED
+[   27.700000] IN interrupt handler
+[   27.700000] Interrupt fired
+[   27.700000] Setting interrupt as handled, reading from gpio_if
+[   27.700000] Writing gpio if to gpio ifc
+[   27.700000] Firing SIGIO signal
+[   27.700000] Interrupt handled, returning IRQ_HANDLED
+[   28.030000] IN interrupt handler
+[   28.030000] Interrupt fired
+[   28.030000] Setting interrupt as handled, reading from gpio_if
+[   28.030000] Writing gpio if to gpio ifc
+[   28.030000] Firing SIGIO signal
+[   28.030000] Interrupt handled, returning IRQ_HANDLED
+[   28.130000] IN interrupt handler
+[   28.130000] Interrupt fired
+[   28.130000] Setting interrupt as handled, reading from gpio_if
+[   28.130000] Writing gpio if to gpio ifc
+[   28.130000] Firing SIGIO signal
+[   28.130000] Interrupt handled, returning IRQ_HANDLED
+[   28.230000] IN interrupt handler
+[   28.230000] Interrupt fired
+[   28.230000] Setting interrupt as handled, reading from gpio_if
+[   28.230000] Writing gpio if to gpio ifc
+[   28.230000] Firing SIGIO signal
+[   28.230000] Interrupt handled, returning IRQ_HANDLED
+[   28.270000] IN interrupt handler
+[   28.270000] Interrupt fired
+[   28.270000] Setting interrupt as handled, reading from gpio_if
+[   28.270000] Writing gpio if to gpio ifc
+[   28.270000] Firing SIGIO signal
+[   28.270000] Interrupt handled, returning IRQ_HANDLED
+[   28.330000] IN interrupt handler
+[   28.330000] Interrupt fired
+[   28.330000] Setting interrupt as handled, reading from gpio_if
+[   28.330000] Writing gpio if to gpio ifc
+[   28.330000] Firing SIGIO signal
+[   28.330000] Interrupt handled, returning IRQ_HANDLED
+[   28.400000] IN interrupt handler
+[   28.400000] Interrupt fired
+[   28.400000] Setting interrupt as handled, reading from gpio_if
+[   28.400000] Writing gpio if to gpio ifc
+[   28.400000] Firing SIGIO signal
+[   28.400000] Interrupt handled, returning IRQ_HANDLED
+
+/ # 
+/ # 
+/ # ewix[J[J[J[J

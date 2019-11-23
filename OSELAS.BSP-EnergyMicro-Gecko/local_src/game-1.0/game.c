@@ -76,11 +76,16 @@ void reset_game_round(struct Game* game){
 	refresh_display(game->settings, 0, 0, WIDTH, HEIGHT);
 }
 
-
 void mod_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade)
 {
     init_canvas(canvas, x, y, width, height, speed, dx, dy, colour,fade);
 }
+
+// void mod_canvas(struct Canvas* canvas, int colour, int fade)
+// {
+//     init_canvas(canvas, canvas.x, canvas.y, canvas.width, canvas.height, canvas.speed, canvas.dx, canvas.dy, colour, fade);
+// }
+
 
 void init_ball(struct Canvas* canvas, int x, int y, int colour, int fade)
 {
@@ -208,13 +213,11 @@ void handleCollision(struct Game* game){
 }
 
 void movePad1(struct Game* game, int dy){
-    /* game->pad1.y += dy; */
     mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy, game->pad1.width, game->pad1.height, game->pad1.speed, game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
     checkPadPositions(game);
 }
 
 void movePad2(struct Game* game, int dy){
-	/* game->pad2.y += dy; */
     mod_canvas(&(game->pad2), game->pad2.x, game->pad2.y + dy, game->pad2.width, game->pad2.height, game->pad2.speed, game->pad2.dx, game->pad2.dy, 0xFFF, 0xF);
     checkPadPositions(game);
 }
@@ -247,6 +250,7 @@ struct Game timeStep(struct Game game){
 }
 
 void smart_refresh(struct Game game){
+	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
     refresh_display(game.settings, game.pad1.x0, HEIGHT - game.pad1.height - game.pad1.y0, game.pad1.width, game.pad1.height);
     refresh_display(game.settings, game.pad2.x0, HEIGHT - game.pad2.height - game.pad2.y0, game.pad2.width, game.pad2.height);
     refresh_display(game.settings, game.ballen.x0, HEIGHT - game.ballen.height - game.ballen.y0, game.ballen.width, game.ballen.height);
@@ -271,35 +275,41 @@ int main(int argc, char *argv[])
 	printf("Hello World, I'm game!\n");
     struct Game game;
     struct Canvas ballen, pad1, pad2, background;
-   game.ballen = ballen;
-   game.pad1 = pad1;
-   game.pad2 = pad2;
-   game.background = background;
-   reset_game_round(&game);
+   	game.ballen = ballen;
+   	game.pad1 = pad1;
+   	game.pad2 = pad2;
+   	game.background = background;
+   	reset_game_round(&game);
  
 
 	while (isGameFinished(P1Score, P2Score)){
         // timestep ------------------------------------------
 
         // erase old image
-		mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0);
-    	mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0);
-    	mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0);
-		draw_ball(game);
-		draw_pads(game);
+		/* mod_canvas(&game.ballen, game.ballen.x, game.ballen.y, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0, 0); */
+    	/* mod_canvas(&game.pad1, game.pad1.x, game.pad1.y, game.pad1.width, game.pad1.height, game.pad1.speed, game.pad1.dx, game.pad1.dy, 0, 0); */
+    	/* mod_canvas(&game.pad2, game.pad2.x, game.pad2.y, game.pad2.width, game.pad2.height, game.pad2.speed, game.pad2.dx, game.pad2.dy, 0, 0); */
+		/* draw_ball(game); */
+		/* draw_pads(game); */
 
-		smart_refresh(game);
-
-        sleep(GAME_SPEED);        
+		/* smart_refresh(game); */
 
         // draw new image
+        erase_canvas(&(game.ballen), game.settings);
+        erase_canvas(&(game.pad1), game.settings);
+        erase_canvas(&(game.pad2), game.settings);
+		smart_refresh(game);
+
+        sleep(0.1);        
+
     	mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx, game.ballen.y + game.ballen.dy, game.ballen.width, game.ballen.height, game.ballen.speed, game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
 		handleCollision(&game);
         move_pads(&game);
 		draw_ball(game);
 		draw_pads(game);
-
 		smart_refresh(game);
+
+        sleep(GAME_SPEED);        
 
         // timestep ------------------------------------------
 	}

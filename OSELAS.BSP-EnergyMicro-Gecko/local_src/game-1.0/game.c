@@ -64,7 +64,7 @@ void initialize_game(struct Game *game)
 	game->settings = setup_display();
 }
 
-//Checks whether the maxscore of P1 or P2 exceeds max_score (a variable manually set).
+/* Checks whether the maxscore of P1 or P2 exceeds max_score (a variable manually set). */
 bool is_game_finished(int p1_score, int p2_score)
 {
 	if (p1_score >= max_score || p2_score >= max_score) {
@@ -238,19 +238,19 @@ void move_pad_2(struct Game *game, int dy)
 void move_pads(struct Game *game)
 {
 	int flipped_button_state = ~result_from_device_driver;
-	// Left player up
+	/* Left player up */
 	if ((flipped_button_state & 0b00000010) != 0) {
 		move_pad_1(game, game->pad1.dy);
 	}
-	// Left player down
+	/* Left player down */
 	else if ((flipped_button_state & 0b00001000) != 0) {
 		move_pad_1(game, -game->pad1.dy);
 	}
-	// Right player up
+	/* Right player up */
 	if ((flipped_button_state & 0b00100000) != 0) {
 		move_pad_2(game, game->pad2.dy);
 	}
-	// Right player down
+	/* Right player down */
 	else if ((flipped_button_state & 0b10000000) != 0) {
 		move_pad_2(game, -game->pad2.dy);
 	}
@@ -263,7 +263,6 @@ struct Game time_step(struct Game game)
 
 void smart_refresh(struct Game game)
 {
-	// refresh_display(game.settings, 0, 0, WIDTH, HEIGHT);
 	refresh_display(game.settings, game.pad1.x0,
 			HEIGHT - game.pad1.height - game.pad1.y0,
 			game.pad1.width, game.pad1.height);
@@ -300,9 +299,9 @@ int main(int argc, char *argv[])
 	sleep(1);
 
 	while (is_game_finished(p1_score, p2_score)) {
-		// timestep ------------------------------------------
+		/* timestep ------------------------------------------ */
 
-		// erase old image
+		/* erase old image */
 		smart_refresh(game);
 		erase_canvas(&(game.ballen), game.settings);
 		smart_refresh(game);
@@ -311,9 +310,7 @@ int main(int argc, char *argv[])
 		erase_canvas(&(game.pad2), game.settings);
 		smart_refresh(game);
 
-		// sleep(0.1);
-
-		// draw new image
+		/* draw new image */
 		mod_canvas(&game.ballen, game.ballen.x + game.ballen.dx,
 			   game.ballen.y + game.ballen.dy, game.ballen.width,
 			   game.ballen.height, game.ballen.speed,
@@ -327,7 +324,7 @@ int main(int argc, char *argv[])
 
 		sleep(GAME_SPEED);
 
-		// timestep ------------------------------------------
+		/* timestep ------------------------------------------ */
 	}
 
 	free((&game.ballen)->pixels);

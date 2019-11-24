@@ -210,13 +210,13 @@ static int my_probe (struct platform_device *dev) {
   printk("Writing to gpio to enable buttons. Using GPIO mode low offset %d \n", GPIO_MODEL_OFFSET);
   iowrite32(
       (unsigned int) 0x33333333, 
-      (gpio_map_return + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_PC_OFFSET + GPIO_MODEL_OFFSET));
 
   // Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
   printk("Setting internal pull up resistors with GPIO dout offset %d\n", GPIO_DOUT_OFFSET);
   iowrite32(
       (unsigned int) 0xff, 
-      (gpio_map_return + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_PC_OFFSET + GPIO_DOUT_OFFSET));
 
 
   // Should be placed before hardware generates interrupts
@@ -244,21 +244,21 @@ static int my_probe (struct platform_device *dev) {
   // which will cause modprobe to crash
   iowrite32(
       (unsigned int) 0x22222222,
-      (gpio_map_return + GPIO_EXTIPSELL_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_EXTIPSELL_OFFSET));
 
   iowrite32(
       (unsigned int) 0xff,
-      (gpio_map_return + GPIO_EXTIRISE_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_EXTIRISE_OFFSET));
 
   iowrite32(
       (unsigned int) 0xff,
-      (gpio_map_return + GPIO_EXTIFALL_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_EXTIFALL_OFFSET));
 
   gpio_ien_tmp = ioread32(gpio_map_return + GPIO_IEN_OFFSET) | 0xff;
 
   iowrite32(
       (unsigned int) gpio_ien_tmp,
-      (gpio_map_return + GPIO_IEN_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_IEN_OFFSET));
 
 }
 

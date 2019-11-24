@@ -15,36 +15,36 @@
 #define P1 1
 #define P2 2
 #define GAME_SPEED .8
-#define maxScore 3
-int P1Score = 0;
-int P2Score = 0;
+#define max_score 3
+int p1_score = 0;
+int p2_score = 0;
 
 struct Canvas;
 struct Game;
-struct Canvas initializeBall(int x, int y);
-void initializeGame(struct Game *game);
-bool isGameFinished(int P1Score, int P2Score);
+struct Canvas initialize_ball(int x, int y);
+void initialize_game(struct Game *game);
+bool is_game_finished(int p1_score, int p2_score);
 void mod_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 		int speed, int dx, int dy, int colour, int fade);
-struct Canvas initializePads(int x, int y);
-int whereCollision(struct Game *game);
-void checkPadPositions(struct Game *game);
-void handleCollision(struct Game *game);
-int collisionDetectionBall(struct Game game);
-int collisionDetectionPad(struct Game game);
+struct Canvas initialize_pads(int x, int y);
+int where_collision(struct Game *game);
+void check_pad_positions(struct Game *game);
+void handle_collision(struct Game *game);
+int collision_detection_ball(struct Game game);
+int collision_detection_pad(struct Game game);
 void init_ball(struct Canvas *canvas, int x, int y, int colour, int fade);
 void init_pad(struct Canvas *canvas, int x, int y, int colour, int fade);
 void init_background(struct Canvas *canvas, int x, int y, int colour, int fade);
 void draw_ball(struct Game game);
 void draw_pads(struct Game game);
 void reset_game_round(struct Game *game);
-struct Game timeStep(struct Game game);
+struct Game time_step(struct Game game);
 void smart_refresh(struct Game game);
 void move_pads(struct Game *game);
 void reset_game_round(struct Game *game);
 
-void movePad1(struct Game *game, int dy);
-void movePad2(struct Game *game, int dy);
+void move_pad_1(struct Game *game, int dy);
+void move_pad_2(struct Game *game, int dy);
 
 struct Game {
 	struct Settings settings;
@@ -54,7 +54,7 @@ struct Game {
 	struct Canvas background;
 };
 
-void initializeGame(struct Game *game)
+void initialize_game(struct Game *game)
 {
 	init_ball(&(game->ballen), WIDTH / 2, HEIGHT / 2, 0xFFF, 0xF);
 	init_pad(&(game->pad1), 10, HEIGHT / 2, 0xFFF, 0xF);
@@ -64,10 +64,10 @@ void initializeGame(struct Game *game)
 	game->settings = setup_display();
 }
 
-//Checks whether the maxscore of P1 or P2 exceeds maxScore (a variable manually set).
-bool isGameFinished(int P1Score, int P2Score)
+//Checks whether the maxscore of P1 or P2 exceeds max_score (a variable manually set).
+bool is_game_finished(int p1_score, int p2_score)
 {
-	if (P1Score >= maxScore || P2Score >= maxScore) {
+	if (p1_score >= max_score || p2_score >= max_score) {
 		return 0;
 	};
 	return 1;
@@ -75,11 +75,11 @@ bool isGameFinished(int P1Score, int P2Score)
 
 void reset_game_round(struct Game *game)
 {
-	initializeGame(game);
+	initialize_game(game);
 	draw_canvas(&(game->background), game->settings);
 	refresh_display(game->settings, 0, 0, WIDTH, HEIGHT);
-	printf("Round %d -- score P1: %d -- score P2: %d\n", P1Score + P2Score,
-	       P1Score, P2Score);
+	printf("Round %d -- score P1: %d -- score P2: %d\n", p1_score + p2_score,
+	       p1_score, p2_score);
 }
 
 void mod_canvas(struct Canvas *canvas, int x, int y, int width, int height,
@@ -90,23 +90,20 @@ void mod_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 
 void init_ball(struct Canvas *canvas, int x, int y, int colour, int fade)
 {
-	// init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);j
 	init_canvas(canvas, x, y, 6, 6, 1, 1, 0, colour, fade);
 }
 
 void init_pad(struct Canvas *canvas, int x, int y, int colour, int fade)
 {
-	// init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 	init_canvas(canvas, x, y, 2, 30, 0, 0, 1, colour, fade);
 }
 
 void init_background(struct Canvas *canvas, int x, int y, int colour, int fade)
 {
-	// init_canvas(struct Canvas* canvas, int x, int y, int width, int height, int speed, int dx, int dy, int colour, int fade);
 	init_canvas(canvas, x, y, WIDTH, HEIGHT, 0, 0, 0, colour, fade);
 }
 
-int whereCollision(struct Game *game)
+int where_collision(struct Game *game)
 {
 	if (game->ballen.x == game->pad1.x &&
 	    (game->ballen.y >= game->pad1.y - 15 &&
@@ -133,8 +130,8 @@ int whereCollision(struct Game *game)
 	return -1;
 }
 
-//Checks the pad positions and if they are outside the buffer, then update their positions back.
-void checkPadPositions(struct Game *game)
+/* Checks the pad positions and if they are outside the buffer, then update their positions back. */
+void check_pad_positions(struct Game *game)
 {
 	if (game->pad1.y < 16) {
 		game->pad1.y = 16;
@@ -151,12 +148,12 @@ void checkPadPositions(struct Game *game)
 }
 
 /* dx or dy is multiplied by -1 depending on what type of crash it is (horizontal vs vertical) */
-void handleCollision(struct Game *game)
+void handle_collision(struct Game *game)
 {
-	int collisionState = whereCollision(game);
+	int collision_state = where_collision(game);
 
 	/* This method needs to be changed later as the ball will not change direction based on pad angle by using the current function */
-	if (collisionState == 0) {
+	if (collision_state == 0) {
 		if ((game->ballen.y >= game->pad1.y + 10) &&
 		    (game->ballen.y <= game->pad1.y + 15)) {
 			game->ballen.dy = 2;
@@ -179,7 +176,7 @@ void handleCollision(struct Game *game)
 			game->ballen.dx *= -1;
 		}
 	}
-	if (collisionState == 1) {
+	if (collision_state == 1) {
 		if ((game->ballen.y >= game->pad2.y + 10) &&
 		    (game->ballen.y <= game->pad2.y + 15)) {
 			game->ballen.dy = 2;
@@ -202,64 +199,64 @@ void handleCollision(struct Game *game)
 			game->ballen.dx *= -1;
 		}
 	}
-	if (collisionState == 2) {
+	if (collision_state == 2) {
 		if (game->ballen.x <= 10) {
-			P2Score++;
+			p2_score++;
 			reset_game_round(game);
 		}
 		if (game->ballen.x >= 310) {
-			P1Score++;
+			p1_score++;
 			reset_game_round(game);
 		}
 	}
-	if (collisionState == 3) {
+	if (collision_state == 3) {
 		game->ballen.dy *= -1;
 	}
 
-	// flush values modified above.
+	/* flush values modified above. */
 	mod_canvas(&(game->ballen), game->ballen.x, game->ballen.y,
 		   game->ballen.width, game->ballen.height, game->ballen.speed,
 		   game->ballen.dx, game->ballen.dy, 0xFFF, 0xF);
 }
 
-void movePad1(struct Game *game, int dy)
+void move_pad_1(struct Game *game, int dy)
 {
 	mod_canvas(&(game->pad1), game->pad1.x, game->pad1.y + dy,
 		   game->pad1.width, game->pad1.height, game->pad1.speed,
 		   game->pad1.dx, game->pad1.dy, 0xFFF, 0xF);
-	checkPadPositions(game);
+	check_pad_positions(game);
 }
 
-void movePad2(struct Game *game, int dy)
+void move_pad_2(struct Game *game, int dy)
 {
 	mod_canvas(&(game->pad2), game->pad2.x, game->pad2.y + dy,
 		   game->pad2.width, game->pad2.height, game->pad2.speed,
 		   game->pad2.dx, game->pad2.dy, 0xFFF, 0xF);
-	checkPadPositions(game);
+	check_pad_positions(game);
 }
 
 void move_pads(struct Game *game)
 {
-	int flippedButtonState = ~resultFromDeviceDriver;
+	int flipped_button_state = ~resultFromDeviceDriver;
 	// Left player up
-	if ((flippedButtonState & 0b00000010) != 0) {
-		movePad1(game, game->pad1.dy);
+	if ((flipped_button_state & 0b00000010) != 0) {
+		move_pad_1(game, game->pad1.dy);
 	}
 	// Left player down
-	else if ((flippedButtonState & 0b00001000) != 0) {
-		movePad1(game, -game->pad1.dy);
+	else if ((flipped_button_state & 0b00001000) != 0) {
+		move_pad_1(game, -game->pad1.dy);
 	}
 	// Right player up
-	if ((flippedButtonState & 0b00100000) != 0) {
-		movePad2(game, game->pad2.dy);
+	if ((flipped_button_state & 0b00100000) != 0) {
+		move_pad_2(game, game->pad2.dy);
 	}
 	// Right player down
-	else if ((flippedButtonState & 0b10000000) != 0) {
-		movePad2(game, -game->pad2.dy);
+	else if ((flipped_button_state & 0b10000000) != 0) {
+		move_pad_2(game, -game->pad2.dy);
 	}
 }
 
-struct Game timeStep(struct Game game)
+struct Game time_step(struct Game game)
 {
 	return game;
 }
@@ -302,7 +299,7 @@ int main(int argc, char *argv[])
 	reset_game_round(&game);
 	sleep(1);
 
-	while (isGameFinished(P1Score, P2Score)) {
+	while (is_game_finished(p1_score, p2_score)) {
 		// timestep ------------------------------------------
 
 		// erase old image
@@ -321,7 +318,7 @@ int main(int argc, char *argv[])
 			   game.ballen.y + game.ballen.dy, game.ballen.width,
 			   game.ballen.height, game.ballen.speed,
 			   game.ballen.dx, game.ballen.dy, 0xFFF, 0xF);
-		handleCollision(&game);
+		handle_collision(&game);
 		move_pads(&game);
 		draw_ball(game);
 		smart_refresh(game);

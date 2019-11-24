@@ -131,7 +131,8 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	canvas->dy =
 		dy; /* This means that the ball will go to the right each time */
 	uint16_t length = canvas->width * canvas->height;
-	canvas->pixels = malloc(length * sizeof(uint16_t));
+  free(canvas->pixels);
+  canvas->pixels = malloc(length * sizeof(uint16_t));
 
 	fill(canvas, colour);
 	smooth(canvas, fade);

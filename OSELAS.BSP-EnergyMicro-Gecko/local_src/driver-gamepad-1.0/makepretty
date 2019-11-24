@@ -1,6 +1,6 @@
-#!/bin/bash
-# to use this file:
-# . cleanup 
+#!/ bin / bash
+#to use this file:
+#.cleanup
 
 make pretty
 for f in *.c 

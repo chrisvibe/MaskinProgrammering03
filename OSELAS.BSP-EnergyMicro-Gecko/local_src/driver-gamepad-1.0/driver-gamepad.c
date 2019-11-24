@@ -139,7 +139,6 @@ static irqreturn_t GPIO_interrupt(int irq, void *dev_id)
 {
 	unsigned int GPIO_IF_res;
 
-	printk("IN interrupt handler\n");
 	debug_str("Interrupt fired");
 	debug_str("Setting interrupt as handled, reading from gpio_if");
 	GPIO_IF_res = ioread32((uint32_t *)(gpio_map_return + GPIO_IF_OFFSET));

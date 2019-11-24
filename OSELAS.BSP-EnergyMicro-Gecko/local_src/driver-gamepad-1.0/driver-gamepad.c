@@ -48,7 +48,6 @@ static void __exit gamepad_cleanup(void);
 // Global variables. Many of these are needed as globals only because they need to be
 // freed in the cleanup function.
 static struct miscdevice miscdev;
-static struct platform_device *platform_dev;
 static struct fasync_struct *pasync_queue;
 static uint32_t gpio_map_return;
 static int gpio_irq_even;
@@ -258,6 +257,7 @@ static int my_probe (struct platform_device *dev) {
       (unsigned int) gpio_ien_tmp,
       (uint32_t*) (gpio_map_return + GPIO_IEN_OFFSET));
 
+  return 0;
 }
 
 

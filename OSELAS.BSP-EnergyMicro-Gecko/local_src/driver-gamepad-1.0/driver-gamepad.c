@@ -49,8 +49,8 @@ static void __exit gamepad_cleanup(void);
 // freed in the cleanup function.
 static struct miscdevice miscdev;
 static struct platform_device *platform_dev;
-static int gpio_map_return;
 static struct fasync_struct *pasync_queue;
+static uint32_t gpio_map_return;
 static int gpio_irq_even;
 static int gpio_irq_odd;
 
@@ -136,11 +136,11 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
   printk("IN interrupt handler\n");
   debug_str("Interrupt fired");
   debug_str("Setting interrupt as handled, reading from gpio_if");
-  GPIO_IF_res = ioread32(gpio_map_return + GPIO_IF_OFFSET);
+  GPIO_IF_res = ioread32((uint32_t*) (gpio_map_return + GPIO_IF_OFFSET));
   debug_str("Writing gpio if to gpio ifc");
   iowrite32(
       GPIO_IF_res,
-      (gpio_map_return + GPIO_IFC_OFFSET));
+      (uint32_t*) (gpio_map_return + GPIO_IFC_OFFSET));
 
   // Send SIGIO
   debug_str("Firing SIGIO signal");
@@ -197,7 +197,7 @@ static int my_probe (struct platform_device *dev) {
   // This is actually not strictly needed since I/O is memory mapped on the 
   // EFM32GG, but still good practice.
   printk("Initializing io memory remap for GPIO\n");
-  gpio_map_return = ioremap_nocache((resource_size_t) start_addr, end_addr);
+  gpio_map_return = (uint32_t) ioremap_nocache((resource_size_t) start_addr, end_addr);
   
   // Make driver visible to user space and register as char device
   printk("Making driver visible to user space\n");

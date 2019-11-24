@@ -6,9 +6,9 @@ struct Settings {
 };
 
 struct Canvas {
-	uint16_t x; // centroid placement in global display
+	uint16_t x; /* centroid placement in global display */
 	uint16_t y;
-	uint16_t x0; // corner placement in global display
+	uint16_t x0; /* corner placement in global display */
 	uint16_t y0;
 	uint16_t width;
 	uint16_t height;
@@ -22,10 +22,10 @@ struct Settings setup_display()
 {
 	struct Settings settings;
 
-	// open the frame buffer for read/write
+	/* open the frame buffer for read/write */
 	settings.fbfd = open("/dev/fb0", O_RDWR);
 
-	// get address where we can store pixels (write implies read too)
+	/* get address where we can store pixels (write implies read too) */
 	settings.addr = (uint16_t *)mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED,
 					 settings.fbfd, 0);
 

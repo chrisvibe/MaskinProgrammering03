@@ -32,7 +32,7 @@
 #define GPIO_IF_OFFSET (uint32_t)(GPIO_IF) - GPIO_PA_BASE
 #define GPIO_IFC_OFFSET (uint32_t)(GPIO_IFC) - GPIO_PA_BASE
 
-// Function prototypes
+/* Function prototypes */
 static int my_open(struct inode *inode, struct file *filp);
 static int my_release(struct inode *inode, struct file *filp);
 static ssize_t my_read(struct file *filp, char __user *buff, size_t count,
@@ -45,15 +45,15 @@ static int my_remove(struct platform_device *dev);
 static int __init gamepad_init(void);
 static void __exit gamepad_cleanup(void);
 
-// Global variables. Many of these are needed as globals only because they need to be
-// freed in the cleanup function.
+/* Global variables. Many of these are needed as globals only because they need to be */
+/* freed in the cleanup function. */
 static struct miscdevice miscdev;
 static struct fasync_struct *pasync_queue;
 static uint32_t gpio_map_return;
 static int gpio_irq_even;
 static int gpio_irq_odd;
 
-// Debugging, Set debug variable to 1 to enable.
+/* Debugging, Set debug variable to 1 to enable. */
 static int debug = 1;
 static void debug_str(char *msg)
 {
@@ -146,7 +146,7 @@ static irqreturn_t GPIO_interrupt(int irq, void *dev_id)
 	debug_str("Writing gpio if to gpio ifc");
 	iowrite32(GPIO_IF_res, (uint32_t *)(gpio_map_return + GPIO_IFC_OFFSET));
 
-	// Send SIGIO
+	/* Send SIGIO */
 	debug_str("Firing SIGIO signal");
 	if (pasync_queue) {
 		kill_fasync(&pasync_queue, SIGIO, POLL_IN);
@@ -164,7 +164,7 @@ static irqreturn_t GPIO_interrupt(int irq, void *dev_id)
  */
 static int my_probe(struct platform_device *dev)
 {
-	// Need to allocate variables here because C90 restrictions
+	/* Need to allocate variables here because C90 restrictions */
 	unsigned int gpio_ien_tmp;
 	uint32_t start_addr;
 	uint32_t end_addr;
@@ -184,8 +184,8 @@ static int my_probe(struct platform_device *dev)
 	printk("platform dev end addr: %d\n", res->end);
 	printk("platform dev addr size: %d\n", res->end - res->start);
 
-	// Request memory region for gpio. This is actually not strictly neede, but
-	// is good practice so that drivers do not access same mem regions
+	/* Request memory region for gpio. This is actually not strictly neede, but */
+	/* is good practice so that drivers do not access same mem regions */
 	printk("Allocating memory region for GPIO\n");
 	if (request_mem_region(start_addr, end_addr, "GPIO") == NULL) {
 		printk(KERN_WARNING
@@ -193,35 +193,37 @@ static int my_probe(struct platform_device *dev)
 		return 1;
 	}
 
-	// Map I/O address space to new address space that we will use for hardware access.
-	// This is actually not strictly needed since I/O is memory mapped on the
-	// EFM32GG, but still good practice.
+	/* 
+   * Map I/O address space to new address space that we will use for hardware access.
+	 * This is actually not strictly needed since I/O is memory mapped on the
+	 * EFM32GG, but still good practice.
+   */
 	printk("Initializing io memory remap for GPIO\n");
 	gpio_map_return = (uint32_t)ioremap_nocache((resource_size_t)start_addr,
 						    end_addr);
 
-	// Make driver visible to user space and register as char device
+	/* Make driver visible to user space and register as char device */
 	printk("Making driver visible to user space\n");
 	miscdev.minor = MISC_DYNAMIC_MINOR;
 	miscdev.name = "Gamepad";
 	miscdev.fops = &my_fops;
 	misc_register(&miscdev);
 
-	// Button setup
+	/* Button setup */
 	printk("Writing to gpio to enable buttons. Using GPIO mode low offset %d \n",
 	       GPIO_MODEL_OFFSET);
 	iowrite32((unsigned int)0x33333333,
 		  (uint32_t *)(gpio_map_return + GPIO_PC_OFFSET +
 			       GPIO_MODEL_OFFSET));
 
-	// Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT
+	/* Enable internal pull-up for buttons by writing 0xff to GPIOPCDOUT */
 	printk("Setting internal pull up resistors with GPIO dout offset %d\n",
 	       GPIO_DOUT_OFFSET);
 	iowrite32((unsigned int)0xff,
 		  (uint32_t *)(gpio_map_return + GPIO_PC_OFFSET +
 			       GPIO_DOUT_OFFSET));
 
-	// Should be placed before hardware generates interrupts
+	/* Should be placed before hardware generates interrupts */
 	printk("Enabling interrupt for even GPIO irq number %d\n",
 	       gpio_irq_even);
 	if (request_irq(gpio_irq_even, GPIO_interrupt, 0, "GPIO IRQ even",
@@ -234,10 +236,12 @@ static int my_probe(struct platform_device *dev)
 		printk(KERN_WARNING "Interrupt handler error for odd GPIO\n");
 	}
 
-	// GPIO interrupt setup
-	// DONT LOG BEYOND THIS PART IN THIS FUNCTION!!!
-	// Logging will cause an interrupt to happen in the middle of interrupt setup,
-	// which will cause modprobe to crash
+	/* 
+   * GPIO interrupt setup
+	 * Warning: Dont log anything beyond this part in this function
+	 * Logging will cause an interrupt to happen in the middle of interrupt setup,
+	 * which will cause modprobe to crash
+   */
 	iowrite32((unsigned int)0x22222222,
 		  (uint32_t *)(gpio_map_return + GPIO_EXTIPSELL_OFFSET));
 

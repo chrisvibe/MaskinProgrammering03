@@ -18,7 +18,7 @@ To build and flash the currently modified files that exist in the local-src fold
 Follow steps 1-3 from previous paragraph, then follow these steps:
 
 1. Run the command `$ docker build -t cybertruck .`, this only builds the image.
-2. Run the command `$ docker run --privileged -it run cybertruck /bin/bash`, this puts you in interactive shell inside a docker container built from the docker image. Its an ubuntu 14.04 image, so standard commands from that distro is availble, including apt-get. Just beware that whatever you do in here will not be persisted when exiting the container. For persistent storage, you have to set up volumes.
+2. Run the command `$ docker run --privileged -it cybertruck /bin/bash`, this puts you in interactive shell inside a docker container built from the docker image. Its an ubuntu 14.04 image, so standard commands from that distro is availble, including apt-get. Just beware that whatever you do in here will not be persisted when exiting the container. For persistent storage, you have to set up volumes.
 3. Run the command `$ su non-root`, this changes user to a user that is created for running PTXdist commands, it is also placed in the sudoers file if that is neccecary. But dont run PTXdist as sudo, because PTXdist refuses to do that.
 4. Run the command `$ cd`, this changes directory to the non-root user directory, where all the relevant files are. 
 

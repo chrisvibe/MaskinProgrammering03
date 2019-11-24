@@ -163,8 +163,6 @@ irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) {
  */
 static int my_probe (struct platform_device *dev) {
   // Need to allocate variables here because C90 restrictions
-  int alloc_chrdevice_result;
-  char *gpio_alloc;
   unsigned int gpio_ien_tmp;
   uint32_t start_addr;
   uint32_t end_addr;
@@ -254,7 +252,7 @@ static int my_probe (struct platform_device *dev) {
       (unsigned int) 0xff,
       (uint32_t*) (gpio_map_return + GPIO_EXTIFALL_OFFSET));
 
-  gpio_ien_tmp = ioread32(gpio_map_return + GPIO_IEN_OFFSET) | 0xff;
+  gpio_ien_tmp = ioread32((uint32_t*) (gpio_map_return + GPIO_IEN_OFFSET)) | 0xff;
 
   iowrite32(
       (unsigned int) gpio_ien_tmp,
@@ -294,6 +292,7 @@ static int my_remove (struct platform_device *dev) {
    free_irq(gpio_irq_even, NULL);
    free_irq(gpio_irq_odd, NULL);
    printk("platform driver cleanup complete\n");
+   return 0;
 }
 
 

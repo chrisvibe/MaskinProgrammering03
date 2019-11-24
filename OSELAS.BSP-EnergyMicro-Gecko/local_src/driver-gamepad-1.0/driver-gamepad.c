@@ -37,7 +37,7 @@
 static int my_open (struct inode *inode, struct  file *filp);
 static int my_release (struct inode *inode, struct  file *filp);
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp);
-static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp);
+static ssize_t my_write (struct  file *filp, const char __user *buff, size_t count, loff_t *offp);
 irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs);
 static int my_probe (struct platform_device *dev);
 static int my_remove (struct platform_device *dev);
@@ -104,7 +104,7 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
  * Write function for file operations. Will be called when the device file is written to. 
  * Not used since it makes no sense to write to buttons.
  */
-static ssize_t my_write (struct  file *filp, char __user *buff, size_t count, loff_t *offp) {
+static ssize_t my_write (struct  file *filp, const char __user *buff, size_t count, loff_t *offp) {
   debug_str("Writing");
   return 0;
 }

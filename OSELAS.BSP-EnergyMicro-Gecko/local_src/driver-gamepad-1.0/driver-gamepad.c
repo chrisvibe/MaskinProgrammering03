@@ -38,7 +38,6 @@ static int my_open (struct inode *inode, struct  file *filp);
 static int my_release (struct inode *inode, struct  file *filp);
 static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, loff_t *offp);
 static ssize_t my_write (struct  file *filp, const char __user *buff, size_t count, loff_t *offp);
-/* irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs); */
 static irqreturn_t GPIO_interrupt(int irq, void *dev_id);
 static int my_probe (struct platform_device *dev);
 static int my_remove (struct platform_device *dev);
@@ -131,7 +130,6 @@ static struct file_operations my_fops = {
  * to let the user space program now that a button has been pressed
  * or released.
  */
-/* irqreturn_t GPIO_interrupt(int irq, void *dev_id, struct pt_regs *regs) { */
 static irqreturn_t GPIO_interrupt(int irq, void *dev_id) {
   unsigned int GPIO_IF_res;
 

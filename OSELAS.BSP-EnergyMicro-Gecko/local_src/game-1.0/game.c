@@ -237,7 +237,7 @@ void move_pad_2(struct Game *game, int dy)
 
 void move_pads(struct Game *game)
 {
-	int flipped_button_state = ~resultFromDeviceDriver;
+	int flipped_button_state = ~result_from_device_driver;
 	// Left player up
 	if ((flipped_button_state & 0b00000010) != 0) {
 		move_pad_1(game, game->pad1.dy);

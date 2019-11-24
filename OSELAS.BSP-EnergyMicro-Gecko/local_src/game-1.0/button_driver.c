@@ -1,7 +1,7 @@
 #include "button_driver.h"
 
 static FILE *device;
-int resultFromDeviceDriver;
+int result_from_device_driver;
 
 void init_gamepad()
 {
@@ -28,8 +28,8 @@ void init_gamepad()
 
 void sigio_handler(int signo)
 {
-	resultFromDeviceDriver = fgetc(device);
-	printf("Signal handler res: %d\n", resultFromDeviceDriver);
+	result_from_device_driver = fgetc(device);
+	printf("Signal handler res: %d\n", result_from_device_driver);
 }
 
 void shutdown_driver()

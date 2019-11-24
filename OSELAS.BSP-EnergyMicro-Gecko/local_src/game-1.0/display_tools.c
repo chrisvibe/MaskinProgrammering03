@@ -29,8 +29,6 @@ struct Settings setup_display()
 	settings.addr = (uint16_t *)mmap(NULL, LENGTH, PROT_WRITE, MAP_SHARED,
 					 settings.fbfd, 0);
 
-	clear_screen(settings);
-
 	return settings;
 }
 
@@ -40,19 +38,11 @@ void tear_down_display(struct Settings settings)
 	close(settings.fbfd);
 }
 
-void clear_screen(struct Settings settings)
-{
-	/* struct Canvas screen; */
-	/* init_canvas(&screen, WIDTH / 2, HEIGHT / 2, WIDTH - 1, HEIGHT - 1, 0, 0, 0, 0, 0); */
-	/* draw_canvas(&screen, settings); */
-	/* free(screen.pixels); */
-}
-
 void refresh_display(struct Settings settings, int x, int y, int width,
 		     int height)
 {
-	// setup which part of the frame buffer that is to be refreshed */
-	// for performance reasons, use as small rectangle as possible */
+	/* setup which part of the frame buffer that is to be refreshed */ 
+	/* for performance reasons, use as small rectangle as possible */
 	struct fb_copyarea rect;
 
 	rect.dx = x;
@@ -60,7 +50,7 @@ void refresh_display(struct Settings settings, int x, int y, int width,
 	rect.height = height;
 	rect.width = width;
 
-	// command driver to update display */
+	/* command driver to update display */
 	ioctl(settings.fbfd, 0x4680, &rect);
 }
 
@@ -136,11 +126,11 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	canvas->x0 = canvas->x - canvas->width / 2;
 	canvas->y0 = canvas->y - canvas->height / 2;
 	canvas->speed =
-		speed; /* Setter her speed til 1, men dette kan endres */
+		speed; /* Setting speed to 1, this can be changed */
 	canvas->dx =
-		dx; /* Setter dx og dy til random nummer/rand max slik at vi har en verdi mellom 0 og 1 */
+		dx; /* Setting dx and dy to random number/rand max so that we get value between 0 and 1 */
 	canvas->dy =
-		dy; /* Betyr at ballen kommer til å gå mot høyre hver gang */
+		dy; /* This means that the ball will go to the right each time */
 	uint16_t length = canvas->width * canvas->height;
 	canvas->pixels = malloc(length * sizeof(uint16_t));
 
@@ -148,24 +138,3 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	smooth(canvas, fade);
 }
 
-// int main(void) {
-void game_dummy()
-{
-	//     struct Settings settings = setup_display();
-	//     struct Canvas ballen, pad;
-
-	//     init_ball(&ballen, 100, 100, 0xFFF, 0xF);
-	//     init_pad(&pad, 50, 50, 0xFFF, 0xF);
-
-	//     print_canvas(&ballen);
-	//     print_canvas(&pad);
-
-	//     draw_canvas(&ballen, settings);
-	//     draw_canvas(&pad, settings);
-
-	//     refresh_display(settings, 0, 0, WIDTH, HEIGHT);
-
-	//     free((&ballen)->pixels);
-	//     free((&pad)->pixels);
-	//     printf("done.\n");
-}

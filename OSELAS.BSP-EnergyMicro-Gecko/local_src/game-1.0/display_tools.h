@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define HEIGHT 240 // display dimensions
+#define HEIGHT 240 /* display dimensions */
 #define WIDTH 320
-#define LENGTH HEIGHT *WIDTH * 2 // length in bites
+#define LENGTH HEIGHT *WIDTH * 2 /* length in bites */
 
 struct Settings;
 struct Settings setup_display();

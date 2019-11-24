@@ -22,3 +22,13 @@ install:
 .PHONY: all install clean
 
 # end of development makefile
+
+# -------------------------------
+# added this:
+.PHONY : pretty
+pretty :
+	-indent *.c *.h
+
+.PHONY : clean2
+clean2 :
+	-rm -rf *.o *.elf *.bin *.hex *.out

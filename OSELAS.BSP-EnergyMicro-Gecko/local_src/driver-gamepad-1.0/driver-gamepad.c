@@ -97,6 +97,7 @@ static ssize_t my_read (struct  file *filp, char __user *buff, size_t count, lof
     return -EFAULT;
   }
   (*offp)++;
+  return 1;
 }
 
 /**

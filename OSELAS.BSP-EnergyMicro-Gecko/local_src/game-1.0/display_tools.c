@@ -41,7 +41,7 @@ void tear_down_display(struct Settings settings)
 void refresh_display(struct Settings settings, int x, int y, int width,
 		     int height)
 {
-	/* setup which part of the frame buffer that is to be refreshed */ 
+	/* setup which part of the frame buffer that is to be refreshed */
 	/* for performance reasons, use as small rectangle as possible */
 	struct fb_copyarea rect;
 
@@ -125,8 +125,7 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	canvas->height = height;
 	canvas->x0 = canvas->x - canvas->width / 2;
 	canvas->y0 = canvas->y - canvas->height / 2;
-	canvas->speed =
-		speed; /* Setting speed to 1, this can be changed */
+	canvas->speed = speed; /* Setting speed to 1, this can be changed */
 	canvas->dx =
 		dx; /* Setting dx and dy to random number/rand max so that we get value between 0 and 1 */
 	canvas->dy =
@@ -137,4 +136,3 @@ void init_canvas(struct Canvas *canvas, int x, int y, int width, int height,
 	fill(canvas, colour);
 	smooth(canvas, fade);
 }
-

@@ -78,8 +78,8 @@ void reset_game_round(struct Game *game)
 	initialize_game(game);
 	draw_canvas(&(game->background), game->settings);
 	refresh_display(game->settings, 0, 0, WIDTH, HEIGHT);
-	printf("Round %d -- score P1: %d -- score P2: %d\n", p1_score + p2_score,
-	       p1_score, p2_score);
+	printf("Round %d -- score P1: %d -- score P2: %d\n",
+	       p1_score + p2_score, p1_score, p2_score);
 }
 
 void mod_canvas(struct Canvas *canvas, int x, int y, int width, int height,
